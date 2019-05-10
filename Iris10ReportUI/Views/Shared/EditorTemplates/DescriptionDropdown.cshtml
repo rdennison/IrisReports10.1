@@ -1,0 +1,34 @@
+﻿@using IrisAttributes
+@model object
+
+
+@{
+    FilterDropdownAttribute filterDropdown = new FilterDropdownAttribute();
+
+    if (Session["ModelType"] != null && (Session["ReportFilter"] == null || (bool) Session["ReportFilter"] != true))
+    {
+        SelectList ddFilterList = filterDropdown.GetFilterDropdownList(Session["ModelType"].GetType());
+
+        @(Html.Kendo()
+          .ComboBox()
+          .Name("FieldList")
+          .Placeholder("Select...")
+          .Filter("startswith")
+          .Suggest(true)
+          .SelectedIndex(0)
+          .BindTo(ddFilterList))
+    }
+    else
+    {
+        SelectList ddReportFilterList = filterDropdown.CreateReportFilterDropdownList();
+
+        @(Html.Kendo()
+          .ComboBox()
+          .Name("FieldList")
+          .Placeholder("Select...")
+          .Filter("startswith")
+          .Suggest(true)
+          .SelectedIndex(0)
+          .BindTo(ddReportFilterList))
+    }
+}

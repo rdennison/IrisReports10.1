@@ -1,0 +1,25 @@
+﻿@using IrisAttributes
+@model object
+
+@{
+    FilterDropdownAttribute groupOneDropdown = new FilterDropdownAttribute();
+    SelectList openParentheses = groupOneDropdown.GroupOneDropdownList();
+}
+
+@(Html.Kendo()
+    .MaskedTextBox()
+    .Name("Group1")
+    //.DataTextField("Text")
+    //.DataValueField("Value")
+    //.BindTo(openParentheses)
+    )
+
+<script>
+    $("#Group1").kendoMaskedTextBox({
+        mask: "~",
+        rules: {
+            "~": /[(]/
+        }
+    });
+    $("#Group1").data('kendoMaskedTextBox').wrapper.hide();
+</script>

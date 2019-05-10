@@ -1,0 +1,7 @@
+C:\GitHub\IrisReports10.1\IrisAttributes\bin\Debug\IrisAttributes.dll
+C:\GitHub\IrisReports10.1\IrisAttributes\bin\Debug\IrisAttributes.pdb
+C:\GitHub\IrisReports10.1\IrisAttributes\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\IrisReports10.1\IrisAttributes\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\IrisReports10.1\IrisAttributes\obj\Debug\IrisAttributes.dll
+C:\GitHub\IrisReports10.1\IrisAttributes\obj\Debug\IrisAttributes.pdb
+C:\GitHub\IrisReports10.1\IrisAttributes\obj\Debug\IrisAttributes.csprojResolveAssemblyReference.cache

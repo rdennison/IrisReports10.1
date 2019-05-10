@@ -1,0 +1,15 @@
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\CoreDomain.dll
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\CoreDomain.pdb
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\IrisAttributes.dll
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\IrisModels.dll
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\SqlComponents.dll
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\Vse.Web.Serialization.dll
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\IrisAttributes.pdb
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\IrisModels.pdb
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\SqlComponents.pdb
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\Vse.Web.Serialization.pdb
+C:\GitHub\IrisReports10.1\CoreDomain\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\IrisReports10.1\CoreDomain\obj\Debug\CoreDomain.csprojResolveAssemblyReference.cache
+C:\GitHub\IrisReports10.1\CoreDomain\obj\Debug\CoreDomain.dll
+C:\GitHub\IrisReports10.1\CoreDomain\obj\Debug\CoreDomain.pdb

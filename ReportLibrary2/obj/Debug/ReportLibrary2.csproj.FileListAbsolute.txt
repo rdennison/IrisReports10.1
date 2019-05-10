@@ -1,0 +1,3 @@
+C:\GitHub\IrisReports10.1\ReportLibrary2\obj\Debug\ReportLibrary2.Report1.resources
+C:\GitHub\IrisReports10.1\ReportLibrary2\obj\Debug\ReportLibrary2.Report3.resources
+C:\GitHub\IrisReports10.1\ReportLibrary2\obj\Debug\ReportLibrary2.csproj.GenerateResource.Cache

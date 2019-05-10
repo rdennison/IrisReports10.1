@@ -1,0 +1,144 @@
+@using System.Reflection
+@using IrisAttributes
+@using System.ComponentModel.DataAnnotations
+@model object
+
+@{
+    Type myType = Model.GetType();
+    IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
+    string divType = "OptionalField";
+
+    @(Html.Kendo().PanelBar()
+    .Name("EditorTabStrip")
+    .Items(items =>
+    {
+        items.Add().Text("Required Fields").Selected(true).HtmlAttributes(new { id = "Required" }).Content(@<div id="RequiredContent"></div>);
+        items.Add().Text("Optional Fields").HtmlAttributes(new { id = "Optional" }).Content(@<div id="OptionalContent"></div>);
+    })
+    )
+
+
+    foreach (PropertyInfo prop in props)
+    {
+        object propValue = prop.Name;
+        string displayName;
+        if (prop.GetCustomAttribute<DisplayAttribute>() != null)
+        {
+            displayName = prop.GetCustomAttribute<DisplayAttribute>().Name + " ";
+        }
+        else
+        {
+            displayName = prop.Name;
+        }
+
+        KeyAttribute key = prop.GetCustomAttribute<KeyAttribute>();
+        IrisGridColumnAttribute columnAttributes = prop.GetCustomAttribute<IrisGridColumnAttribute>();
+        ForeignKeyAttribute fkAttribute = prop.GetCustomAttribute<ForeignKeyAttribute>();
+        RequiredAttribute reqAttribute = prop.GetCustomAttribute<RequiredAttribute>();
+        CantEditAttribute cantEdit = prop.GetCustomAttribute<CantEditAttribute>();
+        if (reqAttribute != null)
+        {
+            divType = "RequiredField";
+        }
+        else
+        {
+            divType = "OptionalField";
+        }
+
+        if (columnAttributes == null)
+        {
+            columnAttributes = IrisGridColumnAttribute.Default;
+        }
+
+        if(key != null)
+        {
+            
+        }
+
+        else if (!columnAttributes.Hidden && fkAttribute != null)
+        {
+            try
+            {
+                <div class=@divType>
+                    @displayName @(Html.Kendo().DropDownList()
+          .Name(@propValue.ToString())
+          .HtmlAttributes(new { style = "width: 50%" })
+          .BindTo((SelectList) ViewData[@propValue.ToString() + "_Data"])
+                    )
+                </div>
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        else if (prop.PropertyType == typeof(DateTime?) || prop.PropertyType == typeof(DateTime) && !columnAttributes.Hidden)
+        {
+            <div class=@divType>
+                @displayName @(Html.Kendo().DateTimePicker()
+                            .Name(@propValue.ToString())
+                            .Value(DateTime.Now)
+                            .HtmlAttributes(new { style = "width:50%;" })
+                            .Format("MM/dd/yyyy"))
+            </div>
+
+        }
+        else if (prop.PropertyType == typeof(bool))
+        {
+            <div class=@divType>
+                @displayName @(Html.Kendo().CheckBox().Name(@propValue.ToString()).Checked(@propValue.ToString() == "true"))
+            </div>
+        }
+        else if (prop.PropertyType == typeof(byte))
+        {
+            <div class=@divType>
+                @displayName <input type="number" min="0" max="1" name=@propValue data-bind=@propValue data-value-field=@propValue data-text-field=@propValue style="width:20%" />
+            </div>
+        }
+        else if (!columnAttributes.Hidden && prop.PropertyType == typeof(decimal?))
+        {
+            if (prop.GetCustomAttribute<DataTypeAttribute>
+                () != null && prop.GetCustomAttribute<DataTypeAttribute>
+                    ().CustomDataType == "Money")
+            {
+                <div class=@divType>
+                    @displayName  @(Html.Kendo().CurrencyTextBox()
+                    .Name(@propValue.ToString())
+                    .HtmlAttributes(new { style = "width:50%" })
+                    .Min(0)
+                    )
+                </div>
+            }
+            else
+            {
+                <div class=@divType>
+                    @displayName <input name=@propValue data-bind=@propValue data-value-field=@propValue data-text-field=@propValue style="width:50%" />
+                </div>
+            }
+
+        }
+
+        else if (columnAttributes.Hidden && (cantEdit != null && cantEdit.ShowInEditor))
+        {
+            <div class=@divType>
+                @displayName <input name=@propValue data-bind=@propValue data-value-field=@propValue data-text-field=@propValue style="width:50%" />
+            </div>
+        }
+        else if (!columnAttributes.Hidden)
+        {
+            <div class=@divType>
+                @displayName <input name=@propValue data-bind=@propValue data-value-field=@propValue data-text-field=@propValue style="width:50%" />
+            </div>
+        }
+
+    }
+}
+
+<script>
+    var reqContent = document.getElementsByClassName("RequiredField");
+    var optContent = document.getElementsByClassName("OptionalField");
+    if (reqContent !== null)
+        for(var item of reqContent) { $(item).appendTo("#RequiredContent") }
+    if (optContent !== null)
+        for(var item of optContent) { $(item).appendTo("#OptionalContent") }
+</script>

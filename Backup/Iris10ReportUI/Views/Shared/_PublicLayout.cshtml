@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content="Public Facing Page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/kendo")
+
+    <script src="@Url.Content("~/js/main.js")"></script>
+
+    <link rel="prefetch" href="@Url.Content("~/Content/Images/profile_placeholder.png")" />
+    <link rel="prefetch" href="@Url.Content("~/Content/kendo/2016.2.714/BlueOpal/loading-image.gif")" />
+    <link rel="prefetch" href="@Url.Content("~/Content/kendo/2016.2.714/BlueOpal/sprite.png")" />
+
+</head>
+
+<body>
+    <div class="page">
+
+        @RenderBody()
+
+    </div>
+</body>
+</html>

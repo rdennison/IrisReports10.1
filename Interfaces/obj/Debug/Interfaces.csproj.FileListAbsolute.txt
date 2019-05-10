@@ -1,0 +1,11 @@
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\Interfaces.dll
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\Interfaces.pdb
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\SqlComponents.dll
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\IrisAttributes.dll
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\SqlComponents.pdb
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\IrisAttributes.pdb
+C:\GitHub\IrisReports10.1\Interfaces\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\IrisReports10.1\Interfaces\obj\Debug\Interfaces.csprojResolveAssemblyReference.cache
+C:\GitHub\IrisReports10.1\Interfaces\obj\Debug\Interfaces.dll
+C:\GitHub\IrisReports10.1\Interfaces\obj\Debug\Interfaces.pdb

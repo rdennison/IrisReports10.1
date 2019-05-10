@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\IrisReports10.1\IrisReports10.1.csproj" />
+  <event action="Analyze" type="Success" name="IrisReports10.1" path="C:\GitHub\IrisReports10.1\IrisReports10.1\IrisReports10.1.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Iris10ReportUI.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="ApplicationInsights.config" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\packages.config" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Project_Readme.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Project_Readme.html" />
+  <event action="Analyze" type="Success" name="Project_Readme.html" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Project_Readme.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewStart.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\_ExternalLoginsListPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\_ExternalLoginsListPartial.cshtml" />
+  <event action="Analyze" type="Success" name="_ExternalLoginsListPartial.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\_ExternalLoginsListPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="ConfirmEmail.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ExternalLoginConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ExternalLoginConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ExternalLoginConfirmation.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ExternalLoginConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ExternalLoginFailure.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ExternalLoginFailure.cshtml" />
+  <event action="Analyze" type="Success" name="ExternalLoginFailure.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ExternalLoginFailure.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPassword.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPasswordConfirmation.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Login.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Register.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="ResetPassword.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ResetPasswordConfirmation.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\SendCode.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\SendCode.cshtml" />
+  <event action="Analyze" type="Success" name="SendCode.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\SendCode.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\VerifyCode.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\VerifyCode.cshtml" />
+  <event action="Analyze" type="Success" name="VerifyCode.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Account\VerifyCode.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\About.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\About.cshtml" />
+  <event action="Analyze" type="Success" name="About.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\About.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\Contact.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\Contact.cshtml" />
+  <event action="Analyze" type="Success" name="Contact.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\Contact.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Home\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\AddPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\AddPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="AddPhoneNumber.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\AddPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="ChangePassword.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\ManageLogins.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\ManageLogins.cshtml" />
+  <event action="Analyze" type="Success" name="ManageLogins.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\ManageLogins.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="SetPassword.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\VerifyPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\VerifyPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="VerifyPhoneNumber.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Manage\VerifyPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\ReportView\IrisReportViewer.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\ReportView\IrisReportViewer.cshtml" />
+  <event action="Analyze" type="Success" name="IrisReportViewer.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\ReportView\IrisReportViewer.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\RPTReportListByUser\RPTReportListByUser.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\RPTReportListByUser\RPTReportListByUser.cshtml" />
+  <event action="Analyze" type="Success" name="RPTReportListByUser.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\RPTReportListByUser\RPTReportListByUser.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\SecurityAdministration\SecurityAdministration.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\SecurityAdministration\SecurityAdministration.cshtml" />
+  <event action="Analyze" type="Success" name="SecurityAdministration.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\SecurityAdministration\SecurityAdministration.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="_Layout.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\_PublicLayout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\_PublicLayout.cshtml" />
+  <event action="Analyze" type="Success" name="_PublicLayout.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\_PublicLayout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\AndOrDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\AndOrDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="AndOrDropdown.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\AndOrDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\APISecurityLevelDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\APISecurityLevelDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="APISecurityLevelDropdown.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\APISecurityLevelDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\CheckBoxBool.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\CheckBoxBool.cshtml" />
+  <event action="Analyze" type="Success" name="CheckBoxBool.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\CheckBoxBool.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Currency.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Currency.cshtml" />
+  <event action="Analyze" type="Success" name="Currency.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Currency.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Date.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Date.cshtml" />
+  <event action="Analyze" type="Success" name="Date.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Date.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\DateTime.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\DateTime.cshtml" />
+  <event action="Analyze" type="Success" name="DateTime.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\DateTime.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\DescriptionDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\DescriptionDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="DescriptionDropdown.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\DescriptionDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Email.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  <event action="Analyze" type="Success" name="EmailAddress.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="GridForeignKey.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Group1.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Group1.cshtml" />
+  <event action="Analyze" type="Success" name="Group1.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Group1.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Group2.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Group2.cshtml" />
+  <event action="Analyze" type="Success" name="Group2.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Group2.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Integer.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Integer.cshtml" />
+  <event action="Analyze" type="Success" name="Integer.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Integer.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IRISDate.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IRISDate.cshtml" />
+  <event action="Analyze" type="Success" name="IRISDate.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IRISDate.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IrisEditor.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IrisEditor.cshtml" />
+  <event action="Analyze" type="Success" name="IrisEditor.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IrisEditor.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IRISGridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IRISGridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="IRISGridForeignKey.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\IRISGridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Number.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Number.cshtml" />
+  <event action="Analyze" type="Success" name="Number.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Number.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\OperatorDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\OperatorDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="OperatorDropdown.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\OperatorDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Password.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Password.cshtml" />
+  <event action="Analyze" type="Success" name="Password.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Password.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\SecurityLevelDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\SecurityLevelDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="SecurityLevelDropdown.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\SecurityLevelDropdown.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\String.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\String.cshtml" />
+  <event action="Analyze" type="Success" name="String.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\String.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Time.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Time.cshtml" />
+  <event action="Analyze" type="Success" name="Time.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Time.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Url.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Url.cshtml" />
+  <event action="Analyze" type="Success" name="Url.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Url.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Value1.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Value1.cshtml" />
+  <event action="Analyze" type="Success" name="Value1.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Value1.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Value2.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Value2.cshtml" />
+  <event action="Analyze" type="Success" name="Value2.cshtml" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Shared\EditorTemplates\Value2.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Iris10ReportUI" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Iris10ReportUI.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\IrisModels\IrisModels.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\GitHub\IrisReports10.1\IrisModels\packages.config" />
+  <event action="Analyze" type="Success" name="IrisModels" path="C:\GitHub\IrisReports10.1\IrisModels\IrisModels.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\CoreDomain\CoreDomain.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\GitHub\IrisReports10.1\CoreDomain\packages.config" />
+  <event action="Analyze" type="Success" name="CoreDomain" path="C:\GitHub\IrisReports10.1\CoreDomain\CoreDomain.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Interfaces\Interfaces.csproj" />
+  <event action="Analyze" type="Success" name="Interfaces" path="C:\GitHub\IrisReports10.1\Interfaces\Interfaces.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\SqlComponents\SqlComponents.csproj" />
+  <event action="Analyze" type="Success" name="SqlComponents" path="C:\GitHub\IrisReports10.1\SqlComponents\SqlComponents.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\User\User.csproj" />
+  <event action="Analyze" type="Success" name="User" path="C:\GitHub\IrisReports10.1\User\User.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\IrisAttributes\IrisAttributes.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\GitHub\IrisReports10.1\IrisAttributes\packages.config" />
+  <event action="Analyze" type="Success" name="IrisAttributes" path="C:\GitHub\IrisReports10.1\IrisAttributes\IrisAttributes.csproj" />
+  <event action="Analyze" type="Success" name="IrisReports10.1" path="C:\GitHub\IrisReports10.1\IrisReports10.1.sln" />
+  <event action="Backup" type="Success" name="Iris10ReportUI" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Iris10ReportUI.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Iris10ReportUI.csproj" />
+  <event action="Upgrade" type="Success" name="Iris10ReportUI" path="C:\GitHub\IrisReports10.1\Iris10ReportUI\Iris10ReportUI.csproj" />
+  <event action="Upgrade" type="Success" name="IrisReports10.1" path="C:\GitHub\IrisReports10.1\IrisReports10.1.sln" />
+</log>

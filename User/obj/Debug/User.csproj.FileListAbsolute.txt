@@ -1,0 +1,15 @@
+C:\GitHub\IrisReports10.1\User\bin\Debug\User.dll
+C:\GitHub\IrisReports10.1\User\bin\Debug\User.pdb
+C:\GitHub\IrisReports10.1\User\bin\Debug\CoreDomain.dll
+C:\GitHub\IrisReports10.1\User\bin\Debug\IrisModels.dll
+C:\GitHub\IrisReports10.1\User\bin\Debug\SqlComponents.dll
+C:\GitHub\IrisReports10.1\User\bin\Debug\IrisAttributes.dll
+C:\GitHub\IrisReports10.1\User\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\IrisReports10.1\User\bin\Debug\CoreDomain.pdb
+C:\GitHub\IrisReports10.1\User\bin\Debug\IrisModels.pdb
+C:\GitHub\IrisReports10.1\User\bin\Debug\SqlComponents.pdb
+C:\GitHub\IrisReports10.1\User\bin\Debug\IrisAttributes.pdb
+C:\GitHub\IrisReports10.1\User\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\IrisReports10.1\User\obj\Debug\User.csprojResolveAssemblyReference.cache
+C:\GitHub\IrisReports10.1\User\obj\Debug\User.dll
+C:\GitHub\IrisReports10.1\User\obj\Debug\User.pdb

@@ -1,0 +1,97 @@
+﻿@using Iris10ReportUI.GridBuilder.Extensions
+@using Iris10ReportUI.Models;
+@using System.Web.UI.WebControls
+
+@{ 
+    UserListHelper UserList = new UserListHelper();
+    SelectList SecurityUserList = UserList.GenerateUserList();
+    var defaultUserName = SecurityUserList.ToList();
+
+    int index = 0;
+
+    for (int i = 0; i < SecurityUserList.Count(); i++)
+    {
+        if (defaultUserName[i].Text.CompareTo(Session["CurrentUserName"]) == 0)
+        {
+            index = i;
+        }
+    }
+
+
+}
+
+<div>
+
+    User Email:
+    @(Html.Kendo().ComboBox()
+    .Name("UserNameSecurityRights")
+    .Filter("startswith")
+    //.SelectedIndex(0)
+    .DataTextField("Text")
+    .DataValueField("Text")
+.HtmlAttributes(new { @data_bind = "{value: null }" , style = "width:275px" } )
+.BindTo(@SecurityUserList)
+
+)
+
+
+    Modules:
+    @(Html.Kendo().ComboBox()
+            .Name("ModuleChange")
+            .Value("Choose a module")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo((SelectList) @HttpRuntime.Cache["ModuleList"]))
+
+
+
+</div>
+
+
+
+
+
+<div>
+    @(Html.Kendo().Grid<SecurityAdministrationViewModel>()
+        .Name("SecurityRightsGrid")
+
+        .Columns(columns =>
+        {
+            columns.Bound(e => e.SecurityLevel).EditorTemplateName("SecurityLevelDropdown").Width(50);
+            columns.Bound(e => e.Screens).Width(50);
+            columns.Bound(e => e.UserName).Hidden();
+
+        })
+          .DataSource(source =>
+          {
+
+              source.Ajax().Read(read =>
+              {
+                  read.Action("Read", "SecurityAdministration");
+                 
+              })
+              .Update(update => update.Action("SaveSecuritySettings", "SecurityAdministration"))
+    .ServerOperation(false)
+              .Batch(true)
+                .Model(model =>
+                {
+                    model.Id(p => p.SecurityLevel);
+                    model.Field(p => p.Screens).Editable(false);
+                    model.Field(p => p.SecurityLevel);
+                    model.Field(p => p.UserName);
+                });
+          })
+          .Editable(e => e.Mode(GridEditMode.InCell))
+          .Scrollable()
+          .HtmlAttributes(new { style = "height: 500px" })
+     )
+    
+</div>
+
+<button id="SecuritySave" type="button" >Save</button>
+<button id="CloseSecuritySave" type="button">Close</button>
+
+
+<script>
+    @*var AUTHORIZATION_LEVEL = '@(ViewBag.AuthorizationLevel)';*@
+</script>

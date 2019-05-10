@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F128806B-315A-42C3-9AB3-F33F45D55F5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IrisAttributes</RootNamespace>
+    <AssemblyName>IrisAttributes</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddSpecialColumnAttribute.cs" />
+    <Compile Include="AdminToolAttribute.cs" />
+    <Compile Include="AggregateAttribute.cs" />
+    <Compile Include="AltitudeAttribute.cs" />
+    <Compile Include="APIContainerAttribute.cs" />
+    <Compile Include="APIForeignRelationAttribute.cs" />
+    <Compile Include="APIPrimaryModelAttribute.cs" />
+    <Compile Include="ApiSecurityAttribute.cs" />
+    <Compile Include="AuditAttribute.cs" />
+    <Compile Include="AuthorizeWithRedirectToViewAttribute.cs" />
+    <Compile Include="BatchModeAttribute.cs" />
+    <Compile Include="CalculatedFieldAttribute.cs" />
+    <Compile Include="CantEditAttribute.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="CopyDownAttribute.cs" />
+    <Compile Include="DbPropertiesAttribute.cs" />
+    <Compile Include="DisableSqlReadAttribute.cs" />
+    <Compile Include="EditorTypeAttribute.cs" />
+    <Compile Include="ExcludeGridConfigAttribute.cs" />
+    <Compile Include="FilterTypeAttribute.cs" />
+    <Compile Include="ForeignKeyAttribute.cs" />
+    <Compile Include="GridSetupAttribute.cs" />
+    <Compile Include="HasChildGridAttribute.cs" />
+    <Compile Include="HasParentAttribute.cs" />
+    <Compile Include="HiddenAttribute.cs" />
+    <Compile Include="HttpUnauthorizedWithRedirectToResultBase.cs" />
+    <Compile Include="HttpUnauthorizedWithRedirectToResultFactory.cs" />
+    <Compile Include="IrisErrorAttribute.cs" />
+    <Compile Include="IrisGridColumnAttribute.cs" />
+    <Compile Include="IrisMenuAttribute.cs" />
+    <Compile Include="IrisToolbarAttribute.cs" />
+    <Compile Include="IrisToolbarIcons.cs" />
+    <Compile Include="IsAutoNumberAttribute.cs" />
+    <Compile Include="IsExcludeSqlAttribute.cs" />
+    <Compile Include="KeyNameAttribute.cs" />
+    <Compile Include="LandingMenuAttribute.cs" />
+    <Compile Include="LatitudeAttribute.cs" />
+    <Compile Include="LongitudeAttribute.cs" />
+    <Compile Include="LookupDisplayAttribute.cs" />
+    <Compile Include="ModelDataBindingsAttribute.cs" />
+    <Compile Include="NoAutoSyncAttribute.cs" />
+    <Compile Include="NoTenantAttribute.cs" />
+    <Compile Include="OrderByFieldAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAttribute.cs" />
+    <Compile Include="ReportFilterDropdownAttribute.cs" />
+    <Compile Include="SecurityAttribute.cs" />
+    <Compile Include="SiteAttributes.cs" />
+    <Compile Include="UserDefinedAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

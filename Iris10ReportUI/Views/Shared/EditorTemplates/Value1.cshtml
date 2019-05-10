@@ -1,0 +1,52 @@
+﻿@{
+    List<string> formats = new List<string>();
+
+    formats.Add("MM/dd/yyyy");
+    formats.Add("MM/dd/yy");
+}
+
+
+@(Html.Kendo()
+    .DatePicker()
+    .Name("DateValues")
+    .Value(DateTime.Now)
+    .ParseFormats(@formats)
+    .HtmlAttributes(new {style = "width:110px"}))
+
+@(Html.Kendo()
+    .NumericTextBox()
+    .Name("NumberBox")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+@(Html.Kendo()
+    .MaskedTextBox()
+    .Name("TextBox")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+@(Html.Kendo()
+    .ComboBox()
+    .Placeholder("Select...")
+    .Filter("startswith")
+    .Suggest(true)
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .Name("DropdownValues")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+@(Html.Kendo()
+    .ComboBox()
+    .Placeholder("Select...")
+    .Filter("startswith")
+    .Suggest(true)
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .Name("DropdownValues2")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+<script>
+    $("#DropdownValues").data('kendoComboBox').wrapper.hide();
+    $("#DropdownValues2").data('kendoComboBox').wrapper.hide();
+    $("#TextBox").data('kendoMaskedTextBox').wrapper.hide();
+    $("#NumberBox").data('kendoNumericTextBox').wrapper.hide();
+    $("#DateValues").data('kendoDatePicker').wrapper.hide();
+</script>

@@ -1,0 +1,19 @@
+﻿@using IrisAttributes
+@model object
+
+@{
+    FilterDropdownAttribute andorDropdown = new FilterDropdownAttribute();
+    SelectList ddandorList = andorDropdown.AndOrDropdownList();
+}
+
+@(Html.Kendo()
+    .DropDownList()
+    .Name("Operator2")
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .BindTo(ddandorList))
+
+<script>
+    $("#Operator2").data('kendoDropDownList').wrapper.hide();
+
+</script>

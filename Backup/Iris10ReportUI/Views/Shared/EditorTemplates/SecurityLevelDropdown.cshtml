@@ -1,0 +1,55 @@
+﻿
+@{
+        string[] slText = new string[7]
+    {
+         "0 - No Access",
+         "1 - No Rights",
+         "2 - View Only",
+         "3 - Read/Write",
+         "4 - Read/Write/Posting",
+         "5 - Admin",
+         "6 - Master Admin"
+
+    };
+        var accessLevelModule = ( int)Session["CurrentGeneralAccessLevel"];
+        List<SelectListItem> listOfSecurityLevels = new List<SelectListItem>();
+
+        for (int sl = 0; sl <= accessLevelModule; sl++)
+        {
+            listOfSecurityLevels.Add(new SelectListItem
+            {
+                Text = slText[sl],
+                Value = sl.ToString()
+            });
+
+    }
+
+    SelectList SecurityLevel = new SelectList(listOfSecurityLevels, "Value", "Text");
+
+
+    }
+
+
+
+    @try
+{
+    @*@model object*@
+
+   
+
+    @(
+     Html.Kendo().DropDownListFor(m => m)
+     .DataTextField("Text")
+     .DataValueField("Value")
+     .OptionLabel("Select ...")
+    .BindTo(@SecurityLevel)
+     .HtmlAttributes(new { data_value_primitive = "true" })
+
+
+    )
+
+}
+catch (Exception e)
+{
+
+}

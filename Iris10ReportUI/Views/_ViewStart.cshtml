@@ -1,0 +1,28 @@
+﻿@using User
+@using IrisModels.API
+
+
+@{
+    UserService userService = new UserService();
+    AuthUserInformationModel userModel = userService.GetUserInformationForCurrentRequest();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //if (userModel != null)
+    //{
+    //    Layout = "~/Views/Shared/_Layout.cshtml";
+    //}
+    //else
+    //{
+    //    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+    //}
+
+}
+
+<script type="text/javascript">
+
+$(document).ajaxError(function (e, xhr, settings, thrownError) {
+    alert("Ajax Error: " + thrownError );
+
+})
+
+
+</script>
