@@ -1,4 +1,5 @@
 "use strict";
+const report_filter_controller_1 = require('./report-filter.controller');
 class ReportListController {
     constructor() {
         this.keepSessionAlive = false;
@@ -34,6 +35,8 @@ class ReportListController {
                 type: "POST",
                 url: "/RPTReportListByUser/SelectReport",
                 data: { report: JSON.stringify(replist._data[row]) }
+            }).done((data) => {
+                report_filter_controller_1.default.getInstance().activateFilter();
             });
         });
         //Checkbox events

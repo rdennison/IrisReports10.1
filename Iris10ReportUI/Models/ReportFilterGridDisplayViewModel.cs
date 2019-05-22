@@ -7,8 +7,8 @@ namespace Iris10ReportUI.Models
 {
     public class ReportFilterGridDisplayViewModel
     {
-        public string Ready { get; set; }
+        public string ColumnName { get; set; }
 
-        public string Filter { get; set; }
+        public string OperatorName { get; set; }
     }
 }

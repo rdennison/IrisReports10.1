@@ -62,9 +62,10 @@ namespace Iris10ReportUI.Controllers
         [HttpPost]
         public bool SelectReport(string report)
         {
-            //JavaScriptSerializer serializer = new JavaScriptSerializer();
-            //RPTReportListByUserModel curReport = (RPTReportListByUserModel) serializer.Deserialize(report, typeof(RPTReportListByUserModel));
-            //curReport.Report_Key;  //This is your report, do something with it.
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            RPTReportListByUserModel curReport = (RPTReportListByUserModel) serializer.Deserialize(report, typeof(RPTReportListByUserModel));
+            IEnumerable<ReportAvailableFilterModel> model = _coreService.LoadModel<ReportAvailableFilterModel>().Where(r => r.Report_Key == curReport.Report_Key);
+            Session["SelectedReportCriteria"] = model;
             return true;
         }
     }

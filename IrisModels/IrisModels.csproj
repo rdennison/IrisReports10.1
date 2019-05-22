@@ -216,6 +216,7 @@
     <Compile Include="Models\ReasonModel.cs" />
     <Compile Include="Models\ReminderModel.cs" />
     <Compile Include="Models\ReportAccessModel.cs" />
+    <Compile Include="Models\ReportAvailableFilterModel.cs" />
     <Compile Include="Models\ReportBatchAddressModel.cs" />
     <Compile Include="Models\ReportBatchModel.cs" />
     <Compile Include="Models\ReportBatchReportModel.cs" />

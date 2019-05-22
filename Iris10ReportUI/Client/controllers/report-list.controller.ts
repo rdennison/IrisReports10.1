@@ -2,12 +2,15 @@
 // libs
 import * as _ from 'lodash';
 
+import ReportFilterController from './report-filter.controller';
 // app
 import { kendoWindowDefaultOptions } from '../utils';
 
 export default class ReportListController {
 
     private static _instance: ReportListController;
+
+
 
 
     static getInstance() {
@@ -56,6 +59,8 @@ export default class ReportListController {
                 type: "POST",
                 url: "/RPTReportListByUser/SelectReport",
                 data: { report: JSON.stringify(replist._data[row]) }
+            }).done((data) => {
+                ReportFilterController.getInstance().activateFilter();
             });
         });
 

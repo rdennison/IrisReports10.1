@@ -6,11 +6,15 @@ using IrisModels.Models;
 using SqlComponents;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Telerik.Reporting;
+using Telerik.Reporting.Processing;
+
 
 namespace Iris10ReportUI.Controllers
 {
@@ -23,121 +27,137 @@ namespace Iris10ReportUI.Controllers
         private static readonly List<GridFilterWhereModel> filterlist = new List<GridFilterWhereModel>();
         private readonly JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-        [HttpGet]
-        public ActionResult FilterMessageWindow()
+        public ActionResult ReportView()
         {
-            return PartialView("~/Views/Toolbar/FilterConfirmPartialView.cshtml");
+            return PartialView("ReportsPartialView");
         }
 
-        [HttpGet]
-        public ActionResult SetGrid(string group1, string description, string operator1, string val1, string val2, string group2, string operator2, string descriptiontext, string value1text, string value2text, int position)
-        {
-            var inListvalue = new GridFilterWhereModel
-            {
-                OpenGroup = group1,
-                ColumnName = description,
-                Value1 = val1,
-                Value2 = val2,
-                ComparisonOperator = operator1,
-                CloseGroup = group2,
-                AndOr = operator2,
-                TableName = Session["ModelType"].GetType().Name.Replace("Model", ""),
-                Position = position != -1 ? position : displaylist.Count
-            };
-            var filterGridRow = new GridFilterWhereModel
-            {
-                OpenGroup = group1,
-                ColumnName = descriptiontext,
-                Value1 = value1text,
-                Value2 = value2text,
-                ComparisonOperator = operator1,
-                CloseGroup = group2,
-                AndOr = operator2,
-                TableName = Session["ModelType"].GetType().Name.Replace("Model", ""),
-                Position = position != -1 ? position : displaylist.Count, //if count is 0 this is in position 0 and so on, fits array structure
-                InList = serializer.Serialize(inListvalue)
-            };
-            if (position != -1)
-            {
-                displaylist.RemoveAt(position);
-                displaylist.Insert(position, filterGridRow);
-            }
-            else
-            {
-                displaylist.Add(filterGridRow);
-            }
-            HttpRuntime.Cache["FilterList"] = displaylist;
-            return Json("", JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public ActionResult UpdateFilterCache(string data, bool removeEdit)
-        {
-            //if removeAdd == true then remove else edit
-            if (removeEdit)
-            {
-                int count = 0;
-                var removeModels = (IEnumerable<GridFilterWhereModel>) serializer.Deserialize(data, typeof(IEnumerable<GridFilterWhereModel>));
-                foreach (var model in removeModels)
-                {
-                    displaylist.Remove(displaylist.FirstOrDefault(c => c.Position == model.Position));
-                }
-                foreach (var item in displaylist)
-                {
-                    item.Position = count;
-                    count++;
-                }
-            }
-            HttpRuntime.Cache["FilterList"] = displaylist;
-            return Json("", JsonRequestBehavior.AllowGet);
-        }
 
         [HttpGet]
-        public ActionResult ForeignKeyValue(string field)
+        public ActionResult ActivateFilter()
         {
-            var booleanDropdown = new ReportFilterDropdownAttribute();
-            SelectList modelList = null;
-            Type model = Session["ModelType"].GetType();
-            PropertyInfo[] blankModel = model.GetProperties();
-            string keyString = "";
-            if (field.Contains('.'))
+            IEnumerable<ReportAvailableFilterModel> model = (IEnumerable<ReportAvailableFilterModel>) Session["SelectedReportCriteria"];
+            
+            foreach(var item in model)
             {
-                List<object> records = _coreService.ReportDataTables(true, null, null, field, true, Session["CurrentUserKey"].ToString());
-                IList<ReportFilterScreenReference> referenceList = new List<ReportFilterScreenReference>();
-                IEnumerable<ReportFilterScreenReference> referenceList1 = new List<ReportFilterScreenReference>();
-                if (records != null)
+                if (item.RequiredFilter == true)
                 {
-                    foreach (var item in records)
-                    {
-                        var references1 = new ReportFilterScreenReference();
-                        references1.Key = item.ToString();
-                        references1.Description = item.ToString();
-                        referenceList.Add(references1);
-                    }
+                    displayFilterInfo.Add(new ReportFilterGridDisplayViewModel { ColumnName = item.ColumnName, OperatorName = item.CustomList });
                 }
-                referenceList1 = referenceList.OrderBy(o => o.Description);
-                return Json(new SelectList(referenceList1, "Key", "Description"), JsonRequestBehavior.AllowGet);
             }
-            if (field.EndsWith("_Key"))
-            {
-                foreach (PropertyInfo p in blankModel)
-                {
-                    if (p.Name == field)
-                    {
-                        keyString = p.GetCustomAttribute<ForeignKeyAttribute>().ReferenceModelType.Name.Replace("Model", "_Key");
-                        modelList = p.GetCustomAttribute<ForeignKeyAttribute>().GetForeignKeyList();
-                    }
-                }
-                if (keyString != "" && modelList != null)
-                    return Json(modelList, JsonRequestBehavior.AllowGet);
-                else
-                    return null;
-            }
-            else
-            {
-                return Json(booleanDropdown.TrueFalseList(), JsonRequestBehavior.AllowGet);
-            }
+
+            return Json(displayFilterInfo, JsonRequestBehavior.AllowGet);
         }
+
+        //[HttpGet]
+        //public ActionResult SetGrid(string group1, string description, string operator1, string val1, string val2, string group2, string operator2, string descriptiontext, string value1text, string value2text, int position)
+        //{
+        //    var inListvalue = new GridFilterWhereModel
+        //    {
+        //        OpenGroup = group1,
+        //        ColumnName = description,
+        //        Value1 = val1,
+        //        Value2 = val2,
+        //        ComparisonOperator = operator1,
+        //        CloseGroup = group2,
+        //        AndOr = operator2,
+        //        TableName = Session["ModelType"].GetType().Name.Replace("Model", ""),
+        //        Position = position != -1 ? position : displaylist.Count
+        //    };
+        //    var filterGridRow = new GridFilterWhereModel
+        //    {
+        //        OpenGroup = group1,
+        //        ColumnName = descriptiontext,
+        //        Value1 = value1text,
+        //        Value2 = value2text,
+        //        ComparisonOperator = operator1,
+        //        CloseGroup = group2,
+        //        AndOr = operator2,
+        //        TableName = Session["ModelType"].GetType().Name.Replace("Model", ""),
+        //        Position = position != -1 ? position : displaylist.Count, //if count is 0 this is in position 0 and so on, fits array structure
+        //        InList = serializer.Serialize(inListvalue)
+        //    };
+        //    if (position != -1)
+        //    {
+        //        displaylist.RemoveAt(position);
+        //        displaylist.Insert(position, filterGridRow);
+        //    }
+        //    else
+        //    {
+        //        displaylist.Add(filterGridRow);
+        //    }
+        //    HttpRuntime.Cache["SelectedReportCriteria"] = displaylist;
+        //    return Json("", JsonRequestBehavior.AllowGet);
+        //}
+
+        //[HttpPost]
+        //public ActionResult UpdateFilterCache(string data, bool removeEdit)
+        //{
+        //    //if removeAdd == true then remove else edit
+        //    if (removeEdit)
+        //    {
+        //        int count = 0;
+        //        var removeModels = (IEnumerable<GridFilterWhereModel>) serializer.Deserialize(data, typeof(IEnumerable<GridFilterWhereModel>));
+        //        foreach (var model in removeModels)
+        //        {
+        //            displaylist.Remove(displaylist.FirstOrDefault(c => c.Position == model.Position));
+        //        }
+        //        foreach (var item in displaylist)
+        //        {
+        //            item.Position = count;
+        //            count++;
+        //        }
+        //    }
+        //    HttpRuntime.Cache["FilterList"] = displaylist;
+        //    return Json("", JsonRequestBehavior.AllowGet);
+        //}
+
+        //[HttpGet]
+        //public ActionResult ForeignKeyValue(string field)
+        //{
+        //    var booleanDropdown = new ReportFilterDropdownAttribute();
+        //    SelectList modelList = null;
+        //    Type model = Session["ModelType"].GetType();
+        //    PropertyInfo[] blankModel = model.GetProperties();
+        //    string keyString = "";
+        //    if (field.Contains('.'))
+        //    {
+        //        List<object> records = _coreService.ReportDataTables(true, null, null, field, true, Session["CurrentUserKey"].ToString());
+        //        IList<ReportFilterScreenReference> referenceList = new List<ReportFilterScreenReference>();
+        //        IEnumerable<ReportFilterScreenReference> referenceList1 = new List<ReportFilterScreenReference>();
+        //        if (records != null)
+        //        {
+        //            foreach (var item in records)
+        //            {
+        //                var references1 = new ReportFilterScreenReference();
+        //                references1.Key = item.ToString();
+        //                references1.Description = item.ToString();
+        //                referenceList.Add(references1);
+        //            }
+        //        }
+        //        referenceList1 = referenceList.OrderBy(o => o.Description);
+        //        return Json(new SelectList(referenceList1, "Key", "Description"), JsonRequestBehavior.AllowGet);
+        //    }
+        //    if (field.EndsWith("_Key"))
+        //    {
+        //        foreach (PropertyInfo p in blankModel)
+        //        {
+        //            if (p.Name == field)
+        //            {
+        //                keyString = p.GetCustomAttribute<ForeignKeyAttribute>().ReferenceModelType.Name.Replace("Model", "_Key");
+        //                modelList = p.GetCustomAttribute<ForeignKeyAttribute>().GetForeignKeyList();
+        //            }
+        //        }
+        //        if (keyString != "" && modelList != null)
+        //            return Json(modelList, JsonRequestBehavior.AllowGet);
+        //        else
+        //            return null;
+        //    }
+        //    else
+        //    {
+        //        return Json(booleanDropdown.TrueFalseList(), JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         [HttpGet]
         public ActionResult ClearFilter()
@@ -162,12 +182,12 @@ namespace Iris10ReportUI.Controllers
                     return Json(filterName + " exists, do you want to overwrite?", JsonRequestBehavior.AllowGet);
             }
             else
-                SaveFilter(filterName);
+                SaveReportFilter(filterName);
             return Json("saved", JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public ActionResult SaveFilter(string filterName)
+        public ActionResult SaveReportFilter(string filterName)
         {
             string db = Session["ConString"].ToString();
             bool filterExists = false;
@@ -239,37 +259,127 @@ namespace Iris10ReportUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult FinishFilter(string filterName, bool report = false, bool frompage = false)
+        public ActionResult FinishFilter()
         {
-            if (frompage)
-                ClearFilter();
-            string db = Session["ConString"].ToString();
-            Session["GridFilterWheres"] = null;
-            var wheres = new List<SqlWhere>();
-            if (filterName == "")
-                createFilterList(0); //create the filterdata to work with
-            else
+
+
+
+            return null;
+        }
+
+        private string GenerateReportProperties(string[] items)
+        {
+            //Assembly a = Assembly.Load("IrisModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            string i = "";
+            foreach (string item in items)
             {
-                GridFilterModel gridFilter = GetGridFilter(filterName);
-                if (displaylist.Count > 0)
-                    createFilterList(gridFilter.GridFilter_Key);
-                else
+                if (item.Contains("."))
                 {
-                    IEnumerable<GridFilterWhereModel> filterWheres = GetGridFilterWheres(gridFilter.GridFilter_Key);
-                    filterlist.AddRange(filterWheres);
-                    createDisplayList(gridFilter.GridFilter_Key);
-                    HttpRuntime.Cache["FilterList"] = displaylist;
+                    //var temp = "";
+                    if (!item.EndsWith("_Key"))
+                    {
+                        if (i == "")
+                            i += item;
+                        else
+                            i += "," + item;
+
+                    }
+
+     
                 }
             }
-            string result = FilterValidation("results");
-            foreach (var row in filterlist)
-            {
-                wheres.Add(new SqlWhere(row.OpenGroup, row.CloseGroup, row.TableName, row.ColumnName, row.Value1, row.Value2, row.ComparisonOperator, GetAndOrSyntax(row.AndOr)));
-            }
-            Session["GridFilterWheres"] = wheres;
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return i;
         }
+
+        [HttpPost]
+        public ActionResult CreateReportObject(string reportName, string baseModel, string columnAttributes, string reportItems = null, string grouping = "")
+        {
+            ReportModel reports = _coreService.LoadModel<ReportModel>(conName: Session["ConString"].ToString()).FirstOrDefault(r => r.Name == reportName) ?? new ReportModel();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Dictionary<string, Guid> controllerGuids = (Dictionary<string, Guid>) HttpRuntime.Cache["ControllerGuids"];
+            Dictionary<string, Guid> modelGuids = (Dictionary<string, Guid>) HttpRuntime.Cache["ModelGuids"];
+            ReportModel report = new ReportModel();
+
+            ReportContentModel reportContent = new ReportContentModel();
+            ReportRelationshipViewModel reportRelationships = new ReportRelationshipViewModel();
+            List<ReportModelListViewModel> reportModels = new List<ReportModelListViewModel>();
+            List<ReportRelationshipViewModel> reportRelationship = new List<ReportRelationshipViewModel>();
+            List<ReportSelectPropertyListViewModel> reportSelectProperties = new List<ReportSelectPropertyListViewModel>();
+            string reportConnectionString = ConfigurationManager.ConnectionStrings[Session["ConString"].ToString()].ConnectionString;
+            string props = "";//, keyWheres = "";
+            List<string> models = new List<string>();
+            string reportSql = "";
+
+            //props = GenerateReportProperties(reportItems.Split(','));
+            //models = new List<string>(GenerateReportModels(props.Split(','), reportItems.Split(',')).Split(','));
+            //models.Remove(baseModel);
+            //keyWheres = GenerateKeyFieldWheres(reportItems.Split(','));
+
+            if (reportItems != null && reports?.Name != reportName)
+            {
+
+                foreach (string model in models) { reportModels.Add(new ReportModelListViewModel { Model = modelGuids[model].ToString() }); }
+                //foreach (string prop in props.Split(',')){ reportSelectProperties.Add(new ReportSelectPropertyListViewModel { Property = modelGuids[prop.Split('.')[0]].ToString()+"."+ prop.Split('.')[1] }); }
+                if (models.Count > 0)
+                    foreach (string model in models) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[baseModel].ToString(), Prop = model + "_Key", ToModelGUID = modelGuids[model].ToString(), ToProp = model + "_Key", JoinType = "INNER JOIN" }); }
+                //foreach (string where in keyWheres.Split(new string[] { " AND " }, StringSplitOptions.None)) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[0]].ToString(), Prop = where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[1], ToModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[0]].ToString(), ToProp = where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[1], JoinType = "INNER" }); }
+                report.BaseModel = modelGuids[baseModel].ToString();
+                report.Description = "Test Model";
+                report.Name = reportName;
+                report.Models = serializer.Serialize(reportModels);
+                report.User_Key = (int) Session["CurrentUserKey"];
+                report.SelectProps = props;
+                report.Relationships = serializer.Serialize(reportRelationship);
+                report.ReportDate = DateTime.Now;
+                report.Filters = serializer.Serialize((List<SqlWhere>) Session["ReportFilterWheres"]);
+                _coreService.SprocInsert(report);
+                reportSql = _coreService.TelerikSqlString(report?.SelectProps, report?.BaseModel, report?.Models, report?.Relationships, Session["CurrentUserKey"].ToString(), report?.Filters);
+            }
+            else if (reports?.Name == reportName)
+            {
+                report = reports;
+                foreach (string model in models) { reportModels.Add(new ReportModelListViewModel { Model = modelGuids[model].ToString() }); }
+                //foreach (string prop in props.Split(',')){ reportSelectProperties.Add(new ReportSelectPropertyListViewModel { Property = modelGuids[prop.Split('.')[0]].ToString()+"."+ prop.Split('.')[1] }); }
+                if (models.Count > 0)
+                    foreach (string model in models) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[baseModel].ToString(), Prop = model + "_Key", ToModelGUID = modelGuids[model].ToString(), ToProp = model + "_Key", JoinType = "INNER JOIN" }); }
+                //foreach (string where in keyWheres.Split(new string[] { " AND " }, StringSplitOptions.None)) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[0]].ToString(), Prop = where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[1], ToModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[0]].ToString(), ToProp = where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[1], JoinType = "INNER" }); }
+                report.BaseModel = modelGuids[baseModel].ToString();
+                report.Description = "Test Model";
+                report.Name = reportName;
+                report.Models = serializer.Serialize(reportModels);
+                report.User_Key = (int) Session["CurrentUserKey"];
+                report.SelectProps = props;
+                report.Relationships = serializer.Serialize(reportRelationship);
+                report.ReportDate = DateTime.Now;
+                report.Filters = serializer.Serialize((List<SqlWhere>) Session["ReportFilterWheres"]);
+                _coreService.SprocUpdate(report);
+                reportSql = _coreService.TelerikSqlString(report?.SelectProps, report?.BaseModel, report?.Models, report?.Relationships, Session["CurrentUserKey"].ToString(), report?.Filters);
+            }
+
+
+            ReportLibrary2.Report3.ResetDefaults();
+            
+            ReportLibrary2.Report3.GenerateReport(report.Name, reportConnectionString, reportSql, props, columnAttributes, grouping.Split('|'), (List<StringBuilder>) Session["ReportFilterStrings"], (Dictionary<string, string>) Session["TypeListDictionary"]);
+
+   
+
+            //Generates a CSV file of a report if it is too large
+            ReportProcessor reportProcessor = new ReportProcessor();
+            TypeReportSource typeReportSource = new TypeReportSource();
+            typeReportSource.TypeName = "ReportLibrary2.Report3, ReportLibrary2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+            RenderingResult result = reportProcessor.RenderReport("PDF", typeReportSource, null);
+
+            if (result.HasErrors) //data set too large commit a csv and return
+            {
+                result = reportProcessor.RenderReport("CSV", typeReportSource, null);
+                return Json("norendor");
+            }
+
+            return Json("done");
+        }
+
+
 
         #region +++++++Filter Support Functions+++++++
         [HttpGet]

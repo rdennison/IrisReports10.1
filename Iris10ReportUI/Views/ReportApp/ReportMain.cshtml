@@ -135,26 +135,25 @@ verticalPanes.Add()
 .Collapsible(false)
 .Content(@<div class="reportlower">
 
-            @(Html.Kendo().ToolBar()
+            @*@(Html.Kendo().ToolBar()
         .Name("CriteriaToolBar")
         .Items(items =>
         {
 
 
-            items.Add().Template("<input id = 'savedcritera' class='k-combobox' placeholder='Saved Criteria ' type='text' data-bind='events: { keyup: searchKeyPressed}' />").Overflow(ShowInOverflowPopup.Always);
-            items.Add().Type(CommandType.Button).Text("Save");
+            items.Add().Template(" < div id = filterPartialListDropdown /> ").Overflow(ShowInOverflowPopup.Always);
+            items.Add().Type(CommandType.Button).Text("Save").Id("saveReportFilter");
             items.Add().Type(CommandType.Button).Text("Delete").Togglable(true);
 
 
         })
-            )
+            )*@
 
 
             <span style="height: 100%; width: 100%; overflow: auto; border-spacing:9px;">
 
                 @(Html.Kendo().Grid<GridFilterWhereModel>()
     .Name("ReportFilterCriteriaGrid")
-    //.HtmlAttributes(new { style = "height: 300px; width: 600px" })
     .Columns(c =>
     {
         c.Select().Width(50).MinResizableWidth(50).HeaderHtmlAttributes(new { @id = "allchecked" });
@@ -169,23 +168,23 @@ verticalPanes.Add()
         c.Bound(b => b.GridFilter_Key).Hidden();
     }).DataSource(s =>
     {
-        s.Ajax().Read(read => read.Action("Read", "GridFilterWhere").Type(HttpVerbs.Get))
-        .Destroy(destroy => destroy.Action("Destroy", "GridFilterWhere").Type(HttpVerbs.Post))
-        .Update(update => update.Action("Update", "GridFilterWhere").Type(HttpVerbs.Post))
+        s.Ajax().Read(read => read.Action("Read", "ReportGridFilterWhere").Type(HttpVerbs.Get))
+        .Destroy(destroy => destroy.Action("Destroy", "ReportGridFilterWhere").Type(HttpVerbs.Post))
+        .Update(update => update.Action("Update", "ReportGridFilterWhere").Type(HttpVerbs.Post))
         .ServerOperation(false)
         .Batch(true)
         .Model(model =>
         {
             model.Id(p => p.GridFilterWhere_Key);
-            model.Field(p => p.GridFilter_Key).Editable(false);
-            model.Field(p => p.OpenGroup).Editable(false);
-            model.Field(p => p.ColumnName).Editable(false);
-            model.Field(p => p.ComparisonOperator).Editable(false);
-            model.Field(p => p.Value1).Editable(false);
-            model.Field(p => p.Value2).Editable(false);
-            model.Field(p => p.CloseGroup).Editable(false);
-            model.Field(p => p.AndOr).Editable(false);
-            model.Field(p => p.Position).Editable(false);
+            model.Field(p => p.GridFilter_Key).Editable(true);
+            model.Field(p => p.OpenGroup).Editable(true);
+            model.Field(p => p.ColumnName).Editable(true);
+            model.Field(p => p.ComparisonOperator).Editable(true);
+            model.Field(p => p.Value1).Editable(true);
+            model.Field(p => p.Value2).Editable(true);
+            model.Field(p => p.CloseGroup).Editable(true);
+            model.Field(p => p.AndOr).Editable(true);
+            model.Field(p => p.Position).Editable(true);
         });
     }).Scrollable()
                 )
@@ -221,5 +220,5 @@ verticalPanes.Add()
 
 
 <script>
-    var LANDING_MENU = true;
+    var REPORT_GRID = true;
 </script>
