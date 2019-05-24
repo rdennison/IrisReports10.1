@@ -1,4 +1,4 @@
-namespace IrisUI.Reports
+namespace ReportLibrary
 {
     using System;
     using System.ComponentModel;

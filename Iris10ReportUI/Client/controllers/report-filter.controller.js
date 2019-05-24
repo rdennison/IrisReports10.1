@@ -1,8 +1,6 @@
 "use strict";
 // libs
 const _ = require('lodash');
-// app
-const utils_1 = require('../utils');
 class ReportFilterController {
     constructor() {
         this.filterName = '';
@@ -626,29 +624,6 @@ class ReportFilterController {
             controller.filterchangeEvent(controller, event.target.id, DescVal, DescText, controller._grid.select().parent().index(), 'ValueField');
         });
         //});
-    }
-    finishFilter() {
-        $.ajax({
-            global: false,
-            type: "POST",
-            url: '/ReportFilterCriteria/FinishFilter',
-            data: {}
-        }).done((data) => {
-        });
-    }
-    _setupReportViewWindow() {
-        let deferred = $.Deferred();
-        this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(utils_1.kendoWindowDefaultOptions({
-            appendTo: '#ReportWindowContainer',
-            content: '/ReportFilterCriteria/ReportView',
-            title: 'Report Viewer',
-            height: 900,
-            width: 1000,
-            refresh: () => {
-                deferred.resolve();
-            }
-        })).data('kendoWindow');
-        return deferred.promise();
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -117,6 +117,8 @@ export default class ReportFilterController {
 
     }
 
+   
+
     //apply() {
     //    let tempFilter = [];
     //    var grid = $('#ReportFilterCriteriaGrid').data('kendoGrid');
@@ -663,6 +665,7 @@ export default class ReportFilterController {
         this._filterConfig = [];
         let value1: string = "";
         let value2: string = "";
+    
 
 
         //this._setupReportFilterCriteriaGrid().then(() => {
@@ -737,32 +740,7 @@ export default class ReportFilterController {
 
    
 
-        finishFilter() {
-           
 
-            $.ajax({
-                global: false,
-                type: "POST",
-                url: '/ReportFilterCriteria/FinishFilter',
-                data: { }
-            }).done((data) => {
-               
-            });
-    }
-
-        private _setupReportViewWindow() {
-            let deferred = $.Deferred<void>();
-            this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(kendoWindowDefaultOptions({
-                appendTo: '#ReportWindowContainer',
-                content: '/ReportFilterCriteria/ReportView',
-                title: 'Report Viewer',
-                height: 900,
-                width: 1000,
-                refresh: () => {
-                    deferred.resolve();
-                }
-            })).data('kendoWindow');
-            return deferred.promise();
-        }
+    
 
 }

@@ -1,0 +1,15 @@
+C:\GitHub\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.csprojResolveAssemblyReference.cache
+C:\GitHub\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.csproj.GenerateResource.Cache
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.dll
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.Service.dll
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.pdb
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.xml
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.Service.pdb
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.Service.xml
+C:\GitHub\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.PolkCountyPermit.resources
+C:\GitHub\IrisReports10.1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\GitHub\IrisReports10.1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\GitHub\IrisReports10.1\ClassLibrary1\obj\Debug\ClassLibrary1.dll.licenses
+C:\GitHub\IrisReports10.1\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config

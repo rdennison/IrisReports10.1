@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace IrisUI.Reports
+namespace ReportLibrary
 {
     partial class PolkCountyPermit
     {
@@ -33,16 +33,13 @@ namespace IrisUI.Reports
             Telerik.Reporting.ReportParameter reportParameter18 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter19 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter20 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter21 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
-            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             this.detail = new Telerik.Reporting.DetailSection();
             this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
             this.textBox4 = new Telerik.Reporting.TextBox();
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox5 = new Telerik.Reporting.TextBox();
-            this.textBox8 = new Telerik.Reporting.TextBox();
             this.textBox12 = new Telerik.Reporting.TextBox();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.textBox9 = new Telerik.Reporting.TextBox();
@@ -126,6 +123,8 @@ namespace IrisUI.Reports
             this.textBox85 = new Telerik.Reporting.TextBox();
             this.textBox86 = new Telerik.Reporting.TextBox();
             this.pictureBox4 = new Telerik.Reporting.PictureBox();
+            this.sqlDataSource = new Telerik.Reporting.SqlDataSource();
+            this.textBox8 = new Telerik.Reporting.TextBox();
             textBox3 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -136,13 +135,6 @@ namespace IrisUI.Reports
             textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.8D), Telerik.Reporting.Drawing.Unit.Inch(0.063D));
             textBox3.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             textBox3.Value = "";
-            // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.ConnectionString = "IRIS10integ";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            this.sqlDataSource1.SelectCommand = "SELECT * FROM [IRIS10_integ].[dbo].[RPTPolk_PermitOpenDrainageCulvert] WHERE Perm" +
-    "itNumber = \'2012-A-0026\'";
             // 
             // detail
             // 
@@ -290,18 +282,6 @@ namespace IrisUI.Reports
             this.textBox5.Style.Font.Name = "Times New Roman";
             this.textBox5.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox5.Value = "= Fields.PermitTypeOfAccess";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Format = "{0:D}";
-            this.textBox8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3D), Telerik.Reporting.Drawing.Unit.Inch(1.6D));
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.8D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox8.Style.Font.Bold = true;
-            this.textBox8.Style.Font.Italic = true;
-            this.textBox8.Style.Font.Name = "Times New Roman";
-            this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox8.Value = "Issue Date: {Parameters.IssueDate.Value.ToString(\"D\")}";
             // 
             // textBox12
             // 
@@ -1044,9 +1024,28 @@ namespace IrisUI.Reports
             this.pictureBox4.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.ScaleProportional;
             this.pictureBox4.Value = "= Fields.Signature";
             // 
+            // sqlDataSource
+            // 
+            this.sqlDataSource.ConnectionString = "ClassLibrary1.Properties.Settings.User28";
+            this.sqlDataSource.Name = "sqlDataSource";
+            this.sqlDataSource.SelectCommand = "SELECT * FROM [IRIS10_integ].[dbo].[RPTPolk_PermitOpenDrainageCulvert] where Perm" +
+    "itNumber = \'2012-A-0034\'";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Format = "{0:D}";
+            this.textBox8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3D), Telerik.Reporting.Drawing.Unit.Inch(1.6D));
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.8D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
+            this.textBox8.Style.Font.Bold = true;
+            this.textBox8.Style.Font.Italic = true;
+            this.textBox8.Style.Font.Name = "Times New Roman";
+            this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox8.Value = "=\"Issue Date: \" + Fields.IssueDate.ToString(\"D\")";
+            // 
             // PolkCountyPermit
             // 
-            this.DataSource = this.sqlDataSource1;
+            this.DataSource = this.sqlDataSource;
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.detail});
             this.Name = "PolkCountyPermit";
@@ -1054,125 +1053,117 @@ namespace IrisUI.Reports
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Inch(0.25D), Telerik.Reporting.Drawing.Unit.Inch(0.25D), Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.5D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.Standard10x11;
-            reportParameter1.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter1.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter1.AvailableValues.DisplayMember = "= Fields.Section";
             reportParameter1.AvailableValues.ValueMember = "= Fields.Section";
             reportParameter1.Name = "Section";
             reportParameter1.Value = "= Fields.Section";
-            reportParameter2.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter2.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter2.AvailableValues.DisplayMember = "= Fields.Township";
             reportParameter2.AvailableValues.ValueMember = "= Fields.Township";
             reportParameter2.Name = "Township";
             reportParameter2.Value = "= Fields.Township";
-            reportParameter3.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter3.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter3.AvailableValues.DisplayMember = "= Fields.Range";
             reportParameter3.AvailableValues.ValueMember = "= Fields.Range";
             reportParameter3.Name = "Range";
             reportParameter3.Value = "= Fields.Range";
-            reportParameter4.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter4.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter4.AvailableValues.DisplayMember = "= Fields.TaxlotNumber";
             reportParameter4.AvailableValues.ValueMember = "= Fields.TaxlotNumber";
             reportParameter4.Name = "TaxLot";
             reportParameter4.Value = "= Fields.TaxlotNumber";
-            reportParameter5.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter5.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter5.AvailableValues.DisplayMember = "= Fields.MinimumSightDistanceLeft";
             reportParameter5.AvailableValues.ValueMember = "= Fields.MinimumSightDistanceLeft";
             reportParameter5.Name = "SightDistanceLeft";
             reportParameter5.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter5.Value = "= Fields.MinimumSightDistanceLeft";
-            reportParameter6.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter6.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter6.AvailableValues.DisplayMember = "= Fields.MinimumSightDistanceRight";
             reportParameter6.AvailableValues.ValueMember = "= Fields.MinimumSightDistanceRight";
             reportParameter6.Name = "SightDistanceRight";
             reportParameter6.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter6.Value = "= Fields.MinimumSightDistanceRight";
-            reportParameter7.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter7.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter7.AvailableValues.DisplayMember = "= Fields.Width";
             reportParameter7.AvailableValues.ValueMember = "= Fields.Width";
             reportParameter7.Name = "AccessWidth";
             reportParameter7.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter7.Value = "= Fields.Width";
-            reportParameter8.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter8.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter8.AvailableValues.DisplayMember = "= Fields.SetbackWidth";
             reportParameter8.AvailableValues.ValueMember = "= Fields.SetbackWidth";
             reportParameter8.Name = "SetbackWidth";
             reportParameter8.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter8.Value = "= Fields.SetbackWidth";
-            reportParameter9.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter9.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter9.AvailableValues.DisplayMember = "= Fields.SidewalkWidth";
             reportParameter9.AvailableValues.ValueMember = "= Fields.SidewalkWidth";
             reportParameter9.Name = "SidewalkWidth";
             reportParameter9.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter9.Value = "= Fields.SidewalkWidth";
-            reportParameter10.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter10.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter10.AvailableValues.DisplayMember = "= Fields.SidewalkLength";
             reportParameter10.AvailableValues.ValueMember = "= Fields.SidewalkLength";
             reportParameter10.Name = "SidewalkLength";
             reportParameter10.Value = "= Fields.SidewalkLength";
-            reportParameter11.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter11.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter11.AvailableValues.DisplayMember = "= Fields.MinimumBelowEdgeOfTrafficLane";
             reportParameter11.AvailableValues.ValueMember = "= Fields.MinimumBelowEdgeOfTrafficLane";
             reportParameter11.Name = "BelowEdgeofTrafficLane";
             reportParameter11.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter11.Value = "= Fields.MinimumBelowEdgeOfTrafficLane";
-            reportParameter12.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter12.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter12.AvailableValues.DisplayMember = "= Fields.DrawingNumber";
             reportParameter12.AvailableValues.ValueMember = "= Fields.DrawingNumber";
             reportParameter12.Name = "DrawingNumber";
             reportParameter12.Value = "= Fields.DrawingNumber";
-            reportParameter13.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter13.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter13.AvailableValues.DisplayMember = "= Fields.SlopeAccessFeetFromTrafficLane";
             reportParameter13.AvailableValues.ValueMember = "= Fields.SlopeAccessFeetFromTrafficLane";
             reportParameter13.Name = "AccessFeetFromTrafficLane";
             reportParameter13.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter13.Value = "= Fields.SlopeAccessFeetFromTrafficLane";
-            reportParameter14.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter14.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter14.AvailableValues.DisplayMember = "= Fields.SlopeAccessPercentFromTrafficLane";
             reportParameter14.AvailableValues.ValueMember = "= Fields.SlopeAccessPercentFromTrafficLane";
             reportParameter14.Name = "AccessPercentFromTrafficLane";
             reportParameter14.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter14.Value = "= Fields.SlopeAccessPercentFromTrafficLane";
-            reportParameter15.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter15.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter15.AvailableValues.DisplayMember = "= Fields.ClearanceFeet";
             reportParameter15.AvailableValues.ValueMember = "= Fields.ClearanceFeet";
             reportParameter15.Name = "ClearanceFeet";
             reportParameter15.Value = "= Fields.ClearanceFeet";
-            reportParameter16.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter16.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter16.AvailableValues.DisplayMember = "= Fields.CulvertDiameter";
             reportParameter16.AvailableValues.ValueMember = "= Fields.CulvertDiameter";
             reportParameter16.Name = "CulvertDiameter";
             reportParameter16.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter16.Value = "= Fields.CulvertDiameter";
             reportParameter17.AllowNull = true;
-            reportParameter17.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter17.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter17.AvailableValues.DisplayMember = "= Fields.CulvertLength";
             reportParameter17.AvailableValues.ValueMember = "= Fields.CulvertLength";
             reportParameter17.Name = "CulvertLength";
             reportParameter17.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter17.Value = "= Fields.CulvertLength";
-            reportParameter18.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter18.AvailableValues.DataSource = this.sqlDataSource;
             reportParameter18.AvailableValues.DisplayMember = "= Fields.PermitNumber";
             reportParameter18.AvailableValues.ValueMember = "= Fields.PermitNumber";
             reportParameter18.Name = "PermitNumber";
             reportParameter18.Value = "= Fields.PermitNumber";
-            reportParameter19.AvailableValues.DataSource = this.sqlDataSource1;
-            reportParameter19.AvailableValues.DisplayMember = "= Fields.IssueDate.DayOfWeek";
-            reportParameter19.AvailableValues.ValueMember = "= Fields.IssueDate.DayOfWeek";
-            reportParameter19.Name = "IssueDayOfTheWeek";
-            reportParameter19.Value = "= Fields.IssueDate.DayOfWeek";
+            reportParameter19.AvailableValues.DataSource = this.sqlDataSource;
+            reportParameter19.AvailableValues.DisplayMember = "= Fields.IssueDate";
+            reportParameter19.AvailableValues.ValueMember = "= Fields.IssueDate";
+            reportParameter19.Name = "IssueDate";
+            reportParameter19.Type = Telerik.Reporting.ReportParameterType.DateTime;
+            reportParameter19.Value = "= Fields.IssueDate";
             reportParameter19.Visible = true;
-            reportParameter20.AvailableValues.DataSource = this.sqlDataSource1;
-            reportParameter20.AvailableValues.DisplayMember = "= Fields.IssueDate.Kind";
-            reportParameter20.AvailableValues.ValueMember = "= Fields.IssueDate.Kind";
-            reportParameter20.Name = "IssueDateMonth";
-            reportParameter20.Value = "= Fields.IssueDate.Kind";
-            reportParameter21.AvailableValues.DataSource = this.sqlDataSource1;
-            reportParameter21.AvailableValues.DisplayMember = "= Fields.IssueDate";
-            reportParameter21.AvailableValues.ValueMember = "= Fields.IssueDate";
-            reportParameter21.Name = "IssueDate";
-            reportParameter21.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter21.Value = "= Fields.IssueDate";
-            reportParameter21.Visible = true;
+            reportParameter20.Name = "RayTest";
+            reportParameter20.Value = "";
+            reportParameter20.Visible = true;
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
             this.ReportParameters.Add(reportParameter3);
@@ -1193,7 +1184,6 @@ namespace IrisUI.Reports
             this.ReportParameters.Add(reportParameter18);
             this.ReportParameters.Add(reportParameter19);
             this.ReportParameters.Add(reportParameter20);
-            this.ReportParameters.Add(reportParameter21);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});
@@ -1210,7 +1200,6 @@ namespace IrisUI.Reports
         private Telerik.Reporting.TextBox textBox1;
         private Telerik.Reporting.TextBox textBox2;
         private Telerik.Reporting.TextBox textBox4;
-        private Telerik.Reporting.SqlDataSource sqlDataSource1;
         private Telerik.Reporting.TextBox textBox12;
         private Telerik.Reporting.TextBox textBox10;
         private Telerik.Reporting.TextBox textBox17;
@@ -1237,7 +1226,6 @@ namespace IrisUI.Reports
         private Telerik.Reporting.TextBox textBox77;
         private Telerik.Reporting.TextBox textBox6;
         private Telerik.Reporting.TextBox textBox5;
-        private Telerik.Reporting.TextBox textBox8;
         private Telerik.Reporting.TextBox textBox7;
         private Telerik.Reporting.TextBox textBox9;
         private Telerik.Reporting.TextBox textBox11;
@@ -1297,5 +1285,7 @@ namespace IrisUI.Reports
         private Telerik.Reporting.TextBox textBox85;
         private Telerik.Reporting.TextBox textBox86;
         private Telerik.Reporting.PictureBox pictureBox4;
+        private Telerik.Reporting.SqlDataSource sqlDataSource;
+        private Telerik.Reporting.TextBox textBox8;
     }
 }

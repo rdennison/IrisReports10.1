@@ -1,5 +1,7 @@
 "use strict";
 const report_filter_controller_1 = require('./report-filter.controller');
+// app
+const utils_1 = require('../utils');
 class ReportListController {
     constructor() {
         this.keepSessionAlive = false;
@@ -19,10 +21,13 @@ class ReportListController {
     setGrid(target) {
         let self = this;
         this.grid = $(target).data('kendoGrid');
+        let container = $('<div id="ReportWindowContainer"></div>');
+        $('body').append(container);
         $("#ReportListGrid .k-grid-header").hide(); //hide the header
         $("#ReportListGrid tr.k-alt").removeClass("k-alt"); //hide the alternate color changing
         $("#ReportListGrid td").css('border-style', 'none'); //remove cell borders to make it look like a proper list
         $('#ReportToolBar').data('kendoToolBar').element.find('#reportsearch').first().val(this.lastSearchString);
+        $("#FinishFilter").bind('click', self.finishFilter);
         this.grid.dataSource.bind("error", this.errorLog);
         self._setupSessionUpdater('/Root/KeepSessionAlive');
         self.createTools();
@@ -105,6 +110,13 @@ class ReportListController {
     deleteCriteria() {
         return this;
     }
+    finishFilter() {
+        var self = ReportListController.getInstance();
+        self._setupReportViewWindow().then(() => {
+            kendo.bind($('#ReportWindowContainer'), self);
+            self._reportViewWindow.center().open();
+        });
+    }
     errorLog(e) {
         if (e.errors) {
             console.log("error happened");
@@ -158,6 +170,20 @@ class ReportListController {
         catch (err) {
             console.log('System not loaded yet');
         }
+    }
+    _setupReportViewWindow() {
+        let deferred = $.Deferred();
+        this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(utils_1.kendoWindowDefaultOptions({
+            appendTo: '#ReportWindowContainer',
+            content: '/ReportFilterCriteria/FinishFilter',
+            title: 'Report Viewer',
+            height: 900,
+            width: 900,
+            refresh: () => {
+                deferred.resolve();
+            }
+        })).data('kendoWindow');
+        return deferred.promise();
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

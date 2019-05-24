@@ -32,6 +32,7 @@ export default class ReportListController {
     grid: kendo.ui.Grid;
     private _searchTimer: number;
     private notificationWindow: kendo.ui.Window;
+    private _reportViewWindow: kendo.ui.Window;
     keepSessionAlive = false;
     keepSessionAliveUrl = null;
 
@@ -43,10 +44,13 @@ export default class ReportListController {
     setGrid(target: string) {
         let self = this;
         this.grid = $(target).data('kendoGrid');
+        let container = $('<div id="ReportWindowContainer"></div>');
+        $('body').append(container);
         $("#ReportListGrid .k-grid-header").hide(); //hide the header
         $("#ReportListGrid tr.k-alt").removeClass("k-alt"); //hide the alternate color changing
         $("#ReportListGrid td").css('border-style', 'none'); //remove cell borders to make it look like a proper list
         $('#ReportToolBar').data('kendoToolBar').element.find('#reportsearch').first().val(this.lastSearchString);
+        $("#FinishFilter").bind('click', self.finishFilter);
         this.grid.dataSource.bind("error", this.errorLog);
         self._setupSessionUpdater('/Root/KeepSessionAlive');
         self.createTools();
@@ -145,6 +149,17 @@ export default class ReportListController {
     {
         return this;
     }
+
+    finishFilter() {
+        var self = ReportListController.getInstance();
+        self._setupReportViewWindow().then(() => {
+            kendo.bind($('#ReportWindowContainer'), self);
+            self._reportViewWindow.center().open();
+
+       
+        });
+    }
+
     
     errorLog(e) {
         if (e.errors) {
@@ -211,6 +226,21 @@ export default class ReportListController {
             console.log('System not loaded yet');
         }
         
+    }
+
+    private _setupReportViewWindow() {
+        let deferred = $.Deferred<void>();
+        this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(kendoWindowDefaultOptions({
+            appendTo: '#ReportWindowContainer',
+            content: '/ReportFilterCriteria/FinishFilter',
+            title: 'Report Viewer',
+            height: 900,
+            width: 900,
+            refresh: () => {
+                deferred.resolve();
+            }
+        })).data('kendoWindow');
+        return deferred.promise();
     }
 
  

@@ -128,9 +128,11 @@ C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\uk-UA\Kendo.Mvc.resources.dll
 C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\zh-CN\Kendo.Mvc.resources.dll
 C:\GitHub\IrisReports10.1\Iris10ReportUI\obj\Debug\Iris10ReportUI.dll
 C:\GitHub\IrisReports10.1\Iris10ReportUI\obj\Debug\Iris10ReportUI.pdb
-C:\GitHub\IrisReports10.1\Iris10ReportUI\obj\Debug\IrisUI.Reports.PolkCountyPermit.resources
-C:\GitHub\IrisReports10.1\Iris10ReportUI\obj\Debug\Iris10ReportUI.csproj.GenerateResource.Cache
 C:\GitHub\IrisReports10.1\Iris10ReportUI\obj\Debug\Iris10ReportUI.dll.licenses
 C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\Telerik.Reporting.Services.WebApi.dll
 C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\Telerik.Reporting.Services.WebApi.pdb
 C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\Telerik.Reporting.Services.WebApi.xml
+C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\ClassLibrary1.dll
+C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\ClassLibrary1.pdb
+C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\System.Web.Http.WebHost.dll
+C:\GitHub\IrisReports10.1\Iris10ReportUI\bin\System.Web.Http.WebHost.xml

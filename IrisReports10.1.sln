@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrisReports10.1", "IrisReports10.1\IrisReports10.1.csproj", "{42BA4122-345D-4593-BBE9-A710697B82AC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrisModels", "IrisModels\IrisModels.csproj", "{1B3361A6-0A59-485E-9001-627B43F5D84B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDomain", "CoreDomain\CoreDomain.csproj", "{A0D5D1CE-6E76-469C-83AF-80F14EF331B4}"
@@ -27,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{42BA4122-345D-4593-BBE9-A710697B82AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42BA4122-345D-4593-BBE9-A710697B82AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42BA4122-345D-4593-BBE9-A710697B82AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42BA4122-345D-4593-BBE9-A710697B82AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B3361A6-0A59-485E-9001-627B43F5D84B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B3361A6-0A59-485E-9001-627B43F5D84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B3361A6-0A59-485E-9001-627B43F5D84B}.Release|Any CPU.ActiveCfg = Release|Any CPU

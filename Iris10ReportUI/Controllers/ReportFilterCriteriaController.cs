@@ -1,20 +1,25 @@
-﻿using CoreDomain;
-using Iris10ReportUI.Helpers;
-using Iris10ReportUI.Models;
+﻿using Kendo.Mvc.Extensions;
+using System.Web.Mvc;
 using IrisAttributes;
+using CoreDomain;
 using IrisModels.Models;
-using SqlComponents;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
+using System.Collections.Generic;
+using System;
 using System.Web.Script.Serialization;
-using Telerik.Reporting;
+using Iris10ReportUI.Models;
+using System.Text;
+using System.Reflection;
 using Telerik.Reporting.Processing;
-
+using Telerik.Reporting;
+using System.Data.SqlClient;
+using SqlComponents;
+using System.ComponentModel.DataAnnotations;
+using Iris10ReportUI.Attributes;
+using System.Web;
+using Iris10ReportUI.Helpers;
+using ReportLibrary;
 
 namespace Iris10ReportUI.Controllers
 {
@@ -27,13 +32,9 @@ namespace Iris10ReportUI.Controllers
         private static readonly List<GridFilterWhereModel> filterlist = new List<GridFilterWhereModel>();
         private readonly JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-        public ActionResult ReportView()
-        {
-            return PartialView("ReportsPartialView");
-        }
 
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult ActivateFilter()
         {
             IEnumerable<ReportAvailableFilterModel> model = (IEnumerable<ReportAvailableFilterModel>) Session["SelectedReportCriteria"];
@@ -258,13 +259,13 @@ namespace Iris10ReportUI.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+
         public ActionResult FinishFilter()
         {
 
 
 
-            return null;
+            return PartialView("~/Views/Reports/ReportsPartialView.cshtml");
         }
 
         private string GenerateReportProperties(string[] items)
@@ -292,92 +293,6 @@ namespace Iris10ReportUI.Controllers
             return i;
         }
 
-        [HttpPost]
-        public ActionResult CreateReportObject(string reportName, string baseModel, string columnAttributes, string reportItems = null, string grouping = "")
-        {
-            ReportModel reports = _coreService.LoadModel<ReportModel>(conName: Session["ConString"].ToString()).FirstOrDefault(r => r.Name == reportName) ?? new ReportModel();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Dictionary<string, Guid> controllerGuids = (Dictionary<string, Guid>) HttpRuntime.Cache["ControllerGuids"];
-            Dictionary<string, Guid> modelGuids = (Dictionary<string, Guid>) HttpRuntime.Cache["ModelGuids"];
-            ReportModel report = new ReportModel();
-
-            ReportContentModel reportContent = new ReportContentModel();
-            ReportRelationshipViewModel reportRelationships = new ReportRelationshipViewModel();
-            List<ReportModelListViewModel> reportModels = new List<ReportModelListViewModel>();
-            List<ReportRelationshipViewModel> reportRelationship = new List<ReportRelationshipViewModel>();
-            List<ReportSelectPropertyListViewModel> reportSelectProperties = new List<ReportSelectPropertyListViewModel>();
-            string reportConnectionString = ConfigurationManager.ConnectionStrings[Session["ConString"].ToString()].ConnectionString;
-            string props = "";//, keyWheres = "";
-            List<string> models = new List<string>();
-            string reportSql = "";
-
-            //props = GenerateReportProperties(reportItems.Split(','));
-            //models = new List<string>(GenerateReportModels(props.Split(','), reportItems.Split(',')).Split(','));
-            //models.Remove(baseModel);
-            //keyWheres = GenerateKeyFieldWheres(reportItems.Split(','));
-
-            if (reportItems != null && reports?.Name != reportName)
-            {
-
-                foreach (string model in models) { reportModels.Add(new ReportModelListViewModel { Model = modelGuids[model].ToString() }); }
-                //foreach (string prop in props.Split(',')){ reportSelectProperties.Add(new ReportSelectPropertyListViewModel { Property = modelGuids[prop.Split('.')[0]].ToString()+"."+ prop.Split('.')[1] }); }
-                if (models.Count > 0)
-                    foreach (string model in models) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[baseModel].ToString(), Prop = model + "_Key", ToModelGUID = modelGuids[model].ToString(), ToProp = model + "_Key", JoinType = "INNER JOIN" }); }
-                //foreach (string where in keyWheres.Split(new string[] { " AND " }, StringSplitOptions.None)) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[0]].ToString(), Prop = where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[1], ToModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[0]].ToString(), ToProp = where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[1], JoinType = "INNER" }); }
-                report.BaseModel = modelGuids[baseModel].ToString();
-                report.Description = "Test Model";
-                report.Name = reportName;
-                report.Models = serializer.Serialize(reportModels);
-                report.User_Key = (int) Session["CurrentUserKey"];
-                report.SelectProps = props;
-                report.Relationships = serializer.Serialize(reportRelationship);
-                report.ReportDate = DateTime.Now;
-                report.Filters = serializer.Serialize((List<SqlWhere>) Session["ReportFilterWheres"]);
-                _coreService.SprocInsert(report);
-                reportSql = _coreService.TelerikSqlString(report?.SelectProps, report?.BaseModel, report?.Models, report?.Relationships, Session["CurrentUserKey"].ToString(), report?.Filters);
-            }
-            else if (reports?.Name == reportName)
-            {
-                report = reports;
-                foreach (string model in models) { reportModels.Add(new ReportModelListViewModel { Model = modelGuids[model].ToString() }); }
-                //foreach (string prop in props.Split(',')){ reportSelectProperties.Add(new ReportSelectPropertyListViewModel { Property = modelGuids[prop.Split('.')[0]].ToString()+"."+ prop.Split('.')[1] }); }
-                if (models.Count > 0)
-                    foreach (string model in models) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[baseModel].ToString(), Prop = model + "_Key", ToModelGUID = modelGuids[model].ToString(), ToProp = model + "_Key", JoinType = "INNER JOIN" }); }
-                //foreach (string where in keyWheres.Split(new string[] { " AND " }, StringSplitOptions.None)) { reportRelationship.Add(new ReportRelationshipViewModel { ModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[0]].ToString(), Prop = where.Split(new string[] { " = " }, StringSplitOptions.None)[0].Split('.')[1], ToModelGUID = modelGuids[where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[0]].ToString(), ToProp = where.Split(new string[] { " = " }, StringSplitOptions.None)[1].Split('.')[1], JoinType = "INNER" }); }
-                report.BaseModel = modelGuids[baseModel].ToString();
-                report.Description = "Test Model";
-                report.Name = reportName;
-                report.Models = serializer.Serialize(reportModels);
-                report.User_Key = (int) Session["CurrentUserKey"];
-                report.SelectProps = props;
-                report.Relationships = serializer.Serialize(reportRelationship);
-                report.ReportDate = DateTime.Now;
-                report.Filters = serializer.Serialize((List<SqlWhere>) Session["ReportFilterWheres"]);
-                _coreService.SprocUpdate(report);
-                reportSql = _coreService.TelerikSqlString(report?.SelectProps, report?.BaseModel, report?.Models, report?.Relationships, Session["CurrentUserKey"].ToString(), report?.Filters);
-            }
-
-
-            ReportLibrary2.Report3.ResetDefaults();
-            
-            ReportLibrary2.Report3.GenerateReport(report.Name, reportConnectionString, reportSql, props, columnAttributes, grouping.Split('|'), (List<StringBuilder>) Session["ReportFilterStrings"], (Dictionary<string, string>) Session["TypeListDictionary"]);
-
-   
-
-            //Generates a CSV file of a report if it is too large
-            ReportProcessor reportProcessor = new ReportProcessor();
-            TypeReportSource typeReportSource = new TypeReportSource();
-            typeReportSource.TypeName = "ReportLibrary2.Report3, ReportLibrary2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
-            RenderingResult result = reportProcessor.RenderReport("PDF", typeReportSource, null);
-
-            if (result.HasErrors) //data set too large commit a csv and return
-            {
-                result = reportProcessor.RenderReport("CSV", typeReportSource, null);
-                return Json("norendor");
-            }
-
-            return Json("done");
-        }
 
 
 
