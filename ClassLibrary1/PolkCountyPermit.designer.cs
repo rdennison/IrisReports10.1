@@ -14,25 +14,6 @@ namespace ReportLibrary
             Telerik.Reporting.TextBox textBox3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolkCountyPermit));
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter2 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter4 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter5 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter6 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter7 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter8 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter9 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter10 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter11 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter12 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter13 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter14 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter15 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter16 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter17 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter18 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter19 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter20 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             this.detail = new Telerik.Reporting.DetailSection();
             this.textBox1 = new Telerik.Reporting.TextBox();
@@ -270,7 +251,7 @@ namespace ReportLibrary
             this.textBox6.Style.Font.Italic = true;
             this.textBox6.Style.Font.Name = "Times New Roman";
             this.textBox6.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox6.Value = "Access Permit Number {Parameters.PermitNumber.Value}";
+            this.textBox6.Value = "Access Permit Number {Fields.PermitNumber}";
             // 
             // textBox5
             // 
@@ -363,7 +344,7 @@ namespace ReportLibrary
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox14.Style.Font.Name = "Times New Roman";
-            this.textBox14.Value = "T {Parameters.Township.Value}";
+            this.textBox14.Value = "T {Fields.Township}";
             // 
             // textBox15
             // 
@@ -371,7 +352,7 @@ namespace ReportLibrary
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox15.Style.Font.Name = "Times New Roman";
-            this.textBox15.Value = "Sec: {Parameters.Section.Value}";
+            this.textBox15.Value = "Sec: {Fields.Section}";
             // 
             // textBox16
             // 
@@ -379,7 +360,7 @@ namespace ReportLibrary
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.7D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox16.Style.Font.Name = "Times New Roman";
-            this.textBox16.Value = "R {Parameters.Range.Value}";
+            this.textBox16.Value = "R {Fields.Range}";
             // 
             // textBox18
             // 
@@ -387,7 +368,7 @@ namespace ReportLibrary
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.9D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox18.Style.Font.Name = "Times New Roman";
-            this.textBox18.Value = "Lot: {Parameters.TaxLot.Value}";
+            this.textBox18.Value = "Lot: {Fields.TaxlotNumber}";
             // 
             // textBox21
             // 
@@ -574,9 +555,8 @@ namespace ReportLibrary
             this.textBox33.Name = "textBox33";
             this.textBox33.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(5.5D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox33.Style.Font.Name = "Times New Roman";
-            this.textBox33.Value = "Access width = {Parameters.AccessWidth.Value}\' Setback = {Parameters.SetbackWidth" +
-    ".Value}\' Sidewalk width = {Parameters.SidewalkWidth.Value}\' Sidewalk Length = {P" +
-    "arameters.SidewalkLength.Value}\'";
+            this.textBox33.Value = "Access width = {Fields.Width}\' Setback = {Fields.SetbackWidth}\' Sidewalk width = " +
+    "{Fields.SidewalkWidth}\' Sidewalk Length = {Fields.SidewalkLength}\'";
             // 
             // textBox50
             // 
@@ -910,8 +890,8 @@ namespace ReportLibrary
             this.textBox76.Name = "textBox76";
             this.textBox76.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox76.Style.Font.Name = "Times New Roman";
-            this.textBox76.Value = "If culvert is required, minimum dimensions are Size = {Parameters.CulvertDiameter" +
-    ".Value} and Length = {Parameters.CulvertLength.Value}";
+            this.textBox76.Value = "If culvert is required, minimum dimensions are Size = {Fields.CulvertDiameter} an" +
+    "d Length = {Fields.CulvertLength}";
             // 
             // textBox77
             // 
@@ -1041,7 +1021,7 @@ namespace ReportLibrary
             this.textBox8.Style.Font.Italic = true;
             this.textBox8.Style.Font.Name = "Times New Roman";
             this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox8.Value = "=\"Issue Date: \" + Fields.IssueDate.ToString(\"D\")";
+            this.textBox8.Value = "Issue Date: {Fields.IssueDate.ToString(\"D\")}";
             // 
             // PolkCountyPermit
             // 
@@ -1053,137 +1033,10 @@ namespace ReportLibrary
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Inch(0.25D), Telerik.Reporting.Drawing.Unit.Inch(0.25D), Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.5D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.Standard10x11;
-            reportParameter1.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter1.AvailableValues.DisplayMember = "= Fields.Section";
-            reportParameter1.AvailableValues.ValueMember = "= Fields.Section";
-            reportParameter1.Name = "Section";
-            reportParameter1.Value = "= Fields.Section";
-            reportParameter2.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter2.AvailableValues.DisplayMember = "= Fields.Township";
-            reportParameter2.AvailableValues.ValueMember = "= Fields.Township";
-            reportParameter2.Name = "Township";
-            reportParameter2.Value = "= Fields.Township";
-            reportParameter3.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter3.AvailableValues.DisplayMember = "= Fields.Range";
-            reportParameter3.AvailableValues.ValueMember = "= Fields.Range";
-            reportParameter3.Name = "Range";
-            reportParameter3.Value = "= Fields.Range";
-            reportParameter4.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter4.AvailableValues.DisplayMember = "= Fields.TaxlotNumber";
-            reportParameter4.AvailableValues.ValueMember = "= Fields.TaxlotNumber";
-            reportParameter4.Name = "TaxLot";
-            reportParameter4.Value = "= Fields.TaxlotNumber";
-            reportParameter5.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter5.AvailableValues.DisplayMember = "= Fields.MinimumSightDistanceLeft";
-            reportParameter5.AvailableValues.ValueMember = "= Fields.MinimumSightDistanceLeft";
-            reportParameter5.Name = "SightDistanceLeft";
-            reportParameter5.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter5.Value = "= Fields.MinimumSightDistanceLeft";
-            reportParameter6.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter6.AvailableValues.DisplayMember = "= Fields.MinimumSightDistanceRight";
-            reportParameter6.AvailableValues.ValueMember = "= Fields.MinimumSightDistanceRight";
-            reportParameter6.Name = "SightDistanceRight";
-            reportParameter6.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter6.Value = "= Fields.MinimumSightDistanceRight";
-            reportParameter7.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter7.AvailableValues.DisplayMember = "= Fields.Width";
-            reportParameter7.AvailableValues.ValueMember = "= Fields.Width";
-            reportParameter7.Name = "AccessWidth";
-            reportParameter7.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter7.Value = "= Fields.Width";
-            reportParameter8.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter8.AvailableValues.DisplayMember = "= Fields.SetbackWidth";
-            reportParameter8.AvailableValues.ValueMember = "= Fields.SetbackWidth";
-            reportParameter8.Name = "SetbackWidth";
-            reportParameter8.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter8.Value = "= Fields.SetbackWidth";
-            reportParameter9.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter9.AvailableValues.DisplayMember = "= Fields.SidewalkWidth";
-            reportParameter9.AvailableValues.ValueMember = "= Fields.SidewalkWidth";
-            reportParameter9.Name = "SidewalkWidth";
-            reportParameter9.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter9.Value = "= Fields.SidewalkWidth";
-            reportParameter10.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter10.AvailableValues.DisplayMember = "= Fields.SidewalkLength";
-            reportParameter10.AvailableValues.ValueMember = "= Fields.SidewalkLength";
-            reportParameter10.Name = "SidewalkLength";
-            reportParameter10.Value = "= Fields.SidewalkLength";
-            reportParameter11.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter11.AvailableValues.DisplayMember = "= Fields.MinimumBelowEdgeOfTrafficLane";
-            reportParameter11.AvailableValues.ValueMember = "= Fields.MinimumBelowEdgeOfTrafficLane";
-            reportParameter11.Name = "BelowEdgeofTrafficLane";
-            reportParameter11.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter11.Value = "= Fields.MinimumBelowEdgeOfTrafficLane";
-            reportParameter12.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter12.AvailableValues.DisplayMember = "= Fields.DrawingNumber";
-            reportParameter12.AvailableValues.ValueMember = "= Fields.DrawingNumber";
-            reportParameter12.Name = "DrawingNumber";
-            reportParameter12.Value = "= Fields.DrawingNumber";
-            reportParameter13.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter13.AvailableValues.DisplayMember = "= Fields.SlopeAccessFeetFromTrafficLane";
-            reportParameter13.AvailableValues.ValueMember = "= Fields.SlopeAccessFeetFromTrafficLane";
-            reportParameter13.Name = "AccessFeetFromTrafficLane";
-            reportParameter13.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter13.Value = "= Fields.SlopeAccessFeetFromTrafficLane";
-            reportParameter14.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter14.AvailableValues.DisplayMember = "= Fields.SlopeAccessPercentFromTrafficLane";
-            reportParameter14.AvailableValues.ValueMember = "= Fields.SlopeAccessPercentFromTrafficLane";
-            reportParameter14.Name = "AccessPercentFromTrafficLane";
-            reportParameter14.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter14.Value = "= Fields.SlopeAccessPercentFromTrafficLane";
-            reportParameter15.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter15.AvailableValues.DisplayMember = "= Fields.ClearanceFeet";
-            reportParameter15.AvailableValues.ValueMember = "= Fields.ClearanceFeet";
-            reportParameter15.Name = "ClearanceFeet";
-            reportParameter15.Value = "= Fields.ClearanceFeet";
-            reportParameter16.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter16.AvailableValues.DisplayMember = "= Fields.CulvertDiameter";
-            reportParameter16.AvailableValues.ValueMember = "= Fields.CulvertDiameter";
-            reportParameter16.Name = "CulvertDiameter";
-            reportParameter16.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter16.Value = "= Fields.CulvertDiameter";
-            reportParameter17.AllowNull = true;
-            reportParameter17.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter17.AvailableValues.DisplayMember = "= Fields.CulvertLength";
-            reportParameter17.AvailableValues.ValueMember = "= Fields.CulvertLength";
-            reportParameter17.Name = "CulvertLength";
-            reportParameter17.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter17.Value = "= Fields.CulvertLength";
-            reportParameter18.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter18.AvailableValues.DisplayMember = "= Fields.PermitNumber";
-            reportParameter18.AvailableValues.ValueMember = "= Fields.PermitNumber";
-            reportParameter18.Name = "PermitNumber";
-            reportParameter18.Value = "= Fields.PermitNumber";
-            reportParameter19.AvailableValues.DataSource = this.sqlDataSource;
-            reportParameter19.AvailableValues.DisplayMember = "= Fields.IssueDate";
-            reportParameter19.AvailableValues.ValueMember = "= Fields.IssueDate";
-            reportParameter19.Name = "IssueDate";
-            reportParameter19.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter19.Value = "= Fields.IssueDate";
-            reportParameter19.Visible = true;
-            reportParameter20.Name = "RayTest";
-            reportParameter20.Value = "";
-            reportParameter20.Visible = true;
+            reportParameter1.Name = "RayTest";
+            reportParameter1.Value = "";
+            reportParameter1.Visible = true;
             this.ReportParameters.Add(reportParameter1);
-            this.ReportParameters.Add(reportParameter2);
-            this.ReportParameters.Add(reportParameter3);
-            this.ReportParameters.Add(reportParameter4);
-            this.ReportParameters.Add(reportParameter5);
-            this.ReportParameters.Add(reportParameter6);
-            this.ReportParameters.Add(reportParameter7);
-            this.ReportParameters.Add(reportParameter8);
-            this.ReportParameters.Add(reportParameter9);
-            this.ReportParameters.Add(reportParameter10);
-            this.ReportParameters.Add(reportParameter11);
-            this.ReportParameters.Add(reportParameter12);
-            this.ReportParameters.Add(reportParameter13);
-            this.ReportParameters.Add(reportParameter14);
-            this.ReportParameters.Add(reportParameter15);
-            this.ReportParameters.Add(reportParameter16);
-            this.ReportParameters.Add(reportParameter17);
-            this.ReportParameters.Add(reportParameter18);
-            this.ReportParameters.Add(reportParameter19);
-            this.ReportParameters.Add(reportParameter20);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});

@@ -121,19 +121,19 @@
     <value>False</value>
   </metadata>
   <data name="textBox26.Value" xml:space="preserve">
-    <value>Remove vegetation as required to obtain the minimum required sight distanct of {Parameters.SightDistanceLeft.Value}' to the left and {Parameters.SightDistanceRight.Value}' to the right as measured by Polk County</value>
+    <value>Remove vegetation as required to obtain the minimum required sight distanct of {Fields.MinimumSightDistanceLeft}' to the left and {Fields.MinimumSightDistanceRight}' to the right as measured by Polk County</value>
   </data>
   <data name="textBox75.Value" xml:space="preserve">
     <value>Note: THIS IS NOT A LEGAL DOCUMENT - it is only a permit given by the County to the applicant/owner stating that this particular access location meets all of the safety criteria set out by the Public Works Deparmtnet. The requrements and provisions of this permit have been provided to clarify the requiremetns of the Polk County Road Standards (1998) that are applicable. However, this does not exempt permitee from requirements of the Road Standards not specifed herein.</value>
   </data>
   <data name="textBox49.Value" xml:space="preserve">
-    <value>The top of the access road at the point ' from the edge of traffic lane shall be a minimum of  {Parameters.BelowEdgeofTrafficLane.Value} edge of traffic lane as shown on the attached drawing {Parameters.DrawingNumber.Value}. In addition, the access should have a good crown and side ditches. The intent is that water from the access shall not flow onto or pond near the County road.</value>
+    <value>The top of the access road at the point ' from the edge of traffic lane shall be a minimum of  {Fields.MinimumBelowEdgeOfTrafficLane} edge of traffic lane as shown on the attached drawing {Fields.DrawingNumber}. In addition, the access should have a good crown and side ditches. The intent is that water from the access shall not flow onto or pond near the County road.</value>
   </data>
   <data name="textBox54.Value" xml:space="preserve">
-    <value>The slope of the access road for the first {Parameters.AccessFeetFromTrafficLane.Value} from the edge of traffic lane shall be a maximum of {Parameters.AccessPercentFromTrafficLane.Value}%. The intent is to provide a 20' long safe stopping area for vehicles prior to entering the County road.</value>
+    <value>The slope of the access road for the first {Fields.SlopeAccessFeetFromTrafficLane}  from the edge of traffic lane shall be a maximum of {Fields.SlopeAccessPercentFromTrafficLane}%. The intent is to provide a 20' long safe stopping area for vehicles prior to entering the County road.</value>
   </data>
   <data name="textBox56.Value" xml:space="preserve">
-    <value>Maintain a {Parameters.ClearanceFeet.Value} foot clearance between any portion of the access road (including culvert) and any utilities such as pole or telephone pedestals, adjuacent property lines or Country structures. No portion of the access road such as culvert or shoulder material shall spill over onto an adjacent property ithout written permission of the affected property owner orunless the access serves more than one property.</value>
+    <value>Maintain a {Fields.ClearanceFeet} foot clearance between any portion of the access road (including culvert) and any utilities such as pole or telephone pedestals, adjuacent property lines or Country structures. No portion of the access road such as culvert or shoulder material shall spill over onto an adjacent property ithout written permission of the affected property owner orunless the access serves more than one property.</value>
   </data>
   <data name="textBox72.Value" xml:space="preserve">
     <value>Access maintenance is the responsibility of the applicant. Any cost of repairing damage done to the County that results from improper access maintenance may be the responsibility of the applicant. Polk County Public Works appreciates your attention to a safe well-maintained access.</value>
