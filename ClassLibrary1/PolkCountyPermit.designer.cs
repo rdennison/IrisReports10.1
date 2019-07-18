@@ -13,7 +13,6 @@ namespace ReportLibrary
         {
             Telerik.Reporting.TextBox textBox3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolkCountyPermit));
-            Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             this.detail = new Telerik.Reporting.DetailSection();
             this.textBox1 = new Telerik.Reporting.TextBox();
@@ -21,6 +20,7 @@ namespace ReportLibrary
             this.textBox4 = new Telerik.Reporting.TextBox();
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox5 = new Telerik.Reporting.TextBox();
+            this.textBox8 = new Telerik.Reporting.TextBox();
             this.textBox12 = new Telerik.Reporting.TextBox();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.textBox9 = new Telerik.Reporting.TextBox();
@@ -95,7 +95,6 @@ namespace ReportLibrary
             this.textBox78 = new Telerik.Reporting.TextBox();
             this.textBox79 = new Telerik.Reporting.TextBox();
             this.pictureBox3 = new Telerik.Reporting.PictureBox();
-            this.pictureBox2 = new Telerik.Reporting.PictureBox();
             this.textBox80 = new Telerik.Reporting.TextBox();
             this.textBox81 = new Telerik.Reporting.TextBox();
             this.textBox82 = new Telerik.Reporting.TextBox();
@@ -105,7 +104,7 @@ namespace ReportLibrary
             this.textBox86 = new Telerik.Reporting.TextBox();
             this.pictureBox4 = new Telerik.Reporting.PictureBox();
             this.sqlDataSource = new Telerik.Reporting.SqlDataSource();
-            this.textBox8 = new Telerik.Reporting.TextBox();
+            this.pictureBox2 = new Telerik.Reporting.PictureBox();
             textBox3 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -115,7 +114,7 @@ namespace ReportLibrary
             textBox3.Name = "textBox3";
             textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.8D), Telerik.Reporting.Drawing.Unit.Inch(0.063D));
             textBox3.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            textBox3.Value = "";
+            resources.ApplyResources(textBox3, "textBox3");
             // 
             // detail
             // 
@@ -221,7 +220,7 @@ namespace ReportLibrary
             this.textBox1.Style.Font.Bold = true;
             this.textBox1.Style.Font.Name = "Times New Roman";
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(20D);
-            this.textBox1.Value = "POLK COUNTY";
+            resources.ApplyResources(this.textBox1, "textBox1");
             // 
             // textBox2
             // 
@@ -230,7 +229,7 @@ namespace ReportLibrary
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox2.Style.Font.Bold = true;
             this.textBox2.Style.Font.Name = "Times New Roman";
-            this.textBox2.Value = "PUBLIC WORKS";
+            resources.ApplyResources(this.textBox2, "textBox2");
             // 
             // textBox4
             // 
@@ -240,7 +239,7 @@ namespace ReportLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.Font.Name = "Times New Roman";
             this.textBox4.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox4.Value = "820 S.W. ASH STREET * DALLAS, OREGON 97338-2112 503-623-9287 * FAX 503-623-0897";
+            resources.ApplyResources(this.textBox4, "textBox4");
             // 
             // textBox6
             // 
@@ -251,7 +250,7 @@ namespace ReportLibrary
             this.textBox6.Style.Font.Italic = true;
             this.textBox6.Style.Font.Name = "Times New Roman";
             this.textBox6.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox6.Value = "Access Permit Number {Fields.PermitNumber}";
+            resources.ApplyResources(this.textBox6, "textBox6");
             // 
             // textBox5
             // 
@@ -262,7 +261,19 @@ namespace ReportLibrary
             this.textBox5.Style.Font.Italic = true;
             this.textBox5.Style.Font.Name = "Times New Roman";
             this.textBox5.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox5.Value = "= Fields.PermitTypeOfAccess";
+            resources.ApplyResources(this.textBox5, "textBox5");
+            // 
+            // textBox8
+            // 
+            this.textBox8.Format = "{0:D}";
+            this.textBox8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3D), Telerik.Reporting.Drawing.Unit.Inch(1.6D));
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.8D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
+            this.textBox8.Style.Font.Bold = true;
+            this.textBox8.Style.Font.Italic = true;
+            this.textBox8.Style.Font.Name = "Times New Roman";
+            this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            resources.ApplyResources(this.textBox8, "textBox8");
             // 
             // textBox12
             // 
@@ -273,7 +284,7 @@ namespace ReportLibrary
             this.textBox12.Style.Font.Italic = true;
             this.textBox12.Style.Font.Name = "Times New Roman";
             this.textBox12.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox12.Value = "Issued To:";
+            resources.ApplyResources(this.textBox12, "textBox12");
             // 
             // textBox7
             // 
@@ -281,7 +292,7 @@ namespace ReportLibrary
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox7.Style.Font.Name = "Times New Roman";
-            this.textBox7.Value = "= Fields.OwnerFullName";
+            resources.ApplyResources(this.textBox7, "textBox7");
             // 
             // textBox9
             // 
@@ -289,7 +300,7 @@ namespace ReportLibrary
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox9.Style.Font.Name = "Times New Roman";
-            this.textBox9.Value = "= Fields.OwnerCityStateZip";
+            resources.ApplyResources(this.textBox9, "textBox9");
             // 
             // textBox10
             // 
@@ -300,7 +311,7 @@ namespace ReportLibrary
             this.textBox10.Style.Font.Italic = true;
             this.textBox10.Style.Font.Name = "Times New Roman";
             this.textBox10.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox10.Value = "Road Name:";
+            resources.ApplyResources(this.textBox10, "textBox10");
             // 
             // textBox11
             // 
@@ -308,7 +319,7 @@ namespace ReportLibrary
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox11.Style.Font.Name = "Times New Roman";
-            this.textBox11.Value = "= Fields.RoadName";
+            resources.ApplyResources(this.textBox11, "textBox11");
             // 
             // textBox17
             // 
@@ -318,7 +329,7 @@ namespace ReportLibrary
             this.textBox17.Style.Font.Bold = true;
             this.textBox17.Style.Font.Italic = true;
             this.textBox17.Style.Font.Name = "Times New Roman";
-            this.textBox17.Value = "Site Address:";
+            resources.ApplyResources(this.textBox17, "textBox17");
             // 
             // textBox13
             // 
@@ -326,7 +337,7 @@ namespace ReportLibrary
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox13.Style.Font.Name = "Times New Roman";
-            this.textBox13.Value = "= Fields.SiteAddress1";
+            resources.ApplyResources(this.textBox13, "textBox13");
             // 
             // textBox19
             // 
@@ -336,7 +347,7 @@ namespace ReportLibrary
             this.textBox19.Style.Font.Bold = true;
             this.textBox19.Style.Font.Italic = true;
             this.textBox19.Style.Font.Name = "Times New Roman";
-            this.textBox19.Value = "T/R/S Tax Lot:";
+            resources.ApplyResources(this.textBox19, "textBox19");
             // 
             // textBox14
             // 
@@ -344,7 +355,7 @@ namespace ReportLibrary
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox14.Style.Font.Name = "Times New Roman";
-            this.textBox14.Value = "T {Fields.Township}";
+            resources.ApplyResources(this.textBox14, "textBox14");
             // 
             // textBox15
             // 
@@ -352,7 +363,7 @@ namespace ReportLibrary
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox15.Style.Font.Name = "Times New Roman";
-            this.textBox15.Value = "Sec: {Fields.Section}";
+            resources.ApplyResources(this.textBox15, "textBox15");
             // 
             // textBox16
             // 
@@ -360,7 +371,7 @@ namespace ReportLibrary
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.7D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox16.Style.Font.Name = "Times New Roman";
-            this.textBox16.Value = "R {Fields.Range}";
+            resources.ApplyResources(this.textBox16, "textBox16");
             // 
             // textBox18
             // 
@@ -368,7 +379,7 @@ namespace ReportLibrary
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.9D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox18.Style.Font.Name = "Times New Roman";
-            this.textBox18.Value = "Lot: {Fields.TaxlotNumber}";
+            resources.ApplyResources(this.textBox18, "textBox18");
             // 
             // textBox21
             // 
@@ -378,7 +389,7 @@ namespace ReportLibrary
             this.textBox21.Style.Font.Bold = true;
             this.textBox21.Style.Font.Italic = true;
             this.textBox21.Style.Font.Name = "Times New Roman";
-            this.textBox21.Value = "Side:";
+            resources.ApplyResources(this.textBox21, "textBox21");
             // 
             // textBox30
             // 
@@ -388,7 +399,7 @@ namespace ReportLibrary
             this.textBox30.Style.Font.Bold = true;
             this.textBox30.Style.Font.Italic = true;
             this.textBox30.Style.Font.Name = "Times New Roman";
-            this.textBox30.Value = "Milepost:";
+            resources.ApplyResources(this.textBox30, "textBox30");
             // 
             // textBox32
             // 
@@ -398,7 +409,7 @@ namespace ReportLibrary
             this.textBox32.Style.Font.Bold = true;
             this.textBox32.Style.Font.Italic = true;
             this.textBox32.Style.Font.Name = "Times New Roman";
-            this.textBox32.Value = "From:";
+            resources.ApplyResources(this.textBox32, "textBox32");
             // 
             // textBox20
             // 
@@ -409,7 +420,7 @@ namespace ReportLibrary
             this.textBox20.Style.Font.Italic = true;
             this.textBox20.Style.Font.Name = "Times New Roman";
             this.textBox20.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox20.Value = "Road Number:";
+            resources.ApplyResources(this.textBox20, "textBox20");
             // 
             // textBox22
             // 
@@ -417,7 +428,7 @@ namespace ReportLibrary
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox22.Style.Font.Name = "Times New Roman";
-            this.textBox22.Value = "= Fields.RoadNumber";
+            resources.ApplyResources(this.textBox22, "textBox22");
             // 
             // textBox34
             // 
@@ -427,7 +438,7 @@ namespace ReportLibrary
             this.textBox34.Style.Font.Bold = true;
             this.textBox34.Style.Font.Italic = true;
             this.textBox34.Style.Font.Name = "Times New Roman";
-            this.textBox34.Value = "Culvert Pipe Diameter:";
+            resources.ApplyResources(this.textBox34, "textBox34");
             // 
             // textBox36
             // 
@@ -437,7 +448,7 @@ namespace ReportLibrary
             this.textBox36.Style.Font.Bold = true;
             this.textBox36.Style.Font.Italic = true;
             this.textBox36.Style.Font.Name = "Times New Roman";
-            this.textBox36.Value = "Length:";
+            resources.ApplyResources(this.textBox36, "textBox36");
             // 
             // textBox23
             // 
@@ -445,7 +456,7 @@ namespace ReportLibrary
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox23.Style.Font.Name = "Times New Roman";
-            this.textBox23.Value = "= Fields.CulvertDiameter";
+            resources.ApplyResources(this.textBox23, "textBox23");
             // 
             // textBox24
             // 
@@ -453,7 +464,7 @@ namespace ReportLibrary
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox24.Style.Font.Name = "Times New Roman";
-            this.textBox24.Value = "= Fields.CulvertLength";
+            resources.ApplyResources(this.textBox24, "textBox24");
             // 
             // textBox38
             // 
@@ -463,7 +474,7 @@ namespace ReportLibrary
             this.textBox38.Style.Font.Bold = true;
             this.textBox38.Style.Font.Italic = true;
             this.textBox38.Style.Font.Name = "Times New Roman";
-            this.textBox38.Value = "SPECIAL PREVISIONS:";
+            resources.ApplyResources(this.textBox38, "textBox38");
             // 
             // textBox39
             // 
@@ -472,7 +483,7 @@ namespace ReportLibrary
             this.textBox39.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.4D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox39.Style.Font.Bold = true;
             this.textBox39.Style.Font.Name = "Times New Roman";
-            this.textBox39.Value = "1) Driveway Surface:";
+            resources.ApplyResources(this.textBox39, "textBox39");
             // 
             // textBox25
             // 
@@ -480,7 +491,7 @@ namespace ReportLibrary
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.5D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox25.Style.Font.Name = "Times New Roman";
-            this.textBox25.Value = "= Fields.SurfaceType";
+            resources.ApplyResources(this.textBox25, "textBox25");
             // 
             // textBox41
             // 
@@ -489,7 +500,7 @@ namespace ReportLibrary
             this.textBox41.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox41.Style.Font.Bold = true;
             this.textBox41.Style.Font.Name = "Times New Roman";
-            this.textBox41.Value = "2) Sight Distance:";
+            resources.ApplyResources(this.textBox41, "textBox41");
             // 
             // textBox26
             // 
@@ -497,7 +508,7 @@ namespace ReportLibrary
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(5.5D), Telerik.Reporting.Drawing.Unit.Inch(0.3D));
             this.textBox26.Style.Font.Name = "Times New Roman";
-            this.textBox26.Value = resources.GetString("textBox26.Value");
+            resources.ApplyResources(this.textBox26, "textBox26");
             // 
             // textBox27
             // 
@@ -505,7 +516,7 @@ namespace ReportLibrary
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox27.Style.Font.Name = "Times New Roman";
-            this.textBox27.Value = "= Fields.Placement";
+            resources.ApplyResources(this.textBox27, "textBox27");
             // 
             // textBox28
             // 
@@ -513,7 +524,7 @@ namespace ReportLibrary
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.7D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox28.Style.Font.Name = "Times New Roman";
-            this.textBox28.Value = "= Fields.BeginMilepost";
+            resources.ApplyResources(this.textBox28, "textBox28");
             // 
             // textBox29
             // 
@@ -521,7 +532,7 @@ namespace ReportLibrary
             this.textBox29.Name = "textBox29";
             this.textBox29.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox29.Style.Font.Name = "Times New Roman";
-            this.textBox29.Value = "= Fields.MeasuredFrom";
+            resources.ApplyResources(this.textBox29, "textBox29");
             // 
             // textBox48
             // 
@@ -530,7 +541,7 @@ namespace ReportLibrary
             this.textBox48.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox48.Style.Font.Bold = true;
             this.textBox48.Style.Font.Name = "Times New Roman";
-            this.textBox48.Value = "3) Curb:";
+            resources.ApplyResources(this.textBox48, "textBox48");
             // 
             // textBox31
             // 
@@ -538,7 +549,7 @@ namespace ReportLibrary
             this.textBox31.Name = "textBox31";
             this.textBox31.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox31.Style.Font.Name = "Times New Roman";
-            this.textBox31.Value = "= Fields.Curb";
+            resources.ApplyResources(this.textBox31, "textBox31");
             // 
             // textBox53
             // 
@@ -547,7 +558,7 @@ namespace ReportLibrary
             this.textBox53.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox53.Style.Font.Bold = true;
             this.textBox53.Style.Font.Name = "Times New Roman";
-            this.textBox53.Value = "4) Sidewalk:";
+            resources.ApplyResources(this.textBox53, "textBox53");
             // 
             // textBox33
             // 
@@ -555,8 +566,7 @@ namespace ReportLibrary
             this.textBox33.Name = "textBox33";
             this.textBox33.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(5.5D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox33.Style.Font.Name = "Times New Roman";
-            this.textBox33.Value = "Access width = {Fields.Width}\' Setback = {Fields.SetbackWidth}\' Sidewalk width = " +
-    "{Fields.SidewalkWidth}\' Sidewalk Length = {Fields.SidewalkLength}\'";
+            resources.ApplyResources(this.textBox33, "textBox33");
             // 
             // textBox50
             // 
@@ -565,7 +575,7 @@ namespace ReportLibrary
             this.textBox50.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox50.Style.Font.Bold = true;
             this.textBox50.Style.Font.Name = "Times New Roman";
-            this.textBox50.Value = "5) Commments";
+            resources.ApplyResources(this.textBox50, "textBox50");
             // 
             // textBox35
             // 
@@ -573,7 +583,7 @@ namespace ReportLibrary
             this.textBox35.Name = "textBox35";
             this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(4.9D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox35.Style.Font.Name = "Times New Roman";
-            this.textBox35.Value = "= Fields.Comment";
+            resources.ApplyResources(this.textBox35, "textBox35");
             // 
             // textBox52
             // 
@@ -583,7 +593,7 @@ namespace ReportLibrary
             this.textBox52.Style.Font.Bold = true;
             this.textBox52.Style.Font.Italic = true;
             this.textBox52.Style.Font.Name = "Times New Roman";
-            this.textBox52.Value = "Attatcments and General Instructions:";
+            resources.ApplyResources(this.textBox52, "textBox52");
             // 
             // textBox62
             // 
@@ -591,7 +601,7 @@ namespace ReportLibrary
             this.textBox62.Name = "textBox62";
             this.textBox62.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.7D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox62.Style.Font.Name = "Times New Roman";
-            this.textBox62.Value = "1.  Polk county Public Works General Requirement (attached)";
+            resources.ApplyResources(this.textBox62, "textBox62");
             // 
             // textBox63
             // 
@@ -599,7 +609,7 @@ namespace ReportLibrary
             this.textBox63.Name = "textBox63";
             this.textBox63.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox63.Style.Font.Name = "Times New Roman";
-            this.textBox63.Value = "2.  Construction Requirement (attached)";
+            resources.ApplyResources(this.textBox63, "textBox63");
             // 
             // textBox64
             // 
@@ -609,7 +619,7 @@ namespace ReportLibrary
             this.textBox64.Style.Font.Bold = true;
             this.textBox64.Style.Font.Name = "Times New Roman";
             this.textBox64.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox64.Value = "3.  Notify Public Works at 503.623.9287";
+            resources.ApplyResources(this.textBox64, "textBox64");
             // 
             // textBox65
             // 
@@ -619,7 +629,7 @@ namespace ReportLibrary
             this.textBox65.Style.Font.Bold = true;
             this.textBox65.Style.Font.Name = "Times New Roman";
             this.textBox65.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox65.Value = "a. 24 hours prior to commencing work";
+            resources.ApplyResources(this.textBox65, "textBox65");
             // 
             // textBox66
             // 
@@ -629,7 +639,7 @@ namespace ReportLibrary
             this.textBox66.Style.Font.Bold = true;
             this.textBox66.Style.Font.Name = "Times New Roman";
             this.textBox66.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox66.Value = "b. 48 hours after completion of work";
+            resources.ApplyResources(this.textBox66, "textBox66");
             // 
             // textBox67
             // 
@@ -637,8 +647,7 @@ namespace ReportLibrary
             this.textBox67.Name = "textBox67";
             this.textBox67.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(5.8D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox67.Style.Font.Name = "Times New Roman";
-            this.textBox67.Value = "4.  A copy of this permit and a set of construction plan shall be at site during " +
-    "construction.";
+            resources.ApplyResources(this.textBox67, "textBox67");
             // 
             // textBox68
             // 
@@ -648,7 +657,7 @@ namespace ReportLibrary
             this.textBox68.Style.Font.Bold = true;
             this.textBox68.Style.Font.Name = "Times New Roman";
             this.textBox68.Style.Font.Underline = true;
-            this.textBox68.Value = "5.  Permits are valid 90 days from the permit approval date";
+            resources.ApplyResources(this.textBox68, "textBox68");
             // 
             // textBox69
             // 
@@ -656,7 +665,7 @@ namespace ReportLibrary
             this.textBox69.Name = "textBox69";
             this.textBox69.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(4.4D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox69.Style.Font.Name = "Times New Roman";
-            this.textBox69.Value = "6.  Call for utility locations at 1-800-332-2344 before you dig.";
+            resources.ApplyResources(this.textBox69, "textBox69");
             // 
             // textBox70
             // 
@@ -664,8 +673,7 @@ namespace ReportLibrary
             this.textBox70.Name = "textBox70";
             this.textBox70.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.8D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox70.Style.Font.Name = "Times New Roman";
-            this.textBox70.Value = "7.  Call 1-877-668-4001 Utility Notification Center to register any private utili" +
-    "ties installed within County Right of Way.";
+            resources.ApplyResources(this.textBox70, "textBox70");
             // 
             // pictureBox1
             // 
@@ -682,7 +690,7 @@ namespace ReportLibrary
             this.textBox71.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox71.Style.Font.Name = "Times New Roman";
             this.textBox71.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.textBox71.Value = "Name: ";
+            resources.ApplyResources(this.textBox71, "textBox71");
             // 
             // textBox37
             // 
@@ -691,7 +699,7 @@ namespace ReportLibrary
             this.textBox37.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox37.Style.Font.Name = "Times New Roman";
             this.textBox37.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.textBox37.Value = "= Fields.UserName";
+            resources.ApplyResources(this.textBox37, "textBox37");
             // 
             // textBox73
             // 
@@ -700,7 +708,7 @@ namespace ReportLibrary
             this.textBox73.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox73.Style.Font.Name = "Times New Roman";
             this.textBox73.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.textBox73.Value = "Position:";
+            resources.ApplyResources(this.textBox73, "textBox73");
             // 
             // textBox40
             // 
@@ -709,7 +717,7 @@ namespace ReportLibrary
             this.textBox40.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox40.Style.Font.Name = "Times New Roman";
             this.textBox40.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.textBox40.Value = "= Fields.IssuedByPosition";
+            resources.ApplyResources(this.textBox40, "textBox40");
             // 
             // textBox75
             // 
@@ -721,7 +729,7 @@ namespace ReportLibrary
             this.textBox75.Style.Font.Italic = true;
             this.textBox75.Style.Font.Name = "Times New Roman";
             this.textBox75.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox75.Value = resources.GetString("textBox75.Value");
+            resources.ApplyResources(this.textBox75, "textBox75");
             // 
             // textBox42
             // 
@@ -731,7 +739,7 @@ namespace ReportLibrary
             this.textBox42.Style.Font.Bold = true;
             this.textBox42.Style.Font.Name = "Times New Roman";
             this.textBox42.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(14D);
-            this.textBox42.Value = "Access Permit - General Requirements";
+            resources.ApplyResources(this.textBox42, "textBox42");
             // 
             // textBox43
             // 
@@ -740,7 +748,7 @@ namespace ReportLibrary
             this.textBox43.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox43.Style.Font.Bold = true;
             this.textBox43.Style.Font.Name = "Times New Roman";
-            this.textBox43.Value = "1) Compaction:";
+            resources.ApplyResources(this.textBox43, "textBox43");
             // 
             // textBox44
             // 
@@ -748,9 +756,7 @@ namespace ReportLibrary
             this.textBox44.Name = "textBox44";
             this.textBox44.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.1D), Telerik.Reporting.Drawing.Unit.Inch(0.4D));
             this.textBox44.Style.Font.Name = "Times New Roman";
-            this.textBox44.Value = "Compact any fill areas so taht no reaction or yielding is observed under the comp" +
-    "action equipment.  Areas requring compaction include all gravel areas and should" +
-    "er areas.";
+            resources.ApplyResources(this.textBox44, "textBox44");
             // 
             // textBox45
             // 
@@ -759,7 +765,7 @@ namespace ReportLibrary
             this.textBox45.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox45.Style.Font.Bold = true;
             this.textBox45.Style.Font.Name = "Times New Roman";
-            this.textBox45.Value = "2) Grade-Ditchline:";
+            resources.ApplyResources(this.textBox45, "textBox45");
             // 
             // textBox46
             // 
@@ -767,8 +773,7 @@ namespace ReportLibrary
             this.textBox46.Name = "textBox46";
             this.textBox46.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.1D), Telerik.Reporting.Drawing.Unit.Inch(0.4D));
             this.textBox46.Style.Font.Name = "Times New Roman";
-            this.textBox46.Value = "Do not change the grade or elevation of the existing ditch line + or - foot witho" +
-    "ut authorization from Public Works";
+            resources.ApplyResources(this.textBox46, "textBox46");
             // 
             // textBox47
             // 
@@ -777,7 +782,7 @@ namespace ReportLibrary
             this.textBox47.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox47.Style.Font.Bold = true;
             this.textBox47.Style.Font.Name = "Times New Roman";
-            this.textBox47.Value = "3) Grade - Access:";
+            resources.ApplyResources(this.textBox47, "textBox47");
             // 
             // textBox49
             // 
@@ -785,7 +790,7 @@ namespace ReportLibrary
             this.textBox49.Name = "textBox49";
             this.textBox49.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.1D), Telerik.Reporting.Drawing.Unit.Inch(0.7D));
             this.textBox49.Style.Font.Name = "Times New Roman";
-            this.textBox49.Value = resources.GetString("textBox49.Value");
+            resources.ApplyResources(this.textBox49, "textBox49");
             // 
             // textBox51
             // 
@@ -795,7 +800,7 @@ namespace ReportLibrary
             this.textBox51.Style.Font.Bold = true;
             this.textBox51.Style.Font.Italic = false;
             this.textBox51.Style.Font.Name = "Times New Roman";
-            this.textBox51.Value = "4) Grade - Driveway:";
+            resources.ApplyResources(this.textBox51, "textBox51");
             // 
             // textBox54
             // 
@@ -803,7 +808,7 @@ namespace ReportLibrary
             this.textBox54.Name = "textBox54";
             this.textBox54.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.1D), Telerik.Reporting.Drawing.Unit.Inch(0.5D));
             this.textBox54.Style.Font.Name = "Times New Roman";
-            this.textBox54.Value = resources.GetString("textBox54.Value");
+            resources.ApplyResources(this.textBox54, "textBox54");
             // 
             // textBox55
             // 
@@ -812,7 +817,7 @@ namespace ReportLibrary
             this.textBox55.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox55.Style.Font.Bold = true;
             this.textBox55.Style.Font.Name = "Times New Roman";
-            this.textBox55.Value = "5) Clearance";
+            resources.ApplyResources(this.textBox55, "textBox55");
             // 
             // textBox56
             // 
@@ -820,7 +825,7 @@ namespace ReportLibrary
             this.textBox56.Name = "textBox56";
             this.textBox56.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.702D));
             this.textBox56.Style.Font.Name = "Times New Roman";
-            this.textBox56.Value = resources.GetString("textBox56.Value");
+            resources.ApplyResources(this.textBox56, "textBox56");
             // 
             // textBox57
             // 
@@ -829,7 +834,7 @@ namespace ReportLibrary
             this.textBox57.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox57.Style.Font.Bold = true;
             this.textBox57.Style.Font.Name = "Times New Roman";
-            this.textBox57.Value = "6) Clean Up:";
+            resources.ApplyResources(this.textBox57, "textBox57");
             // 
             // textBox58
             // 
@@ -837,8 +842,7 @@ namespace ReportLibrary
             this.textBox58.Name = "textBox58";
             this.textBox58.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox58.Style.Font.Name = "Times New Roman";
-            this.textBox58.Value = "Remove all construction debris from the right of way and leave a clean work area." +
-    "";
+            resources.ApplyResources(this.textBox58, "textBox58");
             // 
             // textBox59
             // 
@@ -847,7 +851,7 @@ namespace ReportLibrary
             this.textBox59.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox59.Style.Font.Bold = true;
             this.textBox59.Style.Font.Name = "Times New Roman";
-            this.textBox59.Value = "7) Incspection:";
+            resources.ApplyResources(this.textBox59, "textBox59");
             // 
             // textBox60
             // 
@@ -855,8 +859,7 @@ namespace ReportLibrary
             this.textBox60.Name = "textBox60";
             this.textBox60.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.4D));
             this.textBox60.Style.Font.Name = "Times New Roman";
-            this.textBox60.Value = "Public Works shall inspect the completed project. The applicant shall be notified" +
-    " of any deficiencies and shall make appropriate corrections.";
+            resources.ApplyResources(this.textBox60, "textBox60");
             // 
             // textBox61
             // 
@@ -865,7 +868,7 @@ namespace ReportLibrary
             this.textBox61.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox61.Style.Font.Bold = true;
             this.textBox61.Style.Font.Name = "Times New Roman";
-            this.textBox61.Value = "8) Maintenance:";
+            resources.ApplyResources(this.textBox61, "textBox61");
             // 
             // textBox72
             // 
@@ -873,7 +876,7 @@ namespace ReportLibrary
             this.textBox72.Name = "textBox72";
             this.textBox72.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.6D));
             this.textBox72.Style.Font.Name = "Times New Roman";
-            this.textBox72.Value = resources.GetString("textBox72.Value");
+            resources.ApplyResources(this.textBox72, "textBox72");
             // 
             // textBox74
             // 
@@ -882,7 +885,7 @@ namespace ReportLibrary
             this.textBox74.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox74.Style.Font.Bold = true;
             this.textBox74.Style.Font.Name = "Times New Roman";
-            this.textBox74.Value = "9) Culvert Type:";
+            resources.ApplyResources(this.textBox74, "textBox74");
             // 
             // textBox76
             // 
@@ -890,8 +893,7 @@ namespace ReportLibrary
             this.textBox76.Name = "textBox76";
             this.textBox76.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox76.Style.Font.Name = "Times New Roman";
-            this.textBox76.Value = "If culvert is required, minimum dimensions are Size = {Fields.CulvertDiameter} an" +
-    "d Length = {Fields.CulvertLength}";
+            resources.ApplyResources(this.textBox76, "textBox76");
             // 
             // textBox77
             // 
@@ -900,7 +902,7 @@ namespace ReportLibrary
             this.textBox77.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox77.Style.Font.Bold = true;
             this.textBox77.Style.Font.Name = "Times New Roman";
-            this.textBox77.Value = "10) Questions:";
+            resources.ApplyResources(this.textBox77, "textBox77");
             // 
             // textBox78
             // 
@@ -908,7 +910,7 @@ namespace ReportLibrary
             this.textBox78.Name = "textBox78";
             this.textBox78.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6D), Telerik.Reporting.Drawing.Unit.Inch(0.502D));
             this.textBox78.Style.Font.Name = "Times New Roman";
-            this.textBox78.Value = resources.GetString("textBox78.Value");
+            resources.ApplyResources(this.textBox78, "textBox78");
             // 
             // textBox79
             // 
@@ -919,7 +921,7 @@ namespace ReportLibrary
             this.textBox79.Style.Font.Name = "Times New Roman";
             this.textBox79.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(14D);
             this.textBox79.Style.Font.Underline = true;
-            this.textBox79.Value = "Open Drainage (Ditch)";
+            resources.ApplyResources(this.textBox79, "textBox79");
             // 
             // pictureBox3
             // 
@@ -930,22 +932,13 @@ namespace ReportLibrary
             this.pictureBox3.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.ScaleProportional;
             this.pictureBox3.Value = ((object)(resources.GetObject("pictureBox3.Value")));
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.7D), Telerik.Reporting.Drawing.Unit.Inch(20.2D));
-            this.pictureBox2.MimeType = "image/png";
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(7.1D), Telerik.Reporting.Drawing.Unit.Inch(9.6D));
-            this.pictureBox2.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.ScaleProportional;
-            this.pictureBox2.Value = ((object)(resources.GetObject("pictureBox2.Value")));
-            // 
             // textBox80
             // 
             this.textBox80.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.2D), Telerik.Reporting.Drawing.Unit.Inch(20.648D));
             this.textBox80.Name = "textBox80";
             this.textBox80.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.3D), Telerik.Reporting.Drawing.Unit.Inch(0.052D));
             this.textBox80.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6D);
-            this.textBox80.Value = "= Fields.Width";
+            resources.ApplyResources(this.textBox80, "textBox80");
             // 
             // textBox81
             // 
@@ -953,7 +946,7 @@ namespace ReportLibrary
             this.textBox81.Name = "textBox81";
             this.textBox81.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.052D));
             this.textBox81.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
-            this.textBox81.Value = "= Fields.Radius";
+            resources.ApplyResources(this.textBox81, "textBox81");
             // 
             // textBox82
             // 
@@ -961,7 +954,7 @@ namespace ReportLibrary
             this.textBox82.Name = "textBox82";
             this.textBox82.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.2D), Telerik.Reporting.Drawing.Unit.Inch(0.3D));
             this.textBox82.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
-            this.textBox82.Value = "= Fields.Angle";
+            resources.ApplyResources(this.textBox82, "textBox82");
             // 
             // textBox83
             // 
@@ -969,7 +962,7 @@ namespace ReportLibrary
             this.textBox83.Name = "textBox83";
             this.textBox83.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.4D), Telerik.Reporting.Drawing.Unit.Inch(0.052D));
             this.textBox83.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6D);
-            this.textBox83.Value = "= Fields.CulvertLength";
+            resources.ApplyResources(this.textBox83, "textBox83");
             // 
             // textBox84
             // 
@@ -977,7 +970,7 @@ namespace ReportLibrary
             this.textBox84.Name = "textBox84";
             this.textBox84.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.4D), Telerik.Reporting.Drawing.Unit.Inch(0.052D));
             this.textBox84.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6D);
-            this.textBox84.Value = "= Fields.CulvertDiameter";
+            resources.ApplyResources(this.textBox84, "textBox84");
             // 
             // textBox85
             // 
@@ -985,7 +978,7 @@ namespace ReportLibrary
             this.textBox85.Name = "textBox85";
             this.textBox85.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.4D), Telerik.Reporting.Drawing.Unit.Inch(0.052D));
             this.textBox85.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6D);
-            this.textBox85.Value = "= Fields.MinimumSightDistanceLeft";
+            resources.ApplyResources(this.textBox85, "textBox85");
             // 
             // textBox86
             // 
@@ -993,7 +986,7 @@ namespace ReportLibrary
             this.textBox86.Name = "textBox86";
             this.textBox86.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.052D));
             this.textBox86.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6D);
-            this.textBox86.Value = "= Fields.MinimumSightDistanceRight";
+            resources.ApplyResources(this.textBox86, "textBox86");
             // 
             // pictureBox4
             // 
@@ -1006,22 +999,19 @@ namespace ReportLibrary
             // 
             // sqlDataSource
             // 
-            this.sqlDataSource.ConnectionString = "ClassLibrary1.Properties.Settings.User28";
+            this.sqlDataSource.ConnectionString = "User40";
             this.sqlDataSource.Name = "sqlDataSource";
             this.sqlDataSource.SelectCommand = "SELECT * FROM [IRIS10_integ].[dbo].[RPTPolk_PermitOpenDrainageCulvert] where Perm" +
     "itNumber = \'2012-A-0034\'";
             // 
-            // textBox8
+            // pictureBox2
             // 
-            this.textBox8.Format = "{0:D}";
-            this.textBox8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3D), Telerik.Reporting.Drawing.Unit.Inch(1.6D));
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.8D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox8.Style.Font.Bold = true;
-            this.textBox8.Style.Font.Italic = true;
-            this.textBox8.Style.Font.Name = "Times New Roman";
-            this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox8.Value = "Issue Date: {Fields.IssueDate.ToString(\"D\")}";
+            this.pictureBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.682D), Telerik.Reporting.Drawing.Unit.Inch(20.2D));
+            this.pictureBox2.MimeType = "image/png";
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(7.1D), Telerik.Reporting.Drawing.Unit.Inch(9.6D));
+            this.pictureBox2.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.ScaleProportional;
+            this.pictureBox2.Value = ((object)(resources.GetObject("pictureBox2.Value")));
             // 
             // PolkCountyPermit
             // 
@@ -1033,10 +1023,6 @@ namespace ReportLibrary
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Inch(0.25D), Telerik.Reporting.Drawing.Unit.Inch(0.25D), Telerik.Reporting.Drawing.Unit.Inch(0.5D), Telerik.Reporting.Drawing.Unit.Inch(0.5D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.Standard10x11;
-            reportParameter1.Name = "RayTest";
-            reportParameter1.Value = "";
-            reportParameter1.Visible = true;
-            this.ReportParameters.Add(reportParameter1);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});
@@ -1129,7 +1115,6 @@ namespace ReportLibrary
         private Telerik.Reporting.TextBox textBox78;
         private Telerik.Reporting.TextBox textBox79;
         private Telerik.Reporting.PictureBox pictureBox3;
-        private Telerik.Reporting.PictureBox pictureBox2;
         private Telerik.Reporting.TextBox textBox80;
         private Telerik.Reporting.TextBox textBox81;
         private Telerik.Reporting.TextBox textBox82;
@@ -1140,5 +1125,6 @@ namespace ReportLibrary
         private Telerik.Reporting.PictureBox pictureBox4;
         private Telerik.Reporting.SqlDataSource sqlDataSource;
         private Telerik.Reporting.TextBox textBox8;
+        private Telerik.Reporting.PictureBox pictureBox2;
     }
 }

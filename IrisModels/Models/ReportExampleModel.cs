@@ -28,9 +28,8 @@ namespace IrisModels.Models
 		[Aggregate(AllowAvg = false, AllowCount = true, AllowMax = false, AllowMin = false, AllowSum = false)]
 		public int Report_Key { get; set; }
 
-		//[DbProperties(DatabaseType = SqlDbType.VarBinary, Size = -1)]
-		//TODO:  Rexamine at a later date in order to determine a data type for varbinary
-		//public varbinary? ExampleReport { get; set; }
+        [DbProperties(DatabaseType = SqlDbType.VarBinary)]
+        public Byte[] ExampleReport { get; set; }
 
     }
 }

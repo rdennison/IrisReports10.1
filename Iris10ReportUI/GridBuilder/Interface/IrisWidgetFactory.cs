@@ -30,7 +30,11 @@ namespace Iris10ReportUI.GridBuilder.Interface
             return new ReportListGridBuilder<T>(htmlHelper);
         }
 
-    
+        public IrisGridBuilder<T> Grid(string name = "null", bool partial = false)
+        {
+            return new IrisGridBuilder<T>(htmlHelper, name, partial);
+        }
+
     }
     
     public sealed class ChildWidgetFactory<T> where T : class

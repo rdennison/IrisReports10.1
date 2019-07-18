@@ -43,182 +43,42 @@
     }
 }
 
-
-
-
-
-
-
 @(Html.Kendo().Splitter()
-  .Name("vertical")
-  .HtmlAttributes(new { style = "height: 765px" })
-  .Orientation(SplitterOrientation.Vertical)
-  .Panes(verticalPanes =>
-  {
+        .Name("vertical")
 
-
-
-  verticalPanes.Add()
-          //.Size("100%")
-          .HtmlAttributes(new { id = "report-grid" })
-          .Collapsible(false)
-          .Content(@<div class="reportupper">
-
-            @(Html.Kendo().ToolBar()
-        .Name("ReportToolBar")
-        .Items(items =>
-        {
-
-            items.Add().Template("<input id = 'reportsearch' class='k-textbox' placeholder='Search Report ' type='text' data-bind='events: { keyup: searchKeyPressed}' />").OverflowTemplate("<span></span>");
-
-        })
-            )
-
-
-            <span style="height: 100%; width: 350px; overflow: auto; float: left; border-spacing:9px; margin-top: 20px">
-
-                @(Html.Iris<RPTReportListByUserModel>().ReportListGrid())
-                <script>
-                    REPORT_LIST = true;
-                </script>
-
-
-            </span>
-
-            <span style="height: 450px; width: 700px; overflow: auto; float: right; border-spacing:9px; margin-top: 20px">
-
-
-                @(Html.Kendo()
-     .TextBox()
-     .Name("ReportPreview")
-     .HtmlAttributes(new { style = "height: 300px; width: 600px" })
-                )
-
-
-
-                <h4>Kendo UI Button with icons</h4>
-
-
-
-
-                @(Html.Kendo().Button()
-        .Name("textButton")
-        .HtmlAttributes(new { type = "button" })
-        .Content("Button"))
-
-                @(Html.Kendo().Button()
-        .Name("textButton")
-        .HtmlAttributes(new { type = "button" })
-        .Content("Button"))
-
-                @(Html.Kendo().Button()
-        .Name("textButton")
-        .HtmlAttributes(new { type = "button" })
-        .Content("Button"))
-
-
-
-
-
-            </span>
-        </div>);
-
-verticalPanes.Add()
-//.Collapsed(false)
-
-.Size("250px")
-//.CollapsedSize("1%")
-
-//.MinSize("20%")
-//.HtmlAttributes(new { style = "height: 800px" })
-.Resizable(true)
-.Collapsible(false)
-.Content(@<div class="reportlower">
-
-            @*@(Html.Kendo().ToolBar()
-        .Name("CriteriaToolBar")
-        .Items(items =>
-        {
-
-
-            items.Add().Template(" < div id = filterPartialListDropdown /> ").Overflow(ShowInOverflowPopup.Always);
-            items.Add().Type(CommandType.Button).Text("Save").Id("saveReportFilter");
-            items.Add().Type(CommandType.Button).Text("Delete").Togglable(true);
-
-
-        })
-            )*@
-
-
-            <span style="height: 100%; width: 100%; overflow: auto; border-spacing:9px;">
-
-                @(Html.Kendo().Grid<GridFilterWhereModel>()
-    .Name("ReportFilterCriteriaGrid")
-    .Columns(c =>
+    .HtmlAttributes(new { style = "height: 765px" })
+    .Orientation(SplitterOrientation.Vertical)
+    .Panes(verticalPanes =>
     {
-        c.Select().Width(50).MinResizableWidth(50).HeaderHtmlAttributes(new { @id = "allchecked" });
-        c.Bound(b => b.OpenGroup);
-        c.Bound(b => b.ColumnName);
-        c.Bound(b => b.ComparisonOperator);
-        c.Bound(b => b.Value1);
-        c.Bound(b => b.Value2);
-        c.Bound(b => b.CloseGroup);
-        c.Bound(b => b.AndOr);
-        c.Bound(b => b.Position).Hidden();
-        c.Bound(b => b.GridFilter_Key).Hidden();
-    }).DataSource(s =>
-    {
-        s.Ajax().Read(read => read.Action("Read", "ReportGridFilterWhere").Type(HttpVerbs.Get))
-        .Destroy(destroy => destroy.Action("Destroy", "ReportGridFilterWhere").Type(HttpVerbs.Post))
-        .Update(update => update.Action("Update", "ReportGridFilterWhere").Type(HttpVerbs.Post))
-        .ServerOperation(false)
-        .Batch(true)
-        .Model(model =>
-        {
-            model.Id(p => p.GridFilterWhere_Key);
-            model.Field(p => p.GridFilter_Key).Editable(true);
-            model.Field(p => p.OpenGroup).Editable(true);
-            model.Field(p => p.ColumnName).Editable(true);
-            model.Field(p => p.ComparisonOperator).Editable(true);
-            model.Field(p => p.Value1).Editable(true);
-            model.Field(p => p.Value2).Editable(true);
-            model.Field(p => p.CloseGroup).Editable(true);
-            model.Field(p => p.AndOr).Editable(true);
-            model.Field(p => p.Position).Editable(true);
-        });
-    }).Scrollable()
-                )
-
-                <h4>Kendo UI Button with icons</h4>
 
 
 
+        verticalPanes.Add()
+                .Size("75%")
 
-                @(Html.Kendo().Button()
-        .Name("FinishFilter")
-        .HtmlAttributes(new { @data_bind = "click: finishFilter" })
-        .Content("Finish"))
+                .HtmlAttributes(new { id = "report-grid" })
+                .Collapsible(true)
+                .LoadContentFrom("ReportMainUpper", "ReportMain");
+
+        verticalPanes.Add()
+      //.Collapsed(false)
+
+      .Size("250px")
+      //.CollapsedSize("1%")
+
+      //.MinSize("20%")
+      //.HtmlAttributes(new { style = "height: 800px" })
+      .Resizable(true)
+      .Collapsible(false)
+     .Content("<div id = 'ReportLower'/>");
+          
 
 
-
-
-
-            </span>
-        </div>);
-
-
-  })
+    })
 )
 
-
-
-
-
-
-
-
-
-
 <script>
+    var REPORT_LIST = true;
     var REPORT_GRID = true;
+
 </script>

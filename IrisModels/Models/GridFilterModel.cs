@@ -12,11 +12,20 @@ namespace IrisModels.Models
 		[Required(ErrorMessage = "Your {0} is required.")]
 		[DataType("Integer")]
 		[IrisGridColumn(Width = 150)]
+        [NoTenant]
+        [Hidden]
 		public int GridFilter_Key { get; set; }
 
-		[DbProperties(DatabaseType = SqlDbType.Int)]
+        [DbProperties(DatabaseType = SqlDbType.Int)]
+        [ForeignKey(typeof(ReportModel), ForeignKeyDisplayField = "ReportName")]
+        [DataType("Integer")]
+        [IrisGridColumn(Width = 150)]
+        [Hidden]
+        public int? Report_Key { get; set; }
+
+        [DbProperties(DatabaseType = SqlDbType.Int)]
 		[Required(ErrorMessage = "Your {0} is required.")]
-		[ForeignKey(typeof(PageNameModel), ForeignKeyDisplayField="NameDesc")]
+		[ForeignKey(typeof(PageNameModel), ForeignKeyDisplayField="PageName")]
 		[DataType("Integer")]
 		[FilterType(Dropdown = true)]
 		[Display(Name = "Page Name Key")]

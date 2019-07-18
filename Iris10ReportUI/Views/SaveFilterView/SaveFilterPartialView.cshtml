@@ -1,0 +1,49 @@
+﻿@using IrisModels.Models
+@using IrisAttributes
+@using CoreDomain
+@using SqlComponents
+
+@{ 
+    CoreService _coreService = new CoreService();
+
+    List<SqlWhere> wheres = new List<SqlWhere>();
+    wheres.Add(new SqlWhere(null, null, "GridFilter", "PageName_Key", 88, null, SqlWhereComparison.SqlComparer.Equal, SqlWhereAndOrOptions.SqlWhereAndOr.And));
+    wheres.Add(new SqlWhere(null, null, "GridFilter", "Report_Key", Session["Report_Key"], null, SqlWhereComparison.SqlComparer.Equal, SqlWhereAndOrOptions.SqlWhereAndOr.And));
+    wheres.Add(new SqlWhere(null, null, "GridFilter", "CreatedByUser_Key", Session["CurrentUserKey"], null, SqlWhereComparison.SqlComparer.Equal, SqlWhereAndOrOptions.SqlWhereAndOr.And));
+    IEnumerable<GridFilterModel> reportGridFilter = _coreService.LoadModel<GridFilterModel>(wheres, conName: Session["ConString"].ToString());
+
+}
+
+
+
+<span>
+    @(Html.Kendo()
+        .ComboBox()
+        .Name("FilterNameList")
+        .Placeholder("name or edit filter:")
+        .Filter("startswith")
+        .Suggest(true)
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .BindTo(new SelectList(reportGridFilter, "GridFilter_Key", "Name"))
+        .HtmlAttributes(new { style = "width:250px" })
+    )
+</span>
+
+<span>
+    @(Html.Kendo().Button()
+        .Name("ReportFilterSave")
+        .Content("Save")
+      
+    )
+</span>
+<span>
+    @(Html.Kendo().Button()
+        .Name("ReportFilterCancel")
+        .Content("Cancel")
+      
+    )
+</span>
+
+
+

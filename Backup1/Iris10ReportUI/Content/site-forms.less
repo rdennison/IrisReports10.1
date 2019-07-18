@@ -1,0 +1,93 @@
+﻿@import "bootstrap.less";
+@import "site-validation.less";
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset legend {
+    display: none;
+}
+
+fieldset ol {
+    padding: 0;
+    list-style: none;
+}
+
+fieldset ol li {
+    padding-bottom: 5px;
+}
+
+label {
+    /*display: block;*/
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.k-checkbox-label {
+    margin-bottom: 20px;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+input, textarea {
+    background: #fff;
+    color: #333;
+    padding: 5px;
+}
+
+textarea {
+    font-family: inherit;
+    width: 500px;
+}
+
+input:focus, textarea:focus {
+    border: 1px solid #7ac0da;
+}
+
+input[type="checkbox"] {
+    background: transparent;
+    border: inherit;
+    width: auto;
+}
+
+#RequiredContent, #OptionalContent {
+    padding-top: @padding-large-vertical;
+}
+
+.RequiredField, .OptionalField {
+    .form-group;
+}
+
+/*.RequiredField, .k-grid-header .required-field > .k-link {
+    background-color: #ac0000;
+    font-weight: bold;
+    & > * {
+        color: initial;
+        font-weight: initial;
+    }
+}*/
+
+td.required-field {
+    background-color: #7ac0da;
+}
+
+.k-grid tbody tr, .k-grid tbody tr td
+{
+    height: 20px;
+    color:black;
+}
+
+.k-grid td{
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}
+
+#IrisToolBar > .k-toolbar-last-visible {
+    float: right;
+}

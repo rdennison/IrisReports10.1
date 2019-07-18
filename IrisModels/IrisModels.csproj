@@ -97,6 +97,7 @@
     <Compile Include="Models\DocumentTypeModel.cs" />
     <Compile Include="Models\DropDownDetailModel.cs" />
     <Compile Include="Models\DropdownModel.cs" />
+    <Compile Include="Models\DropdownValuesViewModel.cs" />
     <Compile Include="Models\EmployeeAuditModel.cs" />
     <Compile Include="Models\EmployeeCertificationsAuditModel.cs" />
     <Compile Include="Models\EmployeeCertificationsModel.cs" />
@@ -466,10 +467,12 @@
     <Compile Include="Models\RISXYZModel.cs" />
     <Compile Include="Models\RoadModel.cs" />
     <Compile Include="Models\RoadNameModel.cs" />
+    <Compile Include="Models\RPTCAS1022Model.cs" />
     <Compile Include="Models\RPTCriteriaModel.cs" />
     <Compile Include="Models\RPTCriteriaSavedDetailModel.cs" />
     <Compile Include="Models\RPTCriteriaSavedModel.cs" />
     <Compile Include="Models\RPTFooterModel.cs" />
+    <Compile Include="Models\RPTReportAvailableFilterList.cs" />
     <Compile Include="Models\RPTReportListByUserModel.cs" />
     <Compile Include="Models\RPTSortSavedModel.cs" />
     <Compile Include="Models\RuleParentModel.cs" />

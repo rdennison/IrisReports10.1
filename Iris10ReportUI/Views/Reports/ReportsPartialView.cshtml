@@ -22,9 +22,9 @@
         .ServiceUrl(Url.Content("/api/reports"))
         //
         // Strongly typed ReportSource - TypeReportSource or UriReportSource.
-        .ReportSource(new TypeReportSource() { TypeName = "ReportLibrary.PolkCountyPermit, ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" })
+        .ReportSource(new TypeReportSource() { TypeName = "ReportLibrary."+ Session["ReportName"].ToString()+", ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" })
         .ViewMode(ViewMode.PrintPreview)
-        .ScaleMode(ScaleMode.FitPage)
+        .ScaleMode(ScaleMode.FitPageWidth)
         .Scale(1.0)
         .PersistSession(false)
         .PrintMode(PrintMode.AutoSelect)

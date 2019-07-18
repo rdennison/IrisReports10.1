@@ -237,7 +237,92 @@ namespace CoreDomain
                 return values.ToList();
             return values.Take(20).ToList();
         }
-        
+
+        public string TelerikSqlString(string reportModelName, List<SqlWhere> wheres = null)
+        {
+            
+            StringBuilder sb = new StringBuilder();
+         
+           
+            sb.Append("SELECT * ");
+           
+          
+            sb.Append(" FROM " + reportModelName);
+            sb.Append(" WHERE ");
+            var indexedWhere = 0;
+            foreach (var w in wheres)
+            {
+                if (indexedWhere > 0)
+                {
+                    if (w.Andor == SqlWhereAndOrOptions.SqlWhereAndOr.Or)
+                    {
+                        sb.Append(" OR ");
+                        
+                    }
+                    else
+                    {
+                        sb.Append(" AND ");
+                      
+                    }
+                }
+                if (w.Group1 != null && w.Group1 != "")
+                {
+                    sb.Append(" ( ");
+                }
+                if (w.MockValue1?.ToString() == "True")
+                {
+                    w.MockValue1 = "1";
+                }
+                else if (w.MockValue1?.ToString() == "False")
+                {
+                    w.MockValue1 = "0";
+                }
+                if (w.MockValue2?.ToString() == "True")
+                {
+                    w.MockValue2 = "1";
+                }
+                else if (w.MockValue2?.ToString() == "False")
+                {
+                    w.MockValue2 = "0";
+                }
+                switch (w.MockComparator)
+                {
+                    case "CONTAINS":
+                        sb.Append(w.MockTableName + "." + w.MockFieldName + " LIKE " + "'%" + w.MockValue1 + "%'");
+                        
+                        break;
+                    case "STARTS WITH":
+                        sb.Append(w.MockTableName + "." + w.MockFieldName + " STARTS WITH " + "'" + w.MockValue1 + "%'");
+                       
+                        break;
+                    case "ENDS WITH":
+                        sb.Append(w.MockTableName + "." + w.MockFieldName + " ENDS WITH " + "'%" + w.MockValue1 + "'");
+                       
+                        break;
+                    case "BETWEEN":
+                        sb.Append(w.MockTableName + "." + w.MockFieldName + " " + w.MockComparator + " '" + w.MockValue1 + "' AND '" + w.MockValue2 + "'");
+                       
+                        break;
+                    case "LIKE":
+                        sb.Append(w.MockTableName + "." + w.MockFieldName + " LIKE " + "'%" + w.MockValue1 + "%'");
+                       
+                        break;
+                    default:
+                        sb.Append(w.MockTableName + "." + w.MockFieldName + " " + w.MockComparator + " " + "'" + w.MockValue1 + "'");
+                       
+                        break;
+                }
+                if (w.Group2 != null && w.Group2 != "")
+                {
+                    sb.Append(" ) ");
+                }
+                indexedWhere++;
+            }
+         
+            //Select props from base inner join model on ... = ... where ...
+            return sb.ToString();
+        }
+
         public string TelerikSqlString(string props, string baseModel, string models, string relations, string userID, string wheres = null)
         {
             Dictionary<string, Guid> modelGuids = (Dictionary<string, Guid>) HttpRuntime.Cache["ModelGuids"];
@@ -465,7 +550,7 @@ namespace CoreDomain
 
             var gen = new SqlGenerator(SqlGenerator.SqlTypes.Select, bindings.TableName, keyFieldName: bindings.KeyFieldName, tenantkey: false, tenant: tenant);
             gen.SetupPagination(pageSize, currentPage, groups);
-            gen.SelectFromModel<T>();
+           gen.SelectFromModel<T>();
 
             if(wheres != null)
             {

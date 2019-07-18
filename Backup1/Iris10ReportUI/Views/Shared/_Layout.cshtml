@@ -1,0 +1,93 @@
+﻿@using Iris10ReportUI.GridBuilder.Extensions
+@using User
+@using IrisModels.API
+@using Iris10ReportUI.GridBuilder.Extensions
+@*@using Iris10ReportUI.Hubs*@
+@using System.Web.Caching
+@{
+    UserService userService = new UserService();
+
+    AuthUserInformationModel userModel = userService.GetUserInformationForCurrentRequest();
+    //UserHub hub = new UserHub();
+    if(userModel != null)
+    {
+        HttpRuntime.Cache.Add("CurrentUser", userModel, null, DateTime.Now.AddDays(14), Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, null);
+    }
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IRIS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/iris")
+    
+	<link href="@Url.Content("~/Content/kendo/2017.3.1018/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2017.3.1018/jszip.min.js")"></script>
+</head>
+@if (userModel != null)
+{
+    //AddUser(userModel.Username);
+    Session["UserName"] = userModel.Username;
+    <body>
+        <header class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4 col-md-3">
+                    <div class="brand">
+                        <a href="@Url.Action("ReportMain", "ReportApp")"><img src="~/Content/Images/iris-logo-355.jpg" style="max-width: 200px;" /></a>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-1 col-sm-offset-6 col-md-offset-8">
+                    <div class="user-profile pull-right" style="padding: 3px; align-content:center">
+                        <img src="~/Content/Images/profile_placeholder.png" alt="@userModel.FullName" class="profile-pic hidden-xs" style="max-width: 60px;" />
+                        <div class="user-info">
+                            <strong>@userModel.FullName</strong>
+                        </div>
+                        @Html.ActionLink("Logout", "Logout", "ReportApp")
+              
+                        @*| @Html.ActionLink("Profile", "UserProfile", "UserProfile")*@
+
+                        @*<button id="UserProfile" type="button">Profile</button>*@
+                        @*@Html.ActionLink("Profile", "UserProfile", "UserProfile", new { id = "openUserProfileWindow"})*@
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+        <div id="body">
+
+
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </body>
+}
+else
+{
+    <body>
+        <div class="page">
+
+            @RenderBody()
+
+        </div>
+    </body>
+}
+
+</html>
+
+@*<script>
+        $('#openUserProfileWindow').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: '/UserProfile/UserProfile',
+                success: function (data, textStatus, jqXHR) {
+                    $('#AJAXContainer').html(data);
+                }
+            });
+        });
+
+    </script>*@

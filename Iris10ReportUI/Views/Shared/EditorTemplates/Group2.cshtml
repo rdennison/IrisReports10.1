@@ -7,15 +7,11 @@
 }
 
 @(Html.Kendo()
-    .MaskedTextBox()
+    .DropDownList()
     .Name("Group2")
+    .BindTo(closeParentheses)
     )
 <script>
-    $("#Group2").kendoMaskedTextBox({
-        mask: "~",
-        rules: {
-            "~": /[)]/
-        }
-    });
-    $("#Group2").data('kendoMaskedTextBox').wrapper.hide();
+
+    $("#Group2").data('kendoDropDownList').wrapper.hide();
 </script>

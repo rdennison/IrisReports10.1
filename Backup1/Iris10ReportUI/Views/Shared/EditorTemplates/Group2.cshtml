@@ -1,0 +1,21 @@
+﻿@using IrisAttributes
+@model object
+
+@{
+    FilterDropdownAttribute groupTwoDropdown = new FilterDropdownAttribute();
+    SelectList closeParentheses = groupTwoDropdown.GroupTwoDropdownList();
+}
+
+@(Html.Kendo()
+    .MaskedTextBox()
+    .Name("Group2")
+    )
+<script>
+    $("#Group2").kendoMaskedTextBox({
+        mask: "~",
+        rules: {
+            "~": /[)]/
+        }
+    });
+    $("#Group2").data('kendoMaskedTextBox').wrapper.hide();
+</script>

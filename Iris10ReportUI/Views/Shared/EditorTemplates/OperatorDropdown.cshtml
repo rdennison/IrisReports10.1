@@ -4,9 +4,9 @@
 @{
     FilterDropdownAttribute operatorDropdown = new FilterDropdownAttribute();
     SelectList operatordropdownList = operatorDropdown.OperatorDropdownList("Dropdown");
-    SelectList operatordateList = operatorDropdown.OperatorDropdownList("Date");
-    SelectList operatortextList = operatorDropdown.OperatorDropdownList("Text");
-    SelectList operatorTrueFalse = operatorDropdown.OperatorDropdownList("Dropdown2");
+    //SelectList operatordateList = operatorDropdown.OperatorDropdownList("Date");
+    //SelectList operatortextList = operatorDropdown.OperatorDropdownList("Text");
+    //SelectList operatorTrueFalse = operatorDropdown.OperatorDropdownList("Dropdown2");
 
         @(Html.Kendo()
                 .ComboBox()
@@ -14,13 +14,13 @@
                 .Placeholder("Select...")
                 .Filter("startswith")
                 .Suggest(true)
-                .SelectedIndex(1)
+                .SelectedIndex(0)
                 .DataTextField("Text")
                 .DataValueField("Value")
                 .HtmlAttributes(new { style = "width:110px" })
                 .BindTo(operatordropdownList))
 
-        @(Html.Kendo()
+        @*@(Html.Kendo()
                 .ComboBox()
                 .Placeholder("Select...")
                 .Filter("startswith")
@@ -60,15 +60,15 @@
                 .Name("operatorTrueFalseoptions")
                 .SelectedIndex(1)
                 .HtmlAttributes(new { style = "width:110px" })
-                .BindTo(operatorTrueFalse))
+                .BindTo(operatorTrueFalse))*@
 
     }
 
 <script>
     $("#operatordropdownListoptions").data('kendoComboBox').wrapper.hide();
-    $("#operatordateListoptions").data('kendoComboBox').wrapper.hide();
-    $("#operatornumberListoptions").data('kendoComboBox').wrapper.hide();
-    $("#operatortextListoptions").data('kendoComboBox').wrapper.hide();
-    $("#operatorTrueFalseoptions").data('kendoComboBox').wrapper.hide();
+    //$("#operatordateListoptions").data('kendoComboBox').wrapper.hide();
+    //$("#operatornumberListoptions").data('kendoComboBox').wrapper.hide();
+    //$("#operatortextListoptions").data('kendoComboBox').wrapper.hide();
+    //$("#operatorTrueFalseoptions").data('kendoComboBox').wrapper.hide();
 
 </script>

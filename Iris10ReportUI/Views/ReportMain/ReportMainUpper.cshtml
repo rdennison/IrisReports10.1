@@ -1,0 +1,51 @@
+﻿@using Iris10ReportUI.GridBuilder.Extensions
+@using IrisModels.Models
+@using Kendo.Mvc.UI
+
+
+
+
+<div class="reportupper">
+
+    @(Html.Kendo().ToolBar()
+          .Name("ReportToolBar")
+          .Items(items =>
+          {
+
+              items.Add().Template("<input id = 'reportsearch' class='k-textbox' placeholder='Search Report ' type='text' data-bind='events: { keyup: searchKeyPressed}' />").OverflowTemplate("<span></span>");
+
+          })
+    )
+
+    <span style="overflow: auto; float: left; border-spacing:9px; margin-top: 20px">
+
+        @(Html.Iris<RPTReportListByUserModel>().ReportListGrid())
+     
+
+
+    </span>
+
+    <span style="overflow: auto; float: right; border-spacing:9px; margin-top: 20px">
+
+
+        @(Html.TextArea("ReportDescription", "", new { style = "height: 300px; width: 600px" }))
+
+        <td><img src="@Url.Action("DisplayImage", "RPTReportListByUser")" alt="Home" height="50px" width="50px" /></td>
+
+        @(Html.Kendo().Button()
+        .Name("textButton")
+        .HtmlAttributes(new { type = "button" })
+        .Content("Button"))
+
+        @(Html.Kendo().Button()
+        .Name("textButton")
+        .HtmlAttributes(new { type = "button" })
+        .Content("Button"))
+
+    </span>
+</div>
+
+<script>
+  
+
+</script>

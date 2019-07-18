@@ -3,32 +3,24 @@
 
 
 @{
-    FilterDropdownAttribute filterDropdown = new FilterDropdownAttribute();
+    SelectListItem ddReportUiFilterList = new SelectListItem { Text = "", Value = "" };
+    List<SelectListItem> DescriptionList = new List<SelectListItem>();
+    DescriptionList.Add(ddReportUiFilterList);
+    IEnumerable<SelectListItem> blankList = DescriptionList;
+    SelectList ColumnNameList = new SelectList(blankList, "Value", "Text");
 
-    if (Session["ModelType"] != null && (Session["ReportFilter"] == null || (bool) Session["ReportFilter"] != true))
     {
-        SelectList ddFilterList = filterDropdown.GetFilterDropdownList(Session["ModelType"].GetType());
+        if (Session["ReportColumnName"] != null)
+        { ColumnNameList = new SelectList((SelectList) Session["ReportColumnName"], "Value", "Text"); }
+
 
         @(Html.Kendo()
           .ComboBox()
-          .Name("FieldList")
+          .Name("ReportFieldList")
           .Placeholder("Select...")
           .Filter("startswith")
           .Suggest(true)
           .SelectedIndex(0)
-          .BindTo(ddFilterList))
-    }
-    else
-    {
-        SelectList ddReportFilterList = filterDropdown.CreateReportFilterDropdownList();
-
-        @(Html.Kendo()
-          .ComboBox()
-          .Name("FieldList")
-          .Placeholder("Select...")
-          .Filter("startswith")
-          .Suggest(true)
-          .SelectedIndex(0)
-          .BindTo(ddReportFilterList))
+          .BindTo((SelectList)ColumnNameList))
     }
 }

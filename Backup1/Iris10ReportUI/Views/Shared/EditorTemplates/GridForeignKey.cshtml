@@ -1,0 +1,10 @@
+﻿@model object
+
+@(
+ Html.Kendo().ComboBoxFor(m => m)
+        .Filter("startswith")
+        .Suggest(true)
+        .SyncValueAndText(true)
+        .ValuePrimitive(true)
+        .BindTo((SelectList) ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"])
+)

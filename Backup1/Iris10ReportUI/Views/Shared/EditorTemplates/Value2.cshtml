@@ -1,0 +1,40 @@
+﻿@{
+    List<string> formats = new List<string>();
+
+    formats.Add("MM/dd/yyyy");
+    formats.Add("MM/dd/yy");
+}
+
+@(Html.Kendo()
+    .DatePicker()
+    .Name("DateValues2")
+    .Value(DateTime.Now)
+    .ParseFormats(@formats)
+    .HtmlAttributes(new { style = "width:110px" }))
+
+@(Html.Kendo()
+    .NumericTextBox()
+    .Name("NumberBox2")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+@(Html.Kendo()
+    .MaskedTextBox()
+    .Name("TextBox2")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+@(Html.Kendo()
+    .ComboBox()
+    .Placeholder("Select...")
+    .Filter("startswith")
+    .Suggest(true)
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .Name("DropdownValues3")
+    .HtmlAttributes(new { style = "width:110px" }))
+
+<script>
+    $("#DropdownValues3").data('kendoComboBox').wrapper.hide();
+    $("#TextBox2").data('kendoMaskedTextBox').wrapper.hide();
+    $("#NumberBox2").data('kendoNumericTextBox').wrapper.hide();
+    $("#DateValues2").data('kendoDatePicker').wrapper.hide();
+</script>

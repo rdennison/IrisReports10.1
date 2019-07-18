@@ -1,5 +1,4 @@
-﻿declare var REPORT_LIST: boolean;
-// libs
+﻿declare var REPORT_LIST;
 import * as _ from 'lodash';
 
 import ReportFilterController from './report-filter.controller';
@@ -32,15 +31,19 @@ export default class ReportListController {
     grid: kendo.ui.Grid;
     private _searchTimer: number;
     private notificationWindow: kendo.ui.Window;
-    private _reportViewWindow: kendo.ui.Window;
+    //private _reportViewWindow: kendo.ui.Window;
     keepSessionAlive = false;
     keepSessionAliveUrl = null;
+    entryValid = true;
+    private _editMode: boolean;
 
 
     /**
      * Sets grid with target element
      * @param target
      */
+
+    
     setGrid(target: string) {
         let self = this;
         this.grid = $(target).data('kendoGrid');
@@ -50,7 +53,8 @@ export default class ReportListController {
         $("#ReportListGrid tr.k-alt").removeClass("k-alt"); //hide the alternate color changing
         $("#ReportListGrid td").css('border-style', 'none'); //remove cell borders to make it look like a proper list
         $('#ReportToolBar').data('kendoToolBar').element.find('#reportsearch').first().val(this.lastSearchString);
-        $("#FinishFilter").bind('click', self.finishFilter);
+        //$("#FinishFilter").bind('click', self.finishFilter);
+        
         this.grid.dataSource.bind("error", this.errorLog);
         self._setupSessionUpdater('/Root/KeepSessionAlive');
         self.createTools();
@@ -62,10 +66,35 @@ export default class ReportListController {
                 global: false,
                 type: "POST",
                 url: "/RPTReportListByUser/SelectReport",
-                data: { report: JSON.stringify(replist._data[row]) }
+                data: {
+                    report: JSON.stringify(replist._data[row])
+                }
             }).done((data) => {
                 ReportFilterController.getInstance().activateFilter();
-            });
+                
+                $("#ReportDescription").val(data["Description"]);
+                $.ajax({
+
+                    global: false,
+                    type: "GET",
+                    url: "/ReportMain/ReportMainLower",
+                  
+                }).done((data) => {
+                    $("#ReportLower").html(data);
+
+                    $.ajax({
+
+                        global: false,
+                        type: "GET",
+                        url: "/ReportMain/ReportNameDropdown",
+
+                    }).done((data) => {
+                        $("#filterNameListDropdown").html(data);
+
+                    });
+                 
+                    });
+                });
         });
 
         //Checkbox events
@@ -150,14 +179,34 @@ export default class ReportListController {
         return this;
     }
 
-    finishFilter() {
-        var self = ReportListController.getInstance();
-        self._setupReportViewWindow().then(() => {
-            kendo.bind($('#ReportWindowContainer'), self);
-            self._reportViewWindow.center().open();
+    //finishFilter() {
+    //    let tempFilter = [];
+    //    var grid = $('#ReportWindowContainer').data('kendoGrid');
+    //    for (var i = 0; i < grid.dataSource.view().length; i++) {
+    //        if (grid.dataSource.view()[i]["Description"] !== null && grid.dataSource.view()[i]["Description"] !== "") {
+    //            tempFilter.push(JSON.stringify(grid.dataSource.view()[i]));
+    //        }
+    //    }
+    //    $.ajax({
+    //        global: false,
+    //        type: "POST",
+    //        url: "ReportFilterCriteria/FinishFilter",
+    //        data: { filterString: tempFilter, report: true }
+    //    }).done((data) => {
+    //        var ErrorMessage = data;
+    //        if (ErrorMessage.IsError !== null && ErrorMessage.IsError === true) {
+    //            alert(ErrorMessage.Message);
+    //        }
+    //        else {
+    //            //this._reportFilterWindow.close();
+    //            //this.reportTreeCheck();
+    //        }
+    //    });
+    //}
 
-       
-        });
+    loadDescription() {
+        var self = ReportListController.getInstance();
+        kendo.bind($('#ReportDescription'),self);
     }
 
     
@@ -228,34 +277,39 @@ export default class ReportListController {
         
     }
 
-    private _setupReportViewWindow() {
-        let deferred = $.Deferred<void>();
-        this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(kendoWindowDefaultOptions({
-            appendTo: '#ReportWindowContainer',
-            content: '/ReportFilterCriteria/FinishFilter',
-            title: 'Report Viewer',
-            height: 900,
-            width: 900,
-            refresh: () => {
-                deferred.resolve();
-            }
-        })).data('kendoWindow');
-        return deferred.promise();
-    }
+    //private _setupReportViewWindow() {
+    //    $("#reportViewWindow").remove();
+    //    let deferred = $.Deferred<void>();
+    //    this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(kendoWindowDefaultOptions({
+    //        appendTo: '#ReportWindowContainer',
+    //        content: '/ReportFilterCriteria/FinishFilter',
+    //        title: 'Report Viewer',
+    //        height: 900,
+    //        width: 900,
+    //        refresh: () => {
+    //            deferred.resolve();
+    //        }
+    //    })).data('kendoWindow');
+    //    return deferred.promise();
+    //}
 
  
 }
 
 $(document).ready(() => {
     try {
+      
+
+
         if (REPORT_LIST !== null && REPORT_LIST) {
+           
             window['ReportListDataBound'] = () => {
                 ReportListController.getInstance().setGrid('#ReportListGrid');
-            }
+            }           
         }
-        
+
     } catch (err) {
         window.console.log(`no grid to load; or grid is set in view model.`);
     }
-}); 
+});
 

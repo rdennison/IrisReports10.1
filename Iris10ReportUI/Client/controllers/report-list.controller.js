@@ -1,11 +1,11 @@
 "use strict";
 const report_filter_controller_1 = require('./report-filter.controller');
-// app
-const utils_1 = require('../utils');
 class ReportListController {
     constructor() {
+        //private _reportViewWindow: kendo.ui.Window;
         this.keepSessionAlive = false;
         this.keepSessionAliveUrl = null;
+        this.entryValid = true;
         this._init();
     }
     static getInstance() {
@@ -27,7 +27,7 @@ class ReportListController {
         $("#ReportListGrid tr.k-alt").removeClass("k-alt"); //hide the alternate color changing
         $("#ReportListGrid td").css('border-style', 'none'); //remove cell borders to make it look like a proper list
         $('#ReportToolBar').data('kendoToolBar').element.find('#reportsearch').first().val(this.lastSearchString);
-        $("#FinishFilter").bind('click', self.finishFilter);
+        //$("#FinishFilter").bind('click', self.finishFilter);
         this.grid.dataSource.bind("error", this.errorLog);
         self._setupSessionUpdater('/Root/KeepSessionAlive');
         self.createTools();
@@ -39,9 +39,26 @@ class ReportListController {
                 global: false,
                 type: "POST",
                 url: "/RPTReportListByUser/SelectReport",
-                data: { report: JSON.stringify(replist._data[row]) }
+                data: {
+                    report: JSON.stringify(replist._data[row])
+                }
             }).done((data) => {
                 report_filter_controller_1.default.getInstance().activateFilter();
+                $("#ReportDescription").val(data["Description"]);
+                $.ajax({
+                    global: false,
+                    type: "GET",
+                    url: "/ReportMain/ReportMainLower",
+                }).done((data) => {
+                    $("#ReportLower").html(data);
+                    $.ajax({
+                        global: false,
+                        type: "GET",
+                        url: "/ReportMain/ReportNameDropdown",
+                    }).done((data) => {
+                        $("#filterNameListDropdown").html(data);
+                    });
+                });
             });
         });
         //Checkbox events
@@ -110,12 +127,33 @@ class ReportListController {
     deleteCriteria() {
         return this;
     }
-    finishFilter() {
+    //finishFilter() {
+    //    let tempFilter = [];
+    //    var grid = $('#ReportWindowContainer').data('kendoGrid');
+    //    for (var i = 0; i < grid.dataSource.view().length; i++) {
+    //        if (grid.dataSource.view()[i]["Description"] !== null && grid.dataSource.view()[i]["Description"] !== "") {
+    //            tempFilter.push(JSON.stringify(grid.dataSource.view()[i]));
+    //        }
+    //    }
+    //    $.ajax({
+    //        global: false,
+    //        type: "POST",
+    //        url: "ReportFilterCriteria/FinishFilter",
+    //        data: { filterString: tempFilter, report: true }
+    //    }).done((data) => {
+    //        var ErrorMessage = data;
+    //        if (ErrorMessage.IsError !== null && ErrorMessage.IsError === true) {
+    //            alert(ErrorMessage.Message);
+    //        }
+    //        else {
+    //            //this._reportFilterWindow.close();
+    //            //this.reportTreeCheck();
+    //        }
+    //    });
+    //}
+    loadDescription() {
         var self = ReportListController.getInstance();
-        self._setupReportViewWindow().then(() => {
-            kendo.bind($('#ReportWindowContainer'), self);
-            self._reportViewWindow.center().open();
-        });
+        kendo.bind($('#ReportDescription'), self);
     }
     errorLog(e) {
         if (e.errors) {
@@ -170,20 +208,6 @@ class ReportListController {
         catch (err) {
             console.log('System not loaded yet');
         }
-    }
-    _setupReportViewWindow() {
-        let deferred = $.Deferred();
-        this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(utils_1.kendoWindowDefaultOptions({
-            appendTo: '#ReportWindowContainer',
-            content: '/ReportFilterCriteria/FinishFilter',
-            title: 'Report Viewer',
-            height: 900,
-            width: 900,
-            refresh: () => {
-                deferred.resolve();
-            }
-        })).data('kendoWindow');
-        return deferred.promise();
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -1,0 +1,16 @@
+﻿
+@try {
+@model object
+    
+@(
+     Html.Kendo().DropDownListFor(m => m)
+            .OptionLabel("Select ...")
+            .BindTo((SelectList) ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"])
+            .HtmlAttributes(new { data_value_primitive = "true" })
+)
+
+}
+catch (Exception e)
+{
+
+}

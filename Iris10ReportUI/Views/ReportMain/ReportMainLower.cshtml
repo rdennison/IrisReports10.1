@@ -1,0 +1,49 @@
+﻿@using Iris10ReportUI.GridBuilder.Extensions
+@using IrisModels.Models
+@using Kendo.Mvc.UI
+
+
+
+<div class="reportlower">
+
+    @(Html.Kendo().ToolBar()
+          .Name("ReportFilterToolBar")
+          .Items(items =>
+          {
+
+              items.Add().Type(CommandType.Button).Id("Save").Text("Save Filter").HtmlAttributes(new { @data_bind = "click: save" });
+              items.Add().Type(CommandType.Button).Id("Clear").Text("Clear Filter").HtmlAttributes(new { @data_bind = "click: clear" });
+              //items.Add().Type(CommandType.Button).Text("Apply Filter").HtmlAttributes(new { @data_bind = "click: apply" });
+              items.Add().Type(CommandType.Button).Id("Delete").Text("Delete Row").HtmlAttributes(new { @data_bind = "click: deleteRow" });
+              items.Add().Template("<div id='filterNameListDropdown' />").Overflow(ShowInOverflowPopup.Never);
+
+          })
+    )
+
+
+
+    <span style=" overflow: auto; border-spacing:9px;">
+
+        @(Html.Iris<GridFilterWhereModel>().Grid("ReportFilterCriteriaGrid", true))
+
+      
+    </span>
+
+    
+</div>
+<div>
+    @(Html.Kendo().Button()
+        .Name("FinishFilter")
+        .HtmlAttributes(new { @data_bind = "click: finishFilter" })
+        .Content("Finish"))
+
+    @*@(Html.Kendo().Button()
+        .Name("ClearFilter")
+        .HtmlAttributes(new { @data_bind = "click: clearFilter" })
+        .Content("Cancel"))*@
+</div>
+
+<script>
+ 
+  
+</script>

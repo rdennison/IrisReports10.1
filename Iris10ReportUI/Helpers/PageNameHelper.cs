@@ -56,9 +56,25 @@ namespace Iris10ReportUI.Helpers
             return pageUI.FirstOrDefault(i => String.Compare(i.PageName, page, StringComparison.InvariantCultureIgnoreCase) == 0).UIName;
         }
 
-        public int PageKey(string page)
+
+
+
+ public int PageKey(string page)
         {
-            return pageUI.FirstOrDefault(i => String.Compare(i.PageName,page, StringComparison.InvariantCultureIgnoreCase) == 0 || String.Compare(i.UIName, page, StringComparison.InvariantCultureIgnoreCase) == 0).PageName_Key;
+            if (pageUI.FirstOrDefault(i => String.Compare(i.PageName, page, StringComparison.InvariantCultureIgnoreCase) == 0 || String.Compare(i.UIName, page, StringComparison.InvariantCultureIgnoreCase) == 0) == null)
+            {
+                AddPage(page);
+            }
+            return pageUI.FirstOrDefault(i => String.Compare(i.PageName, page, StringComparison.InvariantCultureIgnoreCase) == 0 || String.Compare(i.UIName, page, StringComparison.InvariantCultureIgnoreCase) == 0).PageName_Key;
+        }
+
+        public void AddPage(string page)
+        {
+            PageNameModel newPage = new PageNameModel();
+            newPage.PageName = page;
+            newPage.CreatedByUser_Key = (int) HttpContext.Current.Session["CurrentUserKey"];
+            _coreService.SprocInsert(newPage, HttpContext.Current.Session["ConString"].ToString());
+            CreateTables();
         }
     }
 }

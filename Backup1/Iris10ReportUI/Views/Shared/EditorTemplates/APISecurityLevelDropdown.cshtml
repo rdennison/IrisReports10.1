@@ -1,0 +1,53 @@
+﻿
+@{
+    string[] slText = new string[4]
+{
+         "0 - No Rights",
+         "1 - Get",
+         "2 - Set",
+         "3 - Get/Set",
+
+
+};
+
+    List<SelectListItem> listOfAPISecurityLevels = new List<SelectListItem>();
+
+    for (int sl = 0; sl < 4; sl++)
+    {
+        listOfAPISecurityLevels.Add(new SelectListItem
+        {
+            Text = slText[sl],
+            Value = sl.ToString()
+        });
+
+    }
+
+    SelectList APISecurityLevel = new SelectList(listOfAPISecurityLevels, "Value", "Text");
+
+
+    }
+
+
+
+    @try
+{
+    @*@model object*@
+
+   
+
+    @(
+     Html.Kendo().DropDownListFor(m => m)
+     .DataTextField("Text")
+     .DataValueField("Value")
+     .OptionLabel("Select ...")
+    .BindTo(@APISecurityLevel)
+     .HtmlAttributes(new { data_value_primitive = "true" })
+
+
+    )
+
+}
+catch (Exception e)
+{
+
+}

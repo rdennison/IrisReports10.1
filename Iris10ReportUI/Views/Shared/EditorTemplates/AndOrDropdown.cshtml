@@ -9,11 +9,11 @@
 @(Html.Kendo()
     .DropDownList()
     .Name("Operator2")
-    .DataTextField("Text")
-    .DataValueField("Value")
+    //.DataTextField("Text")
+    //.DataValueField("Value")
     .BindTo(ddandorList))
 
 <script>
-    $("#Operator2").data('kendoDropDownList').wrapper.hide();
+    $("#Operator2").data('kendoDropDownList').wrapper.show();
 
 </script>

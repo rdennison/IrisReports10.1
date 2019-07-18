@@ -62,6 +62,7 @@
     <Compile Include="DisableSqlReadAttribute.cs" />
     <Compile Include="EditorTypeAttribute.cs" />
     <Compile Include="ExcludeGridConfigAttribute.cs" />
+    <Compile Include="FilterDropdownAttribute.cs" />
     <Compile Include="FilterTypeAttribute.cs" />
     <Compile Include="ForeignKeyAttribute.cs" />
     <Compile Include="GridSetupAttribute.cs" />
