@@ -9,3 +9,14 @@ C:\GitHub\IrisReports10.1\IrisModels\bin\Debug\System.Web.Mvc.xml
 C:\GitHub\IrisReports10.1\IrisModels\obj\Debug\IrisModels.csprojResolveAssemblyReference.cache
 C:\GitHub\IrisReports10.1\IrisModels\obj\Debug\IrisModels.dll
 C:\GitHub\IrisReports10.1\IrisModels\obj\Debug\IrisModels.pdb
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\IrisModels.dll
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\IrisModels.pdb
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\IrisAttributes.dll
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\SqlComponents.dll
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\IrisAttributes.pdb
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\SqlComponents.pdb
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\obj\Debug\IrisModels.csprojResolveAssemblyReference.cache
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\obj\Debug\IrisModels.dll
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\obj\Debug\IrisModels.pdb

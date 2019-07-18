@@ -7,3 +7,12 @@ C:\GitHub\IrisReports10.1\SqlComponents\bin\Debug\System.Web.Mvc.xml
 C:\GitHub\IrisReports10.1\SqlComponents\obj\Debug\SqlComponents.csprojResolveAssemblyReference.cache
 C:\GitHub\IrisReports10.1\SqlComponents\obj\Debug\SqlComponents.dll
 C:\GitHub\IrisReports10.1\SqlComponents\obj\Debug\SqlComponents.pdb
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\bin\Debug\SqlComponents.dll
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\bin\Debug\SqlComponents.pdb
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\bin\Debug\IrisAttributes.dll
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\bin\Debug\IrisAttributes.pdb
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\obj\Debug\SqlComponents.csprojResolveAssemblyReference.cache
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\obj\Debug\SqlComponents.dll
+C:\GitHub\Reports10\IrisReports10.1\SqlComponents\obj\Debug\SqlComponents.pdb

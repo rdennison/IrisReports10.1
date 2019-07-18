@@ -271,12 +271,12 @@ namespace Iris10ReportUI.Controllers
         [HttpPost]
         public ActionResult FinishFilter()
         {
-            Type reportType;
+            Type reportType = null;
              Assembly a = Assembly.Load("ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
 
-            foreach(TypeInfo ti in a.DefinedTypes)
+            foreach(Type ti in a.DefinedTypes)
             {
-                if(ti.Name.Contains(Session["ReportModelName"].ToString()))
+                if(ti.Name.Contains(Session["ReportName"].ToString()))
                 {
                     reportType = ti; 
 
@@ -291,7 +291,7 @@ namespace Iris10ReportUI.Controllers
             }
 
             var reportSqlString = _coreService.TelerikSqlString(Session["ReportModelName"].ToString(), wheres );
-            //reportType.GetConstructor(new Type[1]).Invoke(reportSqlString);
+            reportType.GetConstructors()[0].Invoke(new object[1] { reportSqlString });
             return null;    
         }
 
