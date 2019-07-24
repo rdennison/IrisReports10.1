@@ -11,8 +11,10 @@ namespace Iris10ReportUI.GridBuilder.Interface
             htmlHelper = helper;
         }
 
-      
-
+        //public ReportViewerBuilder ReportViewer()
+        //{
+        //    return new ReportViewerBuilder(htmlHelper);
+        //}
     }
     public sealed class IrisWidgetFactory<T> where T : class
     {

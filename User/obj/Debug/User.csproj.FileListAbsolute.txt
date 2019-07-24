@@ -28,3 +28,6 @@ C:\GitHub\Reports10\IrisReports10.1\User\bin\Debug\System.Web.Mvc.xml
 C:\GitHub\Reports10\IrisReports10.1\User\obj\Debug\User.csprojResolveAssemblyReference.cache
 C:\GitHub\Reports10\IrisReports10.1\User\obj\Debug\User.dll
 C:\GitHub\Reports10\IrisReports10.1\User\obj\Debug\User.pdb
+C:\GitHub\Reports10\IrisReports10.1\User\bin\Debug\Telerik.Reporting.dll
+C:\GitHub\Reports10\IrisReports10.1\User\bin\Debug\Telerik.Reporting.pdb
+C:\GitHub\Reports10\IrisReports10.1\User\bin\Debug\Telerik.Reporting.xml

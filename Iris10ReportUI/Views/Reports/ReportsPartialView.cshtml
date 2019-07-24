@@ -3,14 +3,17 @@
 @using Telerik.Reporting
 @using Telerik.ReportViewer.Mvc
 
+@{ 
+    Console.WriteLine("");
+}
 
 @*TODO: TE find a way to move this off the partial view*@
 <head>
     <style>
         #reportViewArea {
             position: relative;
-            width: 950px;
-            height: 850px;
+            width: 890px;
+            height: 890px;
             font-family: Verdana, Arial;
         }
     </style>
@@ -18,17 +21,20 @@
 </head>
 
 @(Html.TelerikReporting().ReportViewer()
-        .Id("reportViewArea")
-        .ServiceUrl(Url.Content("/api/reports"))
-        //
-        // Strongly typed ReportSource - TypeReportSource or UriReportSource.
-        .ReportSource(new TypeReportSource() { TypeName = "ReportLibrary."+ Session["ReportName"].ToString()+", ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" })
-        .ViewMode(ViewMode.PrintPreview)
-        .ScaleMode(ScaleMode.FitPageWidth)
-        .Scale(1.0)
-        .PersistSession(false)
-        .PrintMode(PrintMode.AutoSelect)
-.ParametersAreaVisible(false)
+    .Id("reportViewArea")
+    .ServiceUrl(Url.Content("/api/reports"))
+    //
+    // Strongly typed ReportSource - TypeReportSource or UriReportSource.
+    .ReportSource((TypeReportSource)Session["ReportTypeSource"])
+    .ViewMode(ViewMode.PrintPreview)
+    .PageMode(PageMode.SinglePage)
+    .ScaleMode(ScaleMode.FitPageWidth)
+    .Scale(1.0)
+    .PersistSession(false)
+    .PrintMode(PrintMode.AutoSelect)
+    .ParametersAreaVisible(false)
+    
+    //.ClientEvents(e => { e.Error("reportError"); e.PageReady("reportPageCount"); })
 )
 
 

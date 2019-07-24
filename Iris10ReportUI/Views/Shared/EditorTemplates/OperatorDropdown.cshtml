@@ -4,9 +4,6 @@
 @{
     FilterDropdownAttribute operatorDropdown = new FilterDropdownAttribute();
     SelectList operatordropdownList = operatorDropdown.OperatorDropdownList("Dropdown");
-    //SelectList operatordateList = operatorDropdown.OperatorDropdownList("Date");
-    //SelectList operatortextList = operatorDropdown.OperatorDropdownList("Text");
-    //SelectList operatorTrueFalse = operatorDropdown.OperatorDropdownList("Dropdown2");
 
         @(Html.Kendo()
                 .ComboBox()
@@ -20,55 +17,5 @@
                 .HtmlAttributes(new { style = "width:110px" })
                 .BindTo(operatordropdownList))
 
-        @*@(Html.Kendo()
-                .ComboBox()
-                .Placeholder("Select...")
-                .Filter("startswith")
-                .Suggest(true)
-                .Name("operatordateListoptions")
-                .SelectedIndex(1)
-                .HtmlAttributes(new { style = "width:110px" })
-                .BindTo(operatordateList))
-
-
-    @(Html.Kendo()
-                .ComboBox()
-                .Placeholder("Select...")
-                .Filter("startswith")
-                .Suggest(true)
-                .Name("operatornumberListoptions")
-                .SelectedIndex(1)
-                .HtmlAttributes(new { style = "width:110px" })
-                .BindTo(operatordateList))
-
-        @(Html.Kendo()
-                .ComboBox()
-                .Placeholder("Select...")
-                .Filter("startswith")
-                .Suggest(true)
-                .Name("operatortextListoptions")
-                .SelectedIndex(1)
-                .HtmlAttributes(new { style = "width:110px" })
-                .BindTo(operatortextList))
-
-
-        @(Html.Kendo()
-                .ComboBox()
-                .Placeholder("Select...")
-                .Filter("startswith")
-                .Suggest(true)
-                .Name("operatorTrueFalseoptions")
-                .SelectedIndex(1)
-                .HtmlAttributes(new { style = "width:110px" })
-                .BindTo(operatorTrueFalse))*@
-
     }
 
-<script>
-    $("#operatordropdownListoptions").data('kendoComboBox').wrapper.hide();
-    //$("#operatordateListoptions").data('kendoComboBox').wrapper.hide();
-    //$("#operatornumberListoptions").data('kendoComboBox').wrapper.hide();
-    //$("#operatortextListoptions").data('kendoComboBox').wrapper.hide();
-    //$("#operatorTrueFalseoptions").data('kendoComboBox').wrapper.hide();
-
-</script>

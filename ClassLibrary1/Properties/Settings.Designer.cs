@@ -44,5 +44,29 @@ namespace ReportLibrary.Properties {
                 return ((string)(this["User28"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select * from rptcas1022")]
+        public string User {
+            get {
+                return ((string)(this["User"]));
+            }
+            set {
+                this["User"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Text")]
+        public global::Telerik.Reporting.SqlDataSourceCommandType Text {
+            get {
+                return ((global::Telerik.Reporting.SqlDataSourceCommandType)(this["Text"]));
+            }
+            set {
+                this["Text"] = value;
+            }
+        }
     }
 }

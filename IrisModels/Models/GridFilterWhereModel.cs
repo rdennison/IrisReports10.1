@@ -1,4 +1,5 @@
 ﻿using IrisAttributes;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
@@ -111,19 +112,65 @@ namespace IrisModels.Models
 		public string TableName { get; set; }
 
         [IsExcludeSql]
-        [DisableSqlReadAttribute]
+        [DisableSqlRead]
+        [IrisGridColumn(Width = 150, Hidden = true)]
+        public DropdownValuesViewModel ReportFieldList { get; set; }
+        
+        [IsExcludeSql]
+        [DisableSqlRead]
         [IrisGridColumn(Width = 150, Hidden = true)]
         public DropdownValuesViewModel DropdownValues { get; set; }
 
         [IsExcludeSql]
-        [DisableSqlReadAttribute]
+        [DisableSqlRead]
         [IrisGridColumn(Width = 150, Hidden = true)]
         public DropdownValuesViewModel DropdownValues2 { get; set; }
 
         [IsExcludeSql]
-        [DisableSqlReadAttribute]
+        [DisableSqlRead]
         [IrisGridColumn(Width = 150, Hidden = true)]
         public DropdownValuesViewModel DropdownValues3 { get; set; }
 
+        //[IsExcludeSql]
+        //[DisableSqlRead]
+        //[IrisGridColumn(Width = 150, Hidden = true)]
+        //[Display(Name = "Value 1")]
+        //public string? Value1Text { get; set; }
+
+        [IsExcludeSql]
+        [DisableSqlRead]
+        [IrisGridColumn(Width = 150, Hidden = true)]
+        [Display(Name = "Value 1")]
+        public int? Value1Number { get; set; }
+
+        [IsExcludeSql]
+        [DisableSqlRead]
+        [IrisGridColumn(Width = 150, Hidden = true)]
+        [Display(Name = "Value 1")]
+        public DateTime? Value1Date { get; set; }
+
+        [IsExcludeSql]
+        [DisableSqlRead]
+        [IrisGridColumn(Width = 150, Hidden = true)]
+        [Display(Name = "Value 1")]
+        public bool? Value1Boolean { get; set; }
+
+        //[IsExcludeSql]
+        //[DisableSqlRead]
+        //[IrisGridColumn(Width = 150, Hidden = true)]
+        //[Display(Name = "Value 2")]
+        //public string Value2Text { get; set; }
+
+        [IsExcludeSql]
+        [DisableSqlRead]
+        [IrisGridColumn(Width = 150, Hidden = true)]
+        [Display(Name = "Value 2")]
+        public int? Value2Number { get; set; }
+
+        [IsExcludeSql]
+        [DisableSqlRead]
+        [IrisGridColumn(Width = 150, Hidden = true)]
+        [Display(Name = "Value 2")]
+        public DateTime? Value2Date { get; set; }
     }
 }

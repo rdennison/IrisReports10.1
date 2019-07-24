@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ObjectTestReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ObjectTestReport.Designer.cs">
+      <DependentUpon>ObjectTestReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PolkCountyPermit.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -81,6 +88,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ObjectTestReport.resx">
+      <DependentUpon>ObjectTestReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PolkCountyPermit.dje.resx">
       <DependentUpon>PolkCountyPermit.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +114,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlComponents\SqlComponents.csproj">
+      <Project>{1cebd018-b28c-4c15-96a9-b36fe7535d41}</Project>
+      <Name>SqlComponents</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -334,9 +334,10 @@ namespace ReportLibrary
             // 
             // sqlDataSource1
             // 
-            this.sqlDataSource1.ConnectionString = "User40";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
+            //this.sqlDataSource1 = SqlSource;
+            //this.sqlDataSource1.ConnectionString = "User40";
+            //this.sqlDataSource1.Name = "sqlDataSource1";
+            //this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
             // 
             // pageFooterSection1
             // 
@@ -345,7 +346,7 @@ namespace ReportLibrary
             // 
             // RoadCostReport
             // 
-            this.DataSource = this.sqlDataSource1;
+            this.DataSource = SqlSource; //this.sqlDataSource1;
             group1.GroupFooter = this.groupFooterSection;
             group1.GroupHeader = this.groupHeaderSection;
             group1.Groupings.Add(new Telerik.Reporting.Grouping("= Fields.RoadNumber"));

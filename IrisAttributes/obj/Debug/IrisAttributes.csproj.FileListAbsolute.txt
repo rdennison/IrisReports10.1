@@ -9,6 +9,5 @@ C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\bin\Debug\IrisAttributes.dll
 C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\bin\Debug\IrisAttributes.pdb
 C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\bin\Debug\System.Web.Mvc.dll
 C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\bin\Debug\System.Web.Mvc.xml
-C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\obj\Debug\IrisAttributes.csprojResolveAssemblyReference.cache
 C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\obj\Debug\IrisAttributes.dll
 C:\GitHub\Reports10\IrisReports10.1\IrisAttributes\obj\Debug\IrisAttributes.pdb

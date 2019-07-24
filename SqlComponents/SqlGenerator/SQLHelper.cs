@@ -3,6 +3,8 @@ using System.Data;
 using System;
 using System.Configuration;
 using System.Web;
+using System.Web.UI.WebControls;
+using System.Collections.Generic;
 
 namespace SqlComponents
 {
@@ -56,6 +58,26 @@ namespace SqlComponents
             return null;
         }
 
+        public static Telerik.Reporting.SqlDataSource GetSqlSourceObject(SqlGenerator gen, string connectionName = "", List<SqlWhere> wheres = null)
+        {
+            Telerik.Reporting.SqlDataSource source = new Telerik.Reporting.SqlDataSource();
+            source.ConnectionString = connectionName;
+            source.Name = "ReportDataSource";
+            source.SelectCommand = gen.SqlString;
+            source.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.Text;
+            source.CommandTimeout = 350;
+            source.Parameters.Clear();
+            foreach(SqlParameter p in gen.SqlVariables)
+            {
+                Telerik.Reporting.SqlDataSourceParameter parm = new Telerik.Reporting.SqlDataSourceParameter();
+                parm.Name = p.ParameterName;
+                parm.DbType = p.DbType;
+                parm.Value = p.Value;
+                source.Parameters.Add(parm);
+            }
+            return source;
+        }
+
         public static SqlDataReader FetchDataReader(SqlGenerator gen, string connectionName = "CountyDatabase", string database = null, bool api = false)
         {
             
@@ -94,6 +116,10 @@ namespace SqlComponents
             {
                 Console.WriteLine(ex.Message);
                 throw;
+            }
+            finally
+            {
+                objCommand.Dispose();
             }
         }
 
@@ -237,10 +263,18 @@ namespace SqlComponents
                     {
                         throw;
                     }
+                    finally
+                    {
+                        objCon.Close();
+                    }
                 }
                 catch (Exception ex)
                 {
                     throw;
+                }
+                finally
+                {
+                    objCon.Close();
                 }
 
                 

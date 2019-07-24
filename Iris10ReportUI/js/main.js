@@ -307,9 +307,6 @@
 	const utils_1 = __webpack_require__(6);
 	class ReportFilterController {
 	    constructor() {
-	        this.filterName = '';
-	        this._editMode = true;
-	        this.entryValid = true;
 	        this._init();
 	    }
 	    static getInstance() {
@@ -318,44 +315,41 @@
 	        }
 	        return this._instance;
 	    }
-	    static get filterSelector() {
-	        if (!ReportFilterController._filterSelector) {
-	            ReportFilterController._filterSelector = $('#AvailableUserFilters2').data('kendoDropDownList');
-	        }
-	        return ReportFilterController._filterSelector;
+	    setGrid(target) {
+	        return this;
 	    }
 	    activateFilter() {
-	        var self = this;
 	        $.ajax({
 	            global: false,
 	            type: "POST",
-	            url: "/ReportFilterCriteria/ActivateFilter",
-	            data: {}
-	        }).done((data) => {
+	            url: "/ReportFilterCriteria/ActivateFilter"
 	        });
 	    }
 	    filterConfiguration(controller, row, operator = "", val1 = "", val2 = "") {
 	        let Configuration = { row: row, operatorType: operator, valueoneType: val1, valuetwoType: val2, valueList: "" };
 	        if (controller._filterConfig.length > row) {
 	            controller._filterConfig[row].valueoneType = val1;
-	            //if (val2 !== "")
 	            controller._filterConfig[row].valuetwoType = val2;
 	        }
 	        else {
 	            controller._filterConfig.push(Configuration);
 	        }
 	    }
-	    //clearGrid() {
-	    //    let self = GridFilterController.getInstance();
-	    //    self._grid.dataSource.view().empty();
-	    //    //document.getElementById("filtertextdisplay").innerHTML = "";
-	    //    //for (var i = 0; i < data.length; i++) {
-	    //    //    document.getElementById("filtertextdisplay").innerHTML += data[i]["Filter"] + " ";
-	    //    //}
-	    //}
-	    //editCell(e) {
-	    //$(e.target)
-	    //}
+	    editCell(e) { }
+	    bindGridCells() {
+	        var self = this;
+	        var grid = $('#ReportFilterCriteriaGrid').data('kendoGrid');
+	        grid.dataSource.data().forEach((row, index) => {
+	            self.filterchangeEvent(self, 'ReportFieldList', JSON.parse(grid.dataSource.data()[0]["InList"])["ColumnName"], "", index, '/ReportFilterCriteria/ValueField', function () {
+	                self.filterchangeEvent(self, 'operatordropdownListoptions', row["ComparisonOperator"], "", index, '/ReportFilterCriteria/ValueField', function () { });
+	            });
+	        });
+	    }
+	    deleteDropdowneditors(controller, row) {
+	        delete controller._grid.dataSource.view()[row]["DropdownValues"];
+	        delete controller._grid.dataSource.view()[row]["DropdownValues2"];
+	        delete controller._grid.dataSource.view()[row]["DropdownValues3"];
+	    }
 	    filterclickEvent(controller, clicked, row) {
 	        var curIndex = 0;
 	        if (clicked.cellIndex !== undefined)
@@ -374,11 +368,8 @@
 	        }
 	        switch (curIndex) {
 	            case 4:
-	                if (controller._descriptionvalue !== "" && controller._descriptionvalue !== undefined) {
+	                if (controller._descriptionvalue !== "" && controller._descriptionvalue !== undefined)
 	                    $("#Group1").data('kendoDropDownList').wrapper.show();
-	                }
-	                break;
-	            case 0:
 	                break;
 	            case 6:
 	                try {
@@ -431,18 +422,14 @@
 	                catch (ex) { }
 	                break;
 	            case 9:
-	                if (controller._descriptionvalue !== "" && controller._descriptionvalue !== undefined) {
+	                if (controller._descriptionvalue !== "" && controller._descriptionvalue !== undefined)
 	                    $("#Group2").data('kendoDropDownList').wrapper.show();
-	                }
 	                break;
-	            //case 10:
-	            //    $("#AndOr").data('kendoDropDownList').wrapper.show();
-	            //    break;
 	            default:
 	                break;
 	        }
 	    }
-	    filterchangeEvent(controller, dropdown, selectValue, textVal, row, url) {
+	    filterchangeEvent(controller, dropdown, selectValue, textVal, row, url, _callback) {
 	        let filter = ReportFilterController.getInstance();
 	        controller._grid.current(controller._grid.select());
 	        var cellIndex;
@@ -452,8 +439,6 @@
 	        catch (ex) { }
 	        switch (dropdown) {
 	            case 'ReportFieldList':
-	                if (controller._grid.dataSource.view()[row]["FieldList_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["FieldList_TEMP"];
 	                $.ajax({
 	                    global: false,
 	                    type: "GET",
@@ -466,68 +451,93 @@
 	                        case "Dropdown":
 	                            filter.filterConfiguration(controller, row, "operatordropdownListoptions", "DropdownValues", "");
 	                            filter.foreignKeyValueDropdown(controller, selectValue, row);
-	                            controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
+	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
+	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
 	                            controller._addBlankRow(controller);
+	                            _callback();
+	                            break;
+	                        case "Date":
+	                            filter.filterConfiguration(controller, row, "operatordropdownListoptions", "DateValues", "");
+	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
+	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
+	                            controller.deleteDropdowneditors(controller, row);
+	                            _callback();
+	                            break;
+	                        case "Boolean":
+	                            filter.filterConfiguration(controller, row, "operatordropdownListoptions", "DropdownValues2", "");
+	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
+	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
+	                            controller.deleteDropdowneditors(controller, row);
+	                            _callback();
+	                            break;
+	                        case "Text":
+	                            filter.filterConfiguration(controller, row, "operatordropdownListoptions", "TextBox", "");
+	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
+	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
+	                            controller.deleteDropdowneditors(controller, row);
+	                            _callback();
+	                            break;
+	                        case "Number":
+	                            filter.filterConfiguration(controller, row, "operatordropdownListoptions", "NumberBox", "");
+	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
+	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
+	                            controller.deleteDropdowneditors(controller, row);
+	                            _callback();
 	                            break;
 	                    }
 	                });
 	                break;
 	            case 'Operator2':
-	                controller._grid.dataSource.view()[row]["AndOr"] = $('#Operator2').data('kendoDropDownList').text();
+	                if ($('#Operator2').data('kendoDropDownList') !== undefined)
+	                    controller._grid.dataSource.view()[row]["AndOr"] = $('#Operator2').data('kendoDropDownList').text();
 	                break;
 	            case 'DropdownValues':
-	                if (controller._grid.dataSource.view()[row]["DropdownValues_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["DropdownValues_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value1"] = $('#DropdownValues').data('kendoComboBox').text();
+	                if ($('#DropdownValues').data('kendoComboBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value1"] = $('#DropdownValues').data('kendoComboBox').text();
 	                break;
 	            case 'DropdownValues2':
-	                if (controller._grid.dataSource.view()[row]["DropdownValues2_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["DropdownValues2_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value1"] = $('#DropdownValues2').data('kendoComboBox').text();
+	                if ($('#DropdownValues2').data('kendoComboBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value1"] = $('#DropdownValues2').data('kendoComboBox').text();
 	                break;
 	            case 'TextBox':
-	                if (controller._grid.dataSource.view()[row]["TextBox_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["TextBox_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value1"] = $('#TextBox').data('kendoMaskedTextBox').value();
+	                if ($('#TextBox').data('kendoMaskedTextBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value1"] = $('#TextBox').data('kendoMaskedTextBox').value();
 	                break;
 	            case 'NumberBox':
-	                if (controller._grid.dataSource.view()[row]["NumberBox_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["NumberBox_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value1"] = $('#NumberBox').data('kendoNumericTextBox').value();
+	                if ($('#NumberBox').data('kendoNumericTextBox'))
+	                    controller._grid.dataSource.view()[row]["Value1"] = $('#NumberBox').data('kendoNumericTextBox').value();
 	                break;
 	            case 'DateValues':
-	                if (controller._grid.dataSource.view()[row]["DateValues_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["DateValues_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value1"] = $('#DateValues').data('kendoDatePicker').value().toLocaleDateString("en-US");
+	                if ($('#DateValues').data('kendoDatePicker') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value1"] = $('#DateValues').data('kendoDatePicker').value().toLocaleDateString("en-US");
 	                break;
 	            case 'DropdownValues3':
-	                if (controller._grid.dataSource.view()[row]["DropdownValues3_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["DropdownValues3_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value2"] = $('#DropdownValues3').data('kendoComboBox').text();
+	                if ($('#DropdownValues3').data('kendoComboBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value2"] = $('#DropdownValues3').data('kendoComboBox').text();
 	                break;
 	            case 'TextBox2':
-	                if (controller._grid.dataSource.view()[row]["TextBox2_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["TextBox2_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value2"] = $('#TextBox2').data('kendoMaskedTextBox').value();
+	                if ($('#TextBox2').data('kendoMaskedTextBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value2"] = $('#TextBox2').data('kendoMaskedTextBox').value();
 	                break;
 	            case 'NumberBox2':
-	                if (controller._grid.dataSource.view()[row]["NumberBox2_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["NumberBox2_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value2"] = $('#NumberBox2').data('kendoNumericTextBox').value();
+	                if ($('#NumberBox2').data('kendoNumericTextBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value2"] = $('#NumberBox2').data('kendoNumericTextBox').value();
 	                break;
 	            case 'DateValues2':
-	                if (controller._grid.dataSource.view()[row]["DateValues2_TEMP"] !== undefined)
-	                    delete controller._grid.dataSource.view()[row]["DateValues2_TEMP"];
-	                controller._grid.dataSource.view()[row]["Value2"] = $('#DateValues2').data('kendoDatePicker').value().toLocaleDateString("en-US");
+	                if ($('#DateValues2').data('kendoDatePicker') !== undefined)
+	                    controller._grid.dataSource.view()[row]["Value2"] = $('#DateValues2').data('kendoDatePicker').value().toLocaleDateString("en-US");
 	                break;
 	            case 'Group1':
-	                controller._grid.dataSource.view()[row]["OpenGroup"] = $('#Group1').data('kendoDropDownList').value();
+	                if ($('#Group1').data('kendoDropDownList') !== undefined)
+	                    controller._grid.dataSource.view()[row]["OpenGroup"] = $('#Group1').data('kendoDropDownList').value();
 	                break;
 	            case 'Group2':
-	                controller._grid.dataSource.view()[row]["CloseGroup"] = $('#Group2').data('kendoDropDownList').value();
+	                if ($('#Group2').data('kendoDropDownList').value() !== undefined)
+	                    controller._grid.dataSource.view()[row]["CloseGroup"] = $('#Group2').data('kendoDropDownList').value();
 	                break;
 	            case 'operatordropdownListoptions':
-	                controller._grid.dataSource.view()[row]["ComparisonOperator"] = $('#operatordropdownListoptions').data('kendoComboBox').value();
+	                if ($('#operatordropdownListoptions').data('kendoComboBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["ComparisonOperator"] = $('#operatordropdownListoptions').data('kendoComboBox').value();
 	                if (selectValue === "Between") {
 	                    $.ajax({
 	                        global: false,
@@ -541,22 +551,20 @@
 	                                filter.filterConfiguration(controller, row, "", "DropdownValues", "DropdownValues3");
 	                                break;
 	                            case "Date":
-	                                filter.filterConfiguration(controller, row, "", "", "DateValues2");
+	                                filter.filterConfiguration(controller, row, "", "DateValues", "DateValues2");
 	                                break;
 	                            case "Number":
-	                                filter.filterConfiguration(controller, row, "", "", "NumberBox2");
+	                                filter.filterConfiguration(controller, row, "", "NumberBox", "NumberBox2");
 	                                break;
 	                            case "Text":
-	                                filter.filterConfiguration(controller, row, "", "", "TextBox2");
+	                                filter.filterConfiguration(controller, row, "", "TextBox", "TextBox2");
 	                                break;
 	                            default: break;
 	                        }
 	                    });
 	                }
 	                else if (selectValue === "StartsWith" || selectValue === "EndsWith" || selectValue === "Like" || selectValue === "NotLike" || selectValue === "Contains") {
-	                    delete controller._grid.dataSource.view()[row]["DropdownValues"];
-	                    delete controller._grid.dataSource.view()[row]["DropdownValues2"];
-	                    delete controller._grid.dataSource.view()[row]["DropdownValues3"];
+	                    controller.deleteDropdowneditors(controller, row);
 	                    filter.filterConfiguration(controller, row, "", "TextBox", "");
 	                }
 	                else {
@@ -564,21 +572,17 @@
 	                        filter.filterConfiguration(controller, row, "", "DropdownValues", "");
 	                    if (dropdown.match("text"))
 	                        filter.filterConfiguration(controller, row, "", "TextBox", "");
-	                    if (controller._grid.dataSource.view()[row]["ColumnName"].match("Date"))
-	                        filter.filterConfiguration(controller, row, "", "DateValues", "");
+	                    if (controller._grid.dataSource.view()[row]["ColumnName"] !== null)
+	                        if (controller._grid.dataSource.view()[row]["ColumnName"].match("Date"))
+	                            filter.filterConfiguration(controller, row, "", "DateValues", "");
 	                    if (dropdown.match("number"))
 	                        filter.filterConfiguration(controller, row, "", "NumberBox", "");
 	                    if (dropdown.match("True"))
 	                        filter.filterConfiguration(controller, row, "", "DropdownValues2", "");
 	                }
-	                controller._grid.dataSource.view()[row]["ComparisonOperator"] = $('#' + controller._filterConfig[row].operatorType).data('kendoComboBox').text();
-	                //controller._grid.dataSource.view()[row]["Value1"] = "";
-	                controller._grid.dataSource.view()[row]["Value2"] = "";
+	                if ($('#' + controller._filterConfig[row].operatorType).data('kendoComboBox') !== undefined)
+	                    controller._grid.dataSource.view()[row]["ComparisonOperator"] = $('#' + controller._filterConfig[row].operatorType).data('kendoComboBox').text();
 	                controller._grid.refresh();
-	                let curCell = controller._grid.tbody.find(">tr:eq(" + row + ") >td:eq(" + cellIndex + ")").next();
-	                controller._grid.current(curCell);
-	                curCell.addClass('k-state-focused');
-	                controller._grid.select(curCell);
 	                break;
 	        }
 	    }
@@ -603,45 +607,7 @@
 	            data: { filter: filterName }
 	        }).done((data) => {
 	            grid.dataSource.read().done(() => {
-	                grid.dataSource.data().forEach((item, data) => {
-	                    $(item["Value1"]).val("test").trigger("change");
-	                });
-	                //$("#ReportFilterCriteriaGrid").data('kendoGrid').dataSource.data().forEach((item, data) => {
-	                //    controller.filterConfiguration(controller, item["Position"], "operatordropdownListoptions", "DropdownValues", "");
-	                //    controller.foreignKeyValueDropdown(controller, item["ColumnName"], item["Position"]);
-	                //    controller._grid.dataSource.view()[item["Position"]]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
-	                //    controller._grid.dataSource.view()[item["Position"]]["ComparisonOperator"] = $('#' + controller._filterConfig[item["Position"]].operatorType).data('kendoComboBox').text();
-	                //    controller.filterchangeEvent(controller, "operatordropdownListoptions", item["ComparisonOperator"], item["ComparisonOperator"], controller._grid.select().parent().index(), '/ReportFilterCriteria/ValueField');
-	                //    try {
-	                //        if (controller._filterConfig[item["Position"]].valueoneType === "DropdownValues" || controller._filterConfig[item["Position"]].valueoneType === "DropdownValues2") {
-	                //            (<any>$("#" + controller._filterConfig[item["Position"]].valueoneType)).getKendoComboBox().dataSource.data(controller._filterConfig[item["Position"]].valueList);
-	                //            (<any>$("#" + controller._filterConfig[item["Position"]].valueoneType)).getKendoComboBox().dataSource.query();
-	                //            $("#" + controller._filterConfig[item["Position"]].valueoneType).data('kendoComboBox').wrapper.show();
-	                //            ReportFilterController.getInstance().comboSelection(controller._grid);
-	                //        } else if (controller._filterConfig[item["Position"]].valueoneType === "TextBox") {
-	                //            $("#" + controller._filterConfig[item["Position"]].valueoneType).data('kendoMaskedTextBox').wrapper.show();
-	                //        } else if (controller._filterConfig[item["Position"]].valueoneType === "NumberBox") {
-	                //            $("#" + controller._filterConfig[item["Position"]].valueoneType).data('kendoNumericTextBox').wrapper.show();
-	                //        } else if (controller._filterConfig[item["Position"]].valueoneType === "DateValues") {
-	                //            $("#" + controller._filterConfig[item["Position"]].valueoneType).data('kendoDatePicker').wrapper.show();
-	                //        }
-	                //        $("#" + controller._filterConfig[item["Position"]].operatorType).data('kendoComboBox').wrapper.show();
-	                //    } catch (ex) { }
-	                //    try {
-	                //        if (controller._filterConfig[item["Position"]].valuetwoType === "DropdownValues3") {
-	                //            (<any>$("#" + controller._filterConfig[item["Position"]].valuetwoType)).getKendoComboBox().dataSource.data(controller._filterConfig[item["Position"]].valueList);
-	                //            (<any>$("#" + controller._filterConfig[item["Position"]].valuetwoType)).getKendoComboBox().dataSource.query();
-	                //            $("#" + controller._filterConfig[item["Position"]].valuetwoType).data('kendoComboBox').wrapper.show();
-	                //            ReportFilterController.getInstance().comboSelection(controller._grid);
-	                //        } else if (controller._filterConfig[item["Position"]].valuetwoType === "TextBox2") {
-	                //            $("#" + controller._filterConfig[item["Position"]].valuetwoType).data('kendoMaskedTextBox').wrapper.show();
-	                //        } else if (controller._filterConfig[item["Position"]].valuetwoType === "NumberBox2") {
-	                //            $("#" + controller._filterConfig[item["Position"]].valuetwoType).data('kendoNumericTextBox').wrapper.show();
-	                //        } else if (controller._filterConfig[item["Position"]].valuetwoType === "DateValues2") {
-	                //            $("#" + controller._filterConfig[item["Position"]].valuetwoType).data('kendoDatePicker').wrapper.show();
-	                //        }
-	                //    } catch (ex) { }
-	                //});
+	                controller.bindGridCells();
 	            });
 	        });
 	    }
@@ -652,13 +618,11 @@
 	            type: "POST",
 	            url: '/ReportFilterCriteria/SaveCriteriaList',
 	            data: { modelListString: JSON.stringify(grid.dataSource.view().toJSON()) }
-	        }).done((data) => {
 	        });
 	    }
 	    save() {
 	        var self = this;
 	        var grid = $("#ReportFilterCriteriaGrid").data("kendoGrid");
-	        //grid.dataSource.remove(grid.dataSource.data()[grid.dataSource.data().length - 1]);
 	        $.ajax({
 	            global: false,
 	            type: "POST",
@@ -672,7 +636,7 @@
 	                self._filterSaveWindow.center().open();
 	                $("#FilterNameList").data('kendoComboBox').value($("#ReportFilterGridNameList").data('kendoComboBox').text());
 	                $("#ReportFilterCancel").on('click', function () {
-	                    self._filterSaveWindow.center().close();
+	                    self._filterSaveWindow.close();
 	                });
 	                $("#ReportFilterSave").on('click', function () {
 	                    $.ajax({
@@ -692,19 +656,26 @@
 	                                        url: "/ReportFilterCriteria/SaveReportFilter",
 	                                        data: { filterName: $("#FilterNameList").data('kendoComboBox').text(), filterReplace: true }
 	                                    }).done((data) => {
-	                                        self._overwriteFilterWindow.center().close();
+	                                        self._overwriteFilterWindow.close();
 	                                        self.reloadSavedFilterList();
-	                                        self._filterSaveWindow.center().close();
+	                                        self._filterSaveWindow.close();
 	                                    });
 	                                });
 	                                $("#OverWriteCancel").on('click', function () {
-	                                    self._overwriteFilterWindow.center().close();
+	                                    self._overwriteFilterWindow.close();
 	                                });
 	                            });
 	                        }
 	                        else {
-	                            self.reloadSavedFilterList();
-	                            self._filterSaveWindow.center().close();
+	                            $.ajax({
+	                                global: false,
+	                                type: "POST",
+	                                url: "/ReportFilterCriteria/SaveReportFilter",
+	                                data: { filterName: $("#FilterNameList").data('kendoComboBox').text(), filterReplace: true }
+	                            }).done((data) => {
+	                                self.reloadSavedFilterList();
+	                                self._filterSaveWindow.close();
+	                            });
 	                        }
 	                    });
 	                });
@@ -716,22 +687,22 @@
 	        });
 	    }
 	    finishFilter() {
-	        var currentFilter = "";
-	        var self = this;
 	        var grid = $("#ReportFilterCriteriaGrid").data("kendoGrid");
 	        $.ajax({
 	            global: false,
 	            type: "POST",
-	            url: "/ReportFilterCriteria/FinishFilter",
-	            data: {}
+	            url: "/ReportFilterCriteria/PopulateGridDisplayList",
+	            data: { gridrows: JSON.stringify(grid.dataSource.view().toJSON()) }
 	        }).done((data) => {
-	            alert(data);
+	            this._setupReportViewWindow();
+	            this._reportViewWindow.center().open();
+	            //$('#reportError').bind("Error", function () => {
+	            //});
+	            //    $('#reportPageCount').
 	        });
-	        console.log('made it here');
 	    }
 	    overWrite() {
 	        this._overwriteFilterWindow.center().open();
-	        this.filterName = $('#FilterNameList').data('kendoComboBox').text();
 	    }
 	    foreignKeyValueDropdown(controller, selectedValue, currentRow) {
 	        $.ajax({
@@ -749,21 +720,11 @@
 	        $.ajax({
 	            global: false,
 	            type: "GET",
-	            url: "/ReportMain/ReportNameDropdown",
+	            url: "/ReportMain/ReportNameDropdown"
 	        }).done((data) => {
 	            $("#filterNameListDropdown").html(data);
 	            $("#ReportFilterGridNameList").data('kendoComboBox').select((item) => { return item.Text === previousName; });
 	        });
-	        //var previousName = $("#FilterNameList").data('kendoComboBox').text();
-	        //$.ajax({
-	        //    global: false,
-	        //    type: "GET",
-	        //    url: '/ReportFilterCriteria/ReloadList',
-	        //    data: {}
-	        //}).done((data) => {
-	        //    $("#ReportFilterGridNameList").data('kendoComboBox').list = data;
-	        //    $("#ReportFilterGridNameList").data('kendoComboBox').select((item) => { return item.Text === previousName;});
-	        //});
 	    }
 	    clear() {
 	        var grid = $("#ReportFilterCriteriaGrid").data("kendoGrid");
@@ -775,19 +736,9 @@
 	        }).done((data) => {
 	            grid.dataSource.read();
 	        });
-	        //for (var i = 0; i < data.length; i++) {
-	        //    document.getElementById("filtertextdisplay").innerHTML += data[i]["Filter"] + " ";
-	        //}
 	    }
 	    deleteRow() {
 	        var numToDel = $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data()[$($('#ReportFilterCriteriaGrid td .k-checkbox:checked').closest('tr')[0]).index()].Position;
-	        //var rows = [];
-	        //for (var i = 0; i < numToDel; i++) {
-	        //    rows.push($('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data()[$($('#ReportFilterCriteriaGrid td .k-checkbox:checked').closest('tr')[i]).index()]);
-	        //}
-	        //for (var b = 0; b < rows.length; b++) {
-	        //    $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().remove(rows[b]);
-	        //}
 	        $.ajax({
 	            global: false,
 	            type: "POST",
@@ -822,18 +773,11 @@
 	            });
 	        }
 	        controller._grid.dataSource.insert(newRow, temp).set("dirty", true);
-	        //$(".k-grid-recordSelecter").on('click', self.recordSelect); //TODO: Redo this
-	        //$(".k-grid-recordSelecter").on('click', function (this: HTMLElement, event: JQueryEventObject) {
-	        //    filter.recordSelect(event, controller);
-	        //});
 	    }
 	    _init() {
 	        let container = $('<div id="ReportFilterCriteriaGridContainer"></div>');
-	        let self = this;
 	        $('body').append(container);
 	        this._filterConfig = [];
-	        let value1 = "";
-	        let value2 = "";
 	        let controller = this;
 	        if ($('#ReportFilterCriteriaGrid').data('kendoGrid') !== undefined) {
 	            controller.clear();
@@ -871,22 +815,9 @@
 	                    }
 	                });
 	            }
-	            controller.filterchangeEvent(controller, event.target.id, DescVal, DescText, controller._grid.select().parent().index(), '/ReportFilterCriteria/ValueField');
+	            controller.filterchangeEvent(controller, event.target.id, DescVal, DescText, controller._grid.select().parent().index(), '/ReportFilterCriteria/ValueField', function () { });
 	        });
-	        //$('#ReportLower .k-grid').data('kendoGrid').columns.forEach((item1, i) => {
-	        //    item1.template = "#= customTemplate(data.type,data.editor) #";
-	        //});
 	    }
-	    //    customTemplate(type, value) {
-	    //    if (value == null)
-	    //        return "";
-	    //    switch (type) {
-	    //        case "date":
-	    //            return kendo.toString(kendo.parseDate(value), 'yyyy/MM/dd');
-	    //        default:
-	    //            return value;
-	    //    }
-	    //}
 	    _setupFilterSaveWindow() {
 	        $("#filterSaveWindow").remove(); //If this tag exists remove it
 	        let deferred = $.Deferred();
@@ -921,6 +852,7 @@
 	    }
 	    _setupReportViewWindow() {
 	        $("#reportViewWindow").remove();
+	        $("#reportViewArea").remove();
 	        let deferred = $.Deferred();
 	        this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(utils_1.kendoWindowDefaultOptions({
 	            appendTo: '#ReportWindowContainer',
@@ -931,7 +863,7 @@
 	            refresh: () => {
 	                deferred.resolve();
 	            }
-	        })).data('kendoWindow');
+	        })).data(('kendoWindow'));
 	        return deferred.promise();
 	    }
 	}
@@ -941,7 +873,10 @@
 	    try {
 	        if (REPORT_GRID !== null && REPORT_GRID) {
 	            window['ReportFilterCriteriaGridEdit'] = () => {
-	                //    ReportFilterController.getInstance().editCell(event);
+	                ReportFilterController.getInstance().editCell(event);
+	            };
+	            window['ReportFilterCriteriaGridDataBound'] = () => {
+	                ReportFilterController.getInstance().setGrid('#ReportListGrid');
 	            };
 	        }
 	    }

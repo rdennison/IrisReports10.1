@@ -94,8 +94,7 @@ namespace Iris10ReportUI.Controllers
 
             foreach (var item in reportFilterCriteriaDescription)
             {
-                referenceList.Add(new FilterScreenReference { Key = item.ColumnName, Description = item.ColumnName });
-
+                referenceList.Add(new FilterScreenReference { Key = item.ColumnName, Description = item.FriendlyName });
             }
 
 

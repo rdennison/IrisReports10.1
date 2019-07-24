@@ -1,26 +1,13 @@
-﻿@using IrisAttributes
-@model object
-
+﻿@model object
 
 @{
-    SelectListItem ddReportUiFilterList = new SelectListItem { Text = "", Value = "" };
-    List<SelectListItem> DescriptionList = new List<SelectListItem>();
-    DescriptionList.Add(ddReportUiFilterList);
-    IEnumerable<SelectListItem> blankList = DescriptionList;
-    SelectList ColumnNameList = new SelectList(blankList, "Value", "Text");
-
-    {
-        if (Session["ReportColumnName"] != null)
-        { ColumnNameList = new SelectList((SelectList) Session["ReportColumnName"], "Value", "Text"); }
-
-
-        @(Html.Kendo()
+    SelectList ColumnNameList = new SelectList((SelectList) Session["ReportColumnName"], "Value", "Text");
+    @(Html.Kendo()
           .ComboBox()
           .Name("ReportFieldList")
           .Placeholder("Select...")
           .Filter("startswith")
           .Suggest(true)
           .SelectedIndex(0)
-          .BindTo((SelectList)ColumnNameList))
-    }
+          .BindTo((SelectList) ColumnNameList))
 }

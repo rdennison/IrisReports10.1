@@ -20,3 +20,6 @@ C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\System.Web.Mvc.xml
 C:\GitHub\Reports10\IrisReports10.1\IrisModels\obj\Debug\IrisModels.csprojResolveAssemblyReference.cache
 C:\GitHub\Reports10\IrisReports10.1\IrisModels\obj\Debug\IrisModels.dll
 C:\GitHub\Reports10\IrisReports10.1\IrisModels\obj\Debug\IrisModels.pdb
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\Telerik.Reporting.dll
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\Telerik.Reporting.pdb
+C:\GitHub\Reports10\IrisReports10.1\IrisModels\bin\Debug\Telerik.Reporting.xml

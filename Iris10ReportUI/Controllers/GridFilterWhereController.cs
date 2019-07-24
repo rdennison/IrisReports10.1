@@ -43,6 +43,7 @@ namespace Iris10ReportUI.Controllers
             DataSourceResult result;
             if (HttpRuntime.Cache["ReportFilterList"] != null && ((List<GridFilterWhereModel>) HttpRuntime.Cache["ReportFilterList"]).Count > 0)
             {
+                //((List<GridFilterWhereModel>) HttpRuntime.Cache["ReportFilterList"]).Add(new GridFilterWhereModel { });
                 result = ((List<GridFilterWhereModel>) HttpRuntime.Cache["ReportFilterList"]).ToDataSourceResult(request);
             }
             else

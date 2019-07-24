@@ -1,7 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Configuration;
 
-[assembly: OwinStartupAttribute(typeof(Iris10ReportUI.Startup))]
+[assembly: OwinStartup(typeof(Iris10ReportUI.Startup))]
 namespace Iris10ReportUI
 {
     public partial class Startup
@@ -9,6 +10,7 @@ namespace Iris10ReportUI
         public void Configuration(IAppBuilder app)
         {
             //ConfigureAuth(app);
+
         }
     }
 }

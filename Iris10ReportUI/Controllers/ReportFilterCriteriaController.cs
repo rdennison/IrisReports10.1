@@ -21,6 +21,9 @@ using System.Web;
 using Iris10ReportUI.Helpers;
 using ReportLibrary;
 using System.Collections;
+using Iris10ReportUI.GridBuilder.Extensions;
+using System.Threading.Tasks;
+using System.Data;
 
 namespace Iris10ReportUI.Controllers
 {
@@ -32,9 +35,7 @@ namespace Iris10ReportUI.Controllers
         private static readonly List<GridFilterWhereModel> displaylist = new List<GridFilterWhereModel>();
         private static readonly List<GridFilterWhereModel> filterlist = new List<GridFilterWhereModel>();
         private readonly JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-
-
+        
         [HttpPost]
         public ActionResult ActivateFilter()
         {
@@ -59,36 +60,25 @@ namespace Iris10ReportUI.Controllers
         [HttpGet]
         public ActionResult ValueField(string field)
         {
-            
-          
-                
-                   
-                        if (field.Contains("_Key"))
-                        {
-                            return Json("Dropdown", JsonRequestBehavior.AllowGet);
-                        }
-                       else if (field.Contains("Active"))
-                        {
-                            return Json("Dropdown2", JsonRequestBehavior.AllowGet);
-                        }
-                        else if (field.Contains("Date"))
-                        {
-                            return Json("Date", JsonRequestBehavior.AllowGet);
-                        }
-                        else 
-                        {
-                            return Json("Text", JsonRequestBehavior.AllowGet);
-                        }
-                       
-                    
-                
-            
+            if (field.Contains("_Key"))
+            {
+                return Json("Dropdown", JsonRequestBehavior.AllowGet);
+            }
+            else if (field.Contains("Active"))
+            {
+                return Json("Boolean", JsonRequestBehavior.AllowGet);
+            }
+            else if (field.Contains("Date"))
+            {
+                return Json("Date", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("Text", JsonRequestBehavior.AllowGet);
+            }
             return null;
         }
-
-
-
-
+        
         [HttpPost]
         public ActionResult SaveCriteriaList(string modelListString)
         {
@@ -103,20 +93,17 @@ namespace Iris10ReportUI.Controllers
                 }
                 if (model.DropdownValues != null)
                 {
-                    model.Value1 = model.DropdownValues.Value;
+                    model.Value1 = model.DropdownValues.Text;
                 }
 
                 if(model.DropdownValues3 != null)
                 {
-                    model.Value2 = model.DropdownValues3.Value;
+                    model.Value2 = model.DropdownValues3.Text;
                 }
+                model.InList = serializer.Serialize(model);
                 displaylist.Add(model);
             }
-            
-               
-            
             HttpRuntime.Cache["SelectedReportCriteria"] = displaylist;
-
             return null;
         }
 
@@ -201,8 +188,9 @@ namespace Iris10ReportUI.Controllers
                     return Json("overWrite", JsonRequestBehavior.AllowGet);
             }
             else
-                SaveReportFilter(filterName);
-            return Json("saved", JsonRequestBehavior.AllowGet);
+                return Json("saved", JsonRequestBehavior.AllowGet);
+            //SaveReportFilter(filterName);
+
         }
 
         [HttpPost]
@@ -212,16 +200,12 @@ namespace Iris10ReportUI.Controllers
             bool filterExists = false;
             GridFilterModel gridFilter = new GridFilterModel();
             gridFilter = GetGridFilter(filterName);
-            if (filterReplace == true && gridFilter != null)
-            {               
+            if (filterReplace == true && gridFilter != null)         
                 _coreService.SprocDelete(gridFilter, db);
-            }
-
             try
             {
                 gridFilter = new GridFilterModel
                 {
-                    //PageName_Key = _page.PageKey(Session["ModelType"].GetType().Name.Replace("Model", "")),
                     PageName_Key = 88,
                     Name = filterName,
                     CreatedByUser_Key = (int) Session["CurrentUserKey"],
@@ -238,9 +222,7 @@ namespace Iris10ReportUI.Controllers
                     _coreService.SprocInsert(row, db);
                 }
                 return Json(filterName);
-
             }
-
             catch (Exception e)
             {
                 return Json(e);
@@ -269,30 +251,66 @@ namespace Iris10ReportUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult FinishFilter()
+        public ActionResult PopulateGridDisplayList(string gridrows)
         {
-            Type reportType = null;
-             Assembly a = Assembly.Load("ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
-
-            foreach(Type ti in a.DefinedTypes)
+            RemoveGridData();
+            List<GridFilterWhereModel> gridData = (List<GridFilterWhereModel>) serializer.Deserialize(gridrows, typeof(List<GridFilterWhereModel>));
+            foreach(var row in gridData)
             {
-                if(ti.Name.Contains(Session["ReportName"].ToString()))
+                if (string.IsNullOrEmpty(row.ColumnName))
                 {
-                    reportType = ti; 
-
                     break;
                 }
-            }
-            var wheres = new List<SqlWhere>();
+                if (row.DropdownValues != null)
+                {
+                    row.Value1 = row.DropdownValues.Text;
+                }
 
-            foreach (var row in displaylist)
+                if (row.DropdownValues3 != null)
+                {
+                    row.Value2 = row.DropdownValues3.Text;
+                }
+                row.InList = serializer.Serialize(row);
+                displaylist.Add(row);
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult FinishFilter()
+        {
+            string db = Session["ConString"].ToString();
+            Type reportType = null;
+            Assembly a = Assembly.Load("ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            reportType = a.GetType("ReportLibrary."+Session["ReportName"].ToString());
+            
+            if (filterlist.Count == 0)
+                createFilterList();
+            SqlGenerator gen = new SqlGenerator(SqlGenerator.SqlTypes.Select, Session["ReportModelName"].ToString());
+            foreach (var row in filterlist)
             {
-                wheres.Add(new SqlWhere(row.OpenGroup, row.CloseGroup, Session["ReportModelName"].ToString(), row.ColumnName, row.Value1, row.Value2, row.ComparisonOperator, GetAndOrSyntax(row.AndOr)));
+                gen.AddWhereParameter(new SqlWhere(row.OpenGroup, row.CloseGroup, Session["ReportModelName"].ToString(), row.ColumnName, row.Value1, row.Value2, row.ComparisonOperator, GetAndOrSyntax(row.AndOr)));
             }
+            DataTable dt = SQLHelper.FetchDataTable(gen, db);
+            Telerik.Reporting.ObjectDataSource source = new ObjectDataSource();
+            source.DataSource = dt;
 
-            var reportSqlString = _coreService.TelerikSqlString(Session["ReportModelName"].ToString(), wheres );
-            reportType.GetConstructors()[0].Invoke(new object[1] { reportSqlString });
-            return null;    
+            reportType.GetProperty("SqlSource").SetValue(reportType, source);
+
+            
+
+
+            var typeReportSource = new TypeReportSource(){ TypeName = "ReportLibrary." + Session["ReportName"].ToString() + ", ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" };
+
+            //ReportProcessor reportProcessor = new ReportProcessor();
+
+            //RenderingResult result = reportProcessor.RenderReport("CSV", typeReportSource, null);
+
+
+
+            Session["ReportTypeSource"] = typeReportSource;
+            
+            return PartialView("~/Views/Reports/ReportsPartialView.cshtml");    
         }
 
         private string GenerateReportProperties(string[] items)
@@ -319,49 +337,8 @@ namespace Iris10ReportUI.Controllers
 
             return i;
         }
-
-
-
-
+        
         #region +++++++Filter Support Functions+++++++
-      
-
-        [HttpGet]
-        public ActionResult ReportValueField(string field)
-        {
-            string model = field.Split('.')[0] + "Model";
-            string prop = field.Split('.')[1];
-            Type curModel = null;
-            Assembly a = Assembly.Load("IrisModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
-            foreach (TypeInfo ti in a.DefinedTypes)
-            {
-                if (ti.FullName.StartsWith("IrisModels.Models") && !ti.Name.StartsWith("<") && ti.Name.Equals(model, StringComparison.OrdinalIgnoreCase))
-                {
-                    curModel = ti;
-                }
-            }
-
-            if (curModel != null)
-            {
-                PropertyInfo[] blankModel = curModel.GetProperties();
-                foreach (PropertyInfo p in blankModel)
-                {
-                    if (p.Name.Equals(prop, StringComparison.OrdinalIgnoreCase))
-                    {
-                        if (p.PropertyType.FullName.Contains("Date"))
-                            return Json("Date", JsonRequestBehavior.AllowGet);
-                        if (p.PropertyType.FullName.Contains("Decimal") || p.PropertyType.FullName.Contains("Integer"))
-                            return Json("Number", JsonRequestBehavior.AllowGet);
-                        if (p.PropertyType.FullName.Contains("Boolean"))
-                            return Json("Dropdown2", JsonRequestBehavior.AllowGet);
-                        else
-                            return Json("Dropdown", JsonRequestBehavior.AllowGet);
-                    }
-                }
-            }
-            return null;
-        }
-
         [HttpPost]
         public ActionResult FilterValidation(string type, string rowData = null)
         {
@@ -455,66 +432,69 @@ namespace Iris10ReportUI.Controllers
                 return Json(ViewData.ModelState["Errors"].Errors[0].ErrorMessage, JsonRequestBehavior.AllowGet);
             }
             var records = 0;
-            switch (type)
+            //switch (type)
 
 
-            {
-                case "result":
-                    var wheres = new List<SqlWhere>();
-                    Type tableType = null;
-                    foreach (var row in model)
-                    {
-                        if (tableType == null)
-                        {
-                            Assembly a = Assembly.Load("IrisModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
-                            foreach (TypeInfo ti in a.DefinedTypes)
-                            {
-                                if (ti.Name.Replace("Model", "") == Session["ReportModelName"].ToString())
-                                {
-                                    tableType = ti;
-                                }
-                            }
+            //{
+            //    case "result":
+            //        var wheres = new List<SqlWhere>();
+            //        Type tableType = null;
+            //        foreach (var row in model)
+            //        {
+            //            if (tableType == null)
+            //            {
+            //                Assembly a = Assembly.Load("IrisModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            //                foreach (TypeInfo ti in a.DefinedTypes)
+            //                {
+            //                    if (ti.Name.Replace("Model", "") == Session["ReportModelName"].ToString())
+            //                    {
+            //                        tableType = ti;
+            //                    }
+            //                }
 
-                        }
+            //            }
 
-                        wheres.Add(new SqlWhere(row.OpenGroup, row.CloseGroup, Session["ReportModelName"].ToString(), row.ColumnName, row.Value1, row.Value2, row.ComparisonOperator, GetAndOrSyntax(row.AndOr)));
-                        //SaveCriteriaList(row);
-                    }
-                    //var valueKey = _coreService.LoadModel(tableType, wheres);
+            //            wheres.Add(new SqlWhere(row.OpenGroup, row.CloseGroup, Session["ReportModelName"].ToString(), row.ColumnName, row.Value1, row.Value2, row.ComparisonOperator, GetAndOrSyntax(row.AndOr)));
+            //            //SaveCriteriaList(row);
+            //        }
+            //        //var valueKey = _coreService.LoadModel(tableType, wheres);
 
-                    records = _coreService.RecordCount(tableType, wheres);
+            //        records = _coreService.RecordCount(tableType, wheres);
                     
-                    if (records > 0)
-                        return Json("valid", JsonRequestBehavior.AllowGet);
-                    else
-                        return Json("This generates no results, do you want to continue with this filter?", JsonRequestBehavior.AllowGet);
-            }
+            //        if (records > 0)
+            //            return Json("valid", JsonRequestBehavior.AllowGet);
+            //        else
+            //            return Json("This generates no results, do you want to continue with this filter?", JsonRequestBehavior.AllowGet);
+            //}
 
             return Json("", JsonRequestBehavior.AllowGet);
         }
-
-        public sealed class ReportFilterReference
-        {
-            public string Key { get; set; }
-            public string Description { get; set; }
-
-            public object BaseData { get; set; }
-        }
-
-        private void createFilterList(int gridfilterkey)
+        
+        private void createFilterList(int gridfilterkey = 0)
         {
             filterlist.Clear(); //create a clean list
             foreach (var item in displaylist)
             {
                 GridFilterWhereModel realGridRow = (item);
                
-                item.InList = "";
-                if(realGridRow.AndOr == null  || realGridRow.AndOr == "")
+                item.InList = serializer.Serialize(item);
+                if (item.AndOr == null || item.AndOr == "")
                 {
                     realGridRow.AndOr = "And";
                 }
-         
-          
+                else
+                    realGridRow.AndOr = item.AndOr;
+
+                if (realGridRow.ReportFieldList != null)
+                    realGridRow.ColumnName = item.ReportFieldList.Value;
+                if (item.DropdownValues != null)
+                    realGridRow.Value1 = item.DropdownValues.Value;
+                if (item.DropdownValues2 != null)
+                    realGridRow.Value1 = item.DropdownValues2.Value;
+                if (item.DropdownValues3 != null)
+                    realGridRow.Value2 = item.DropdownValues3.Value;
+
+                realGridRow.ColumnName = item.ReportFieldList.Value;
                 realGridRow.GridFilter_Key = gridfilterkey;
                 realGridRow.CreatedByUser_Key = (int) Session["CurrentUserKey"];
                 realGridRow.UpdatedByUser_Key = (int) Session["CurrentUserKey"];
@@ -525,19 +505,24 @@ namespace Iris10ReportUI.Controllers
 
         private void createDisplayList(int gridfilterkey)
         {
-            var count = 0;
             displaylist.Clear(); //create a clean list
             foreach (var item in filterlist)
             {
-                GridFilterWhereModel realGridRow = (item);
+                GridFilterWhereModel realGridRow = (GridFilterWhereModel)serializer.Deserialize(item.InList,typeof(GridFilterWhereModel));
 
-                item.InList = "";
+                realGridRow.InList = serializer.Serialize(item);
                 if (realGridRow.AndOr == null || realGridRow.AndOr == "")
                 {
                     realGridRow.AndOr = "And";
                 }
-
-
+                if(realGridRow.ReportFieldList != null)
+                    realGridRow.ColumnName = realGridRow.ReportFieldList.Text;
+                if (realGridRow.DropdownValues != null)
+                    realGridRow.Value1 = realGridRow.DropdownValues.Text;
+                if (realGridRow.DropdownValues2 != null)
+                    realGridRow.Value1 = realGridRow.DropdownValues2.Text;
+                if (realGridRow.DropdownValues3 != null)
+                    realGridRow.Value2 = realGridRow.DropdownValues3.Text;
                 realGridRow.GridFilter_Key = gridfilterkey;
                 realGridRow.CreatedByUser_Key = (int) Session["CurrentUserKey"];
                 realGridRow.UpdatedByUser_Key = (int) Session["CurrentUserKey"];
@@ -565,8 +550,7 @@ namespace Iris10ReportUI.Controllers
             string db = Session["ConString"].ToString();
             var wheres = new List<SqlWhere>();
             wheres.Add(new SqlWhere(null, null, "GridFilterWhere", "GridFilter_Key", filterKey, null, SqlWhereComparison.SqlComparer.Equal, SqlWhereAndOrOptions.SqlWhereAndOr.And));
-            IEnumerable<GridFilterWhereModel> filterWheres = _coreService.LoadModel<GridFilterWhereModel>(wheres, conName: db);
-            return filterWheres;
+            return _coreService.LoadModel<GridFilterWhereModel>(wheres, conName: db);
         }
 
         private SqlWhereAndOrOptions.SqlWhereAndOr GetAndOrSyntax(string AndOr = null, SqlWhereAndOrOptions.SqlWhereAndOr AndOr2 = SqlWhereAndOrOptions.SqlWhereAndOr.And)

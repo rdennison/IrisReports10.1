@@ -11,6 +11,11 @@ namespace Iris10ReportUI.GridBuilder.Extensions
             return new IrisWidgetFactory(helper);
         }
 
+        //public static IrisWidgetFactory IrisReportViewer(this HtmlHelper helper)
+        //{
+        //    return new IrisWidgetFactory(helper);
+        //}
+
         public static IrisWidgetFactory IrisToolBar(this HtmlHelper helper)
         {
             return new IrisWidgetFactory(helper);

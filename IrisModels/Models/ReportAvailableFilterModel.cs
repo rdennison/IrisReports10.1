@@ -39,6 +39,7 @@ namespace IrisModels.Models
         [IrisGridColumn(Width = 150)]
         public string CustomList { get; set; }
 
-
+        [DbProperties(DatabaseType = SqlDbType.VarChar, Size=256)]
+        public string FriendlyName { get; set; }
     }
 }

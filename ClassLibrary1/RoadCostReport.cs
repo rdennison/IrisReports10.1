@@ -12,17 +12,15 @@ namespace ReportLibrary
     /// </summary>
     public partial class RoadCostReport : Telerik.Reporting.Report
     {
-  
-        public RoadCostReport(string sql = null)
+        private static ObjectDataSource _sqlSource = null;
+        public static ObjectDataSource SqlSource { get { return _sqlSource; } set { _sqlSource = value; } }
+        public RoadCostReport()
         {
             //
             // Required for telerik Reporting designer support
             //
             InitializeComponent();
-            if(sql != null)
-            {
-                this.sqlDataSource1.SelectCommand = sql;
-            }
+            
             //
             // TODO: Add any constructor code after InitializeComponent call
             //

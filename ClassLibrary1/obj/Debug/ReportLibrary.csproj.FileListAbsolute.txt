@@ -33,15 +33,10 @@ C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\ReportLibrary.pdb
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\dje\ReportLibrary.resources.dll
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.dll
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.Service.dll
-C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.WinControls.xml
-C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.WinControls.GridView.xml
-C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.WinControls.Scheduler.xml
-C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.WinControls.UI.xml
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.pdb
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.xml
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.Service.pdb
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\Telerik.Reporting.Service.xml
-C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.csprojResolveAssemblyReference.cache
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.PolkCountyPermit.resources
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.Properties.Resources.resources
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.RoadCostReport.resources
@@ -51,3 +46,11 @@ C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.dll.li
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\dje\ReportLibrary.resources.dll
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.dll
 C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.pdb
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.csprojResolveAssemblyReference.cache
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\SqlComponents.dll
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\IrisAttributes.dll
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\System.Web.Mvc.dll
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\SqlComponents.pdb
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\IrisAttributes.pdb
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\bin\Debug\System.Web.Mvc.xml
+C:\GitHub\Reports10\IrisReports10.1\ClassLibrary1\obj\Debug\ReportLibrary.ObjectTestReport.resources
