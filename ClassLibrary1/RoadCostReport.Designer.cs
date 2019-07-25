@@ -46,8 +46,6 @@ namespace ReportLibrary
             this.Descriprion = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.textBox1 = new Telerik.Reporting.TextBox();
-            this.textBox2 = new Telerik.Reporting.TextBox();
             reportTitle = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -125,7 +123,7 @@ namespace ReportLibrary
             this.roadNumber.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.roadNumber.Style.Font.Bold = true;
             this.roadNumber.Style.Font.Name = "Times New Roman";
-            this.roadNumber.Value = "Road: {Fields.RoadNumber}";
+            this.roadNumber.Value = "=Fields(\"TomFieldTest\")";
             // 
             // roadNameAndMilage
             // 
@@ -210,8 +208,7 @@ namespace ReportLibrary
             this.textBox13,
             this.textBox14,
             this.textBox15,
-            this.shape3,
-            this.textBox2});
+            this.shape3});
             this.groupFooterSection2.Name = "groupFooterSection2";
             // 
             // textBox13
@@ -353,29 +350,7 @@ namespace ReportLibrary
             // pageFooterSection1
             // 
             this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Inch(0.5D);
-            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.textBox1});
             this.pageFooterSection1.Name = "pageFooterSection1";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.4D), Telerik.Reporting.Drawing.Unit.Inch(0.1D));
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.2D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox1.Style.Font.Bold = true;
-            this.textBox1.Style.Font.Name = "Times New Roman";
-            this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox1.Value = "= Fields(\"TomStaticTest\")";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.1D), Telerik.Reporting.Drawing.Unit.Inch(0.048D));
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.7D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox2.Style.Font.Bold = true;
-            this.textBox2.Style.Font.Name = "Times New Roman";
-            this.textBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox2.Value = "= Fields(\"TomFieldTest\")";
             // 
             // RoadCostReport
             // 
@@ -456,7 +431,5 @@ namespace ReportLibrary
         private Telerik.Reporting.Shape shape3;
         private Telerik.Reporting.Shape shape4;
         private Telerik.Reporting.Shape shape5;
-        private Telerik.Reporting.TextBox textBox1;
-        private Telerik.Reporting.TextBox textBox2;
     }
 }

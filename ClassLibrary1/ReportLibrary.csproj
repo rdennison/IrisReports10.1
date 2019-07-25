@@ -56,7 +56,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ReportParams.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ObjectTestReport.cs">
       <SubType>Component</SubType>
     </Compile>
