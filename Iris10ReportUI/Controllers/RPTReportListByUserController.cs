@@ -64,13 +64,11 @@ namespace Iris10ReportUI.Controllers
         [HttpPost]
         public ActionResult SelectReport(string report)
         {
+            if (report == null)
+                return null;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             ReportDescriptionViewModel descriptionViewModel = new ReportDescriptionViewModel();
-          
             RPTReportListByUserModel curReport = (RPTReportListByUserModel) serializer.Deserialize(report, typeof(RPTReportListByUserModel));
-            
-
-            
             IEnumerable<ReportAvailableFilterModel> model = _coreService.LoadModel<ReportAvailableFilterModel>().Where(r => r.Report_Key == curReport.Report_Key);
 
             descriptionViewModel.Description = curReport.ReportDescription;
@@ -86,18 +84,19 @@ namespace Iris10ReportUI.Controllers
 
         public SelectList GetFilterDropdownList()
         {
-
             IList<FilterScreenReference> referenceList = new List<FilterScreenReference>();
             IEnumerable<FilterScreenReference> referenceList1 = new List<FilterScreenReference>();
             IEnumerable<ReportAvailableFilterModel> reportFilterCriteriaDescription = (IEnumerable<ReportAvailableFilterModel>) Session["SelectedReportCriteria"];
             FilterScreenReference references = new FilterScreenReference();
+            Dictionary<string, string> columnNameTypeDefinitions = new Dictionary<string, string>();
 
             foreach (var item in reportFilterCriteriaDescription)
             {
+                columnNameTypeDefinitions.Add(item.ColumnName, item.ColumnType);
                 referenceList.Add(new FilterScreenReference { Key = item.ColumnName, Description = item.FriendlyName });
             }
 
-
+            Session["ColumnTypes"] = columnNameTypeDefinitions;
             referenceList1 = referenceList;
             return new SelectList(referenceList1, "Key", "Description");
         }

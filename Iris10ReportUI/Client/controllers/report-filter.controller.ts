@@ -173,7 +173,8 @@ export default class ReportFilterController {
                             filter.foreignKeyValueDropdown(controller, selectValue, row);
                             if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
                                 controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
-                            controller._addBlankRow(controller);
+                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+                                controller._addBlankRow(controller);
                             _callback();
                             break;
                         case "Date":
@@ -181,6 +182,8 @@ export default class ReportFilterController {
                             if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
                                 controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
                             controller.deleteDropdowneditors(controller, row);
+                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+                                controller._addBlankRow(controller);
                             _callback();
                             break;
                         case "Boolean":
@@ -188,6 +191,8 @@ export default class ReportFilterController {
                             if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
                                 controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
                             controller.deleteDropdowneditors(controller, row);
+                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+                                controller._addBlankRow(controller);
                             _callback();
                             break;
                         case "Text":
@@ -195,6 +200,8 @@ export default class ReportFilterController {
                             if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
                                 controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
                             controller.deleteDropdowneditors(controller, row);
+                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+                                controller._addBlankRow(controller);
                             _callback();
                             break;
                         case "Number": //TODO: figure out how to determine if field is a number
@@ -202,6 +209,8 @@ export default class ReportFilterController {
                             if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
                                 controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
                             controller.deleteDropdowneditors(controller, row);
+                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+                                controller._addBlankRow(controller);
                             _callback();
                             break;
                     }
@@ -423,6 +432,7 @@ export default class ReportFilterController {
     }
 
     finishFilter() {
+        var controller = ReportFilterController.getInstance();
         var grid = $("#ReportFilterCriteriaGrid").data("kendoGrid");
         $.ajax({
             global: false,
@@ -430,8 +440,8 @@ export default class ReportFilterController {
             url: "/ReportFilterCriteria/PopulateGridDisplayList",
             data: { gridrows: JSON.stringify(grid.dataSource.view().toJSON()) }
         }).done((data) => {
-            this._setupReportViewWindow();
-            this._reportViewWindow.center().open();
+            controller._setupReportViewWindow();
+            controller._reportViewWindow.center().open();
             //$('#reportError').bind("Error", function () => {
 
             //});
@@ -536,12 +546,12 @@ export default class ReportFilterController {
         {
             controller.clear();
         }
+        $('#FinishFilter').on('click', controller.finishFilter);
         $('#ReportLower').on('click', function (this: HTMLElement, event: JQueryEventObject) {
             controller._grid = $('#ReportFilterCriteriaGrid').data('kendoGrid');
             if (event.target.id === "Clear") { controller.clear(); }
             else if (event.target.id === "Save") { controller.save(); }
             else if (event.target.id === "Delete") { controller.deleteRow(); }
-            else if (event.target.id === "FinishFilter") { controller.finishFilter(); }
             else {
                 controller.filterclickEvent(controller, event.target, controller._grid.select().parent().index());
             }

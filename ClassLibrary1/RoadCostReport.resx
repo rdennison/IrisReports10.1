@@ -117,32 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
-    <value>SELECT TOP 1000 [Transact_Key]
-      ,[Road_Key]
-      ,[RoadNumber]
-      ,[CommonRoad]
-      ,[BeginMilepost]
-      ,[EndMilepost]
-      ,[Activity_Key]
-      ,[ActivityDesc]
-      ,[ResourceType_Key]
-      ,[ResourceTypeDesc]
-      ,[Description]
-      ,[TaskDate]
-      ,[ResourceRate]
-      ,[Quantity]
-      ,[TotalResourceCost]
-      ,[CreatedDate]
-      ,[CreatedByUser_Key]
-      ,[UpdatedDate]
-      ,[UpdatedByUser_Key]
-      ,[Tenant_Key]
-  FROM [IRIS10_integ].[dbo].[RPTCAS1022] 
-  where RoadNumber = '1061' or RoadNumber = '0223' or RoadNumber = '1051' and TaskDate between '04/01/2018' and '05/25/2019'
-  order by RoadNumber,  ActivityDesc, ResourceType_Key, TaskDate
-
-
-</value>
-  </data>
+  <metadata name="reportTitle.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

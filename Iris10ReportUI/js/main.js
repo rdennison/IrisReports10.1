@@ -72,10 +72,8 @@
 	const report_filter_controller_1 = __webpack_require__(3);
 	class ReportListController {
 	    constructor() {
-	        //private _reportViewWindow: kendo.ui.Window;
 	        this.keepSessionAlive = false;
 	        this.keepSessionAliveUrl = null;
-	        this.entryValid = true;
 	        this._init();
 	    }
 	    static getInstance() {
@@ -84,10 +82,6 @@
 	        }
 	        return this._instance;
 	    }
-	    /**
-	     * Sets grid with target element
-	     * @param target
-	     */
 	    setGrid(target) {
 	        let self = this;
 	        this.grid = $(target).data('kendoGrid');
@@ -97,11 +91,9 @@
 	        $("#ReportListGrid tr.k-alt").removeClass("k-alt"); //hide the alternate color changing
 	        $("#ReportListGrid td").css('border-style', 'none'); //remove cell borders to make it look like a proper list
 	        $('#ReportToolBar').data('kendoToolBar').element.find('#reportsearch').first().val(this.lastSearchString);
-	        //$("#FinishFilter").bind('click', self.finishFilter);
 	        this.grid.dataSource.bind("error", this.errorLog);
 	        self._setupSessionUpdater('/Root/KeepSessionAlive');
 	        self.createTools();
-	        //Select a row
 	        $('#ReportListGrid').data('kendoGrid').tbody.on('mousedown', function (event) {
 	            let row = event.target.parentElement["rowIndex"];
 	            var replist = $("#ReportListGrid").data("kendoGrid");
@@ -109,26 +101,26 @@
 	                global: false,
 	                type: "POST",
 	                url: "/RPTReportListByUser/SelectReport",
-	                data: {
-	                    report: JSON.stringify(replist._data[row])
-	                }
+	                data: { report: JSON.stringify(replist._data[row]) }
 	            }).done((data) => {
-	                report_filter_controller_1.default.getInstance().activateFilter();
-	                $("#ReportDescription").val(data["Description"]);
-	                $.ajax({
-	                    global: false,
-	                    type: "GET",
-	                    url: "/ReportMain/ReportMainLower",
-	                }).done((data) => {
-	                    $("#ReportLower").html(data);
+	                if (data !== "") {
+	                    report_filter_controller_1.default.getInstance().activateFilter();
+	                    $("#ReportDescription").val(data["Description"]);
 	                    $.ajax({
 	                        global: false,
 	                        type: "GET",
-	                        url: "/ReportMain/ReportNameDropdown",
+	                        url: "/ReportMain/ReportMainLower"
 	                    }).done((data) => {
-	                        $("#filterNameListDropdown").html(data);
+	                        $("#ReportLower").html(data);
+	                        $.ajax({
+	                            global: false,
+	                            type: "GET",
+	                            url: "/ReportMain/ReportNameDropdown"
+	                        }).done((data) => {
+	                            $("#filterNameListDropdown").html(data);
+	                        });
 	                    });
-	                });
+	                }
 	            });
 	        });
 	        //Checkbox events
@@ -179,7 +171,6 @@
 	            url: "/ReportSearch/ReportQuery",
 	            data: { searchString: query }
 	        }).done((data) => {
-	            // All good.
 	            if (data !== "ready") {
 	                console.log(`${data}`);
 	            }
@@ -191,36 +182,6 @@
 	            }
 	        });
 	    }
-	    saveCriteria() {
-	        return this;
-	    }
-	    deleteCriteria() {
-	        return this;
-	    }
-	    //finishFilter() {
-	    //    let tempFilter = [];
-	    //    var grid = $('#ReportWindowContainer').data('kendoGrid');
-	    //    for (var i = 0; i < grid.dataSource.view().length; i++) {
-	    //        if (grid.dataSource.view()[i]["Description"] !== null && grid.dataSource.view()[i]["Description"] !== "") {
-	    //            tempFilter.push(JSON.stringify(grid.dataSource.view()[i]));
-	    //        }
-	    //    }
-	    //    $.ajax({
-	    //        global: false,
-	    //        type: "POST",
-	    //        url: "ReportFilterCriteria/FinishFilter",
-	    //        data: { filterString: tempFilter, report: true }
-	    //    }).done((data) => {
-	    //        var ErrorMessage = data;
-	    //        if (ErrorMessage.IsError !== null && ErrorMessage.IsError === true) {
-	    //            alert(ErrorMessage.Message);
-	    //        }
-	    //        else {
-	    //            //this._reportFilterWindow.close();
-	    //            //this.reportTreeCheck();
-	    //        }
-	    //    });
-	    //}
 	    loadDescription() {
 	        var self = ReportListController.getInstance();
 	        kendo.bind($('#ReportDescription'), self);
@@ -241,8 +202,6 @@
 	        self.keepSessionAliveUrl = actionUrl;
 	        var container = $("#body");
 	        self.keepSessionAlive = true;
-	        //container.mousemove(function () { self.keepSessionAlive = true; });
-	        //container.keydown(function () { self.keepSessionAlive = true; });
 	        self._checkToKeepSessionAlive();
 	    }
 	    _checkToKeepSessionAlive() {
@@ -264,12 +223,6 @@
 	        }
 	        self._checkToKeepSessionAlive();
 	    }
-	    /**
-	     * Initializes the controller
-	     * NOTE: Do NOT include asynchronous calls in this method.
-	     *       When Kendo binds to the controller it makes a copy rather
-	     *       than using the instance in memory.
-	     */
 	    _init() {
 	        try {
 	            let self = this;
@@ -453,7 +406,8 @@
 	                            filter.foreignKeyValueDropdown(controller, selectValue, row);
 	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
 	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
-	                            controller._addBlankRow(controller);
+	                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+	                                controller._addBlankRow(controller);
 	                            _callback();
 	                            break;
 	                        case "Date":
@@ -461,6 +415,8 @@
 	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
 	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
 	                            controller.deleteDropdowneditors(controller, row);
+	                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+	                                controller._addBlankRow(controller);
 	                            _callback();
 	                            break;
 	                        case "Boolean":
@@ -468,6 +424,8 @@
 	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
 	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
 	                            controller.deleteDropdowneditors(controller, row);
+	                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+	                                controller._addBlankRow(controller);
 	                            _callback();
 	                            break;
 	                        case "Text":
@@ -475,6 +433,8 @@
 	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
 	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
 	                            controller.deleteDropdowneditors(controller, row);
+	                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+	                                controller._addBlankRow(controller);
 	                            _callback();
 	                            break;
 	                        case "Number":
@@ -482,6 +442,8 @@
 	                            if ($('#ReportFieldList').data('kendoComboBox') !== undefined)
 	                                controller._grid.dataSource.view()[row]["ColumnName"] = $('#ReportFieldList').data('kendoComboBox').text();
 	                            controller.deleteDropdowneditors(controller, row);
+	                            if (controller._filterConfig.length === $('#ReportFilterCriteriaGrid').data('kendoGrid').dataSource.data().length)
+	                                controller._addBlankRow(controller);
 	                            _callback();
 	                            break;
 	                    }
@@ -687,6 +649,7 @@
 	        });
 	    }
 	    finishFilter() {
+	        var controller = ReportFilterController.getInstance();
 	        var grid = $("#ReportFilterCriteriaGrid").data("kendoGrid");
 	        $.ajax({
 	            global: false,
@@ -694,8 +657,8 @@
 	            url: "/ReportFilterCriteria/PopulateGridDisplayList",
 	            data: { gridrows: JSON.stringify(grid.dataSource.view().toJSON()) }
 	        }).done((data) => {
-	            this._setupReportViewWindow();
-	            this._reportViewWindow.center().open();
+	            controller._setupReportViewWindow();
+	            controller._reportViewWindow.center().open();
 	            //$('#reportError').bind("Error", function () => {
 	            //});
 	            //    $('#reportPageCount').
@@ -782,6 +745,7 @@
 	        if ($('#ReportFilterCriteriaGrid').data('kendoGrid') !== undefined) {
 	            controller.clear();
 	        }
+	        $('#FinishFilter').on('click', controller.finishFilter);
 	        $('#ReportLower').on('click', function (event) {
 	            controller._grid = $('#ReportFilterCriteriaGrid').data('kendoGrid');
 	            if (event.target.id === "Clear") {
@@ -792,9 +756,6 @@
 	            }
 	            else if (event.target.id === "Delete") {
 	                controller.deleteRow();
-	            }
-	            else if (event.target.id === "FinishFilter") {
-	                controller.finishFilter();
 	            }
 	            else {
 	                controller.filterclickEvent(controller, event.target, controller._grid.select().parent().index());

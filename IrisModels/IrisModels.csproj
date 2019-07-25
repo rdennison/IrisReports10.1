@@ -228,6 +228,7 @@
     <Compile Include="Models\ReportFootersModel.cs" />
     <Compile Include="Models\ReportLogModel.cs" />
     <Compile Include="Models\ReportModel.cs" />
+    <Compile Include="Models\ReportComputedColumnModel.cs" />
     <Compile Include="Models\ReportParameterModel.cs" />
     <Compile Include="Models\ReportSettingModel.cs" />
     <Compile Include="Models\ReportTagModel.cs" />

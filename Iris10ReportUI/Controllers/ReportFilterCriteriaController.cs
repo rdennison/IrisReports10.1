@@ -24,6 +24,7 @@ using System.Collections;
 using Iris10ReportUI.GridBuilder.Extensions;
 using System.Threading.Tasks;
 using System.Data;
+using Iris10ReportUI.GridBuilder.Interface;
 
 namespace Iris10ReportUI.Controllers
 {
@@ -60,21 +61,27 @@ namespace Iris10ReportUI.Controllers
         [HttpGet]
         public ActionResult ValueField(string field)
         {
-            if (field.Contains("_Key"))
+            Dictionary<string, string> types = (Dictionary<string, string>) Session["ColumnTypes"];
+
+            if (types[field] == "Int64" && field.Contains("_Key"))
             {
                 return Json("Dropdown", JsonRequestBehavior.AllowGet);
             }
-            else if (field.Contains("Active"))
+            else if (types[field] == "Boolean")
             {
                 return Json("Boolean", JsonRequestBehavior.AllowGet);
             }
-            else if (field.Contains("Date"))
+            else if (types[field] == "DateTime")
             {
                 return Json("Date", JsonRequestBehavior.AllowGet);
             }
-            else
+            else if(types[field] == "String")
             {
                 return Json("Text", JsonRequestBehavior.AllowGet);
+            }
+            else if (types[field] == "Numeric")
+            {
+                return Json("Number", JsonRequestBehavior.AllowGet);
             }
             return null;
         }
@@ -110,7 +117,6 @@ namespace Iris10ReportUI.Controllers
         [HttpPost]
         public ActionResult UpdateFilterCache(int position, bool removeEdit)
         {
-            //if removeAdd == true then remove else edit
             if (removeEdit)
             {
                 displaylist.RemoveAt(position);
@@ -122,28 +128,24 @@ namespace Iris10ReportUI.Controllers
         [HttpGet]
         public ActionResult ForeignKeyValue(string field)
         {
-            var wheres = new List<SqlWhere>();
+            List<SqlWhere> wheres = new List<SqlWhere>();
             wheres.Add(new SqlWhere(null, null, "RPTReportAvailableFilterList", "ColumnName", field, null, SqlWhereComparison.SqlComparer.Equal, SqlWhereAndOrOptions.SqlWhereAndOr.And));
             RPTReportAvailableFilterList getList = _coreService.LoadModel<RPTReportAvailableFilterList>(wheres, conName : Session["ConString"].ToString()).FirstOrDefault();
-            object lookupList = serializer.DeserializeObject(getList.LookupList);
             IList FilterLookupValueList = new List<ReportSelectListViewModel>();
-            var configLines = (IList) lookupList;
-            foreach (var configLine in configLines)
-            {
-                var myList = (Dictionary<string, object>) configLine;
-              
-                    var ugc = new ReportSelectListViewModel
-                    {
-                 LKey = myList["LKey"].ToString(),
-                 LVal = myList["LVal"].ToString()
-                    };
-                    FilterLookupValueList.Add(ugc);
             
-
+            if (getList == null)
+                return Json(new SelectList(FilterLookupValueList, "LKey", "LVal"), JsonRequestBehavior.AllowGet);
+            
+            foreach (var configLine in (IList)serializer.DeserializeObject(getList.LookupList))
+            {
+                var ugc = new ReportSelectListViewModel
+                {
+                        LKey = ((Dictionary<string, object>) configLine)["LKey"].ToString(),
+                        LVal = ((Dictionary<string, object>) configLine)["LVal"].ToString()
+                };
+                FilterLookupValueList.Add(ugc);
             }
-
-            return Json(new SelectList(FilterLookupValueList, "LKey", "LVal"), JsonRequestBehavior.AllowGet); 
-       
+            return Json(new SelectList(FilterLookupValueList, "LKey", "LVal"), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -279,37 +281,10 @@ namespace Iris10ReportUI.Controllers
         [HttpGet]
         public ActionResult FinishFilter()
         {
-            string db = Session["ConString"].ToString();
-            Type reportType = null;
-            Assembly a = Assembly.Load("ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
-            reportType = a.GetType("ReportLibrary."+Session["ReportName"].ToString());
-            
             if (filterlist.Count == 0)
                 createFilterList();
-            SqlGenerator gen = new SqlGenerator(SqlGenerator.SqlTypes.Select, Session["ReportModelName"].ToString());
-            foreach (var row in filterlist)
-            {
-                gen.AddWhereParameter(new SqlWhere(row.OpenGroup, row.CloseGroup, Session["ReportModelName"].ToString(), row.ColumnName, row.Value1, row.Value2, row.ComparisonOperator, GetAndOrSyntax(row.AndOr)));
-            }
-            DataTable dt = SQLHelper.FetchDataTable(gen, db);
-            Telerik.Reporting.ObjectDataSource source = new ObjectDataSource();
-            source.DataSource = dt;
-
-            reportType.GetProperty("SqlSource").SetValue(reportType, source);
-
             
-
-
-            var typeReportSource = new TypeReportSource(){ TypeName = "ReportLibrary." + Session["ReportName"].ToString() + ", ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" };
-
-            //ReportProcessor reportProcessor = new ReportProcessor();
-
-            //RenderingResult result = reportProcessor.RenderReport("CSV", typeReportSource, null);
-
-
-
-            Session["ReportTypeSource"] = typeReportSource;
-            
+            Session["ReportTypeSource"] = ReportFactory.GetReport(filterlist);
             return PartialView("~/Views/Reports/ReportsPartialView.cshtml");    
         }
 

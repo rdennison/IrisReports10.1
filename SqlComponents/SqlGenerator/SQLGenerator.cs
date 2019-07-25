@@ -614,6 +614,8 @@ namespace SqlComponents
                         sql += " DISTINCT";
                     if (_selectStatementLimit >= 1)
                         sql += " TOP " + _selectStatementLimit + " ";
+                    else
+                        sql += " ";
                 }
                 else if (_sqlTypeString == "UPDATE")
                 {
@@ -677,7 +679,7 @@ namespace SqlComponents
             }
         }
 
-        private string SqlDebug
+        public string SqlDebug
         {
             get
             {

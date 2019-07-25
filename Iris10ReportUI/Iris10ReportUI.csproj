@@ -260,6 +260,7 @@
     <Compile Include="GridBuilder\Extensions\UserFilterHelper.cs" />
     <Compile Include="GridBuilder\Extensions\UserListHelper.cs" />
     <Compile Include="GridBuilder\Interface\IrisWidgetFactory.cs" />
+    <Compile Include="GridBuilder\Interface\ReportFactory.cs" />
     <Compile Include="GridBuilder\Interface\Widgets\IrisGridBuilder.cs" />
     <Compile Include="GridBuilder\Interface\Widgets\ReportListGridBuilder.cs" />
     <Compile Include="Helpers\APIKeyHelper.cs" />

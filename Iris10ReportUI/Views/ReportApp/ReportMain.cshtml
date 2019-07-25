@@ -8,7 +8,7 @@
 @using IrisAttributes
 @using Iris10ReportUI.Models
 
-@{
+@*@{
     CoreService _coreService = new CoreService();
     ReportFilterDropdownAttribute filterDropdown = new ReportFilterDropdownAttribute();
     ReportFilterDropdownAttribute operatorDropdown = new ReportFilterDropdownAttribute();
@@ -41,41 +41,32 @@
     {
         descriptionList = filterDropdown.CreateReportFilterDropdownList();
     }
-}
-
-@(Html.Kendo().Splitter()
-        .Name("vertical")
-
-    .HtmlAttributes(new { style = "height: 765px" })
-    .Orientation(SplitterOrientation.Vertical)
-    .Panes(verticalPanes =>
-    {
-
-
-
-        verticalPanes.Add()
-                .Size("75%")
-
-                .HtmlAttributes(new { id = "report-grid" })
+}*@
+<div style="height:900px;">
+    @(Html.Kendo().Splitter()
+        .Name("ReportScreenSplitter")
+        .Orientation(SplitterOrientation.Vertical)
+        .HtmlAttributes(new { style="height:900px;" })
+        .Panes(panes =>
+        {
+            panes.Add()
                 .Collapsible(true)
+                .Resizable(true)
+                .Size("630px")
                 .LoadContentFrom("ReportMainUpper", "ReportMain");
+            panes.Add()
+                .Size("70px")
+                .Content("<div id = 'ReportLower'/>");
+        })
+    )
+</div>
 
-        verticalPanes.Add()
-      //.Collapsed(false)
-
-      .Size("250px")
-      //.CollapsedSize("1%")
-
-      //.MinSize("20%")
-      //.HtmlAttributes(new { style = "height: 800px" })
-      .Resizable(true)
-      .Collapsible(false)
-     .Content("<div id = 'ReportLower'/>");
-          
-
-
-    })
-)
+<div>
+    @(Html.Kendo().Button()
+        .Name("FinishFilter")
+        .HtmlAttributes(new { @data_bind = "click: finishFilter" })
+        .Content("Finish"))
+</div>
 
 <script>
     var REPORT_LIST = true;

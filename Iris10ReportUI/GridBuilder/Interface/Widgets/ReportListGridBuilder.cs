@@ -105,7 +105,7 @@ namespace Iris10ReportUI.GridBuilder.Interface.Widgets
             _builder.Selectable(s => { s.Type(GridSelectionType.Row); });
             _builder.Mobile();
             _builder.Navigatable();
-            _builder.HtmlAttributes(new { style = "height: 700px; width: 350px" });
+            _builder.HtmlAttributes(new { style = "width: 350px" });
             _builder.Scrollable(a => a.Height("100%"));
             _builder.Events(x => { x.DataBound("ReportListDataBound"); });
             _builder.Editable(e => e.Mode(GridEditMode.InLine).Enabled(true));

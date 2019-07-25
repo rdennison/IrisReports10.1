@@ -8,42 +8,22 @@ import { kendoWindowDefaultOptions } from '../utils';
 export default class ReportListController {
 
     private static _instance: ReportListController;
-
-
-
-
+    
     static getInstance() {
         if (!this._instance) {
             this._instance = new ReportListController();
         }
         return this._instance;
     }
-
-    lastSearchString: string;
-    /**
-     * To avoid kendo mvvm binding madness this must be static
-     */
-    private static _gridConfigSelector: kendo.ui.DropDownList;
-    private static _gridFilterSelector: kendo.ui.DropDownList;
-    private static _gridAdminToolSelector: kendo.ui.DropDownList;
-    private static _gridColumnMenu: kendo.ui.Menu;
-    toolFunctionModel: kendo.data.ObservableObject;
-    grid: kendo.ui.Grid;
+    
     private _searchTimer: number;
     private notificationWindow: kendo.ui.Window;
-    //private _reportViewWindow: kendo.ui.Window;
+    lastSearchString: string;
+    toolFunctionModel: kendo.data.ObservableObject;
+    grid: kendo.ui.Grid;
     keepSessionAlive = false;
     keepSessionAliveUrl = null;
-    entryValid = true;
-    private _editMode: boolean;
 
-
-    /**
-     * Sets grid with target element
-     * @param target
-     */
-
-    
     setGrid(target: string) {
         let self = this;
         this.grid = $(target).data('kendoGrid');
@@ -53,12 +33,9 @@ export default class ReportListController {
         $("#ReportListGrid tr.k-alt").removeClass("k-alt"); //hide the alternate color changing
         $("#ReportListGrid td").css('border-style', 'none'); //remove cell borders to make it look like a proper list
         $('#ReportToolBar').data('kendoToolBar').element.find('#reportsearch').first().val(this.lastSearchString);
-        //$("#FinishFilter").bind('click', self.finishFilter);
-        
         this.grid.dataSource.bind("error", this.errorLog);
         self._setupSessionUpdater('/Root/KeepSessionAlive');
         self.createTools();
-        //Select a row
         $('#ReportListGrid').data('kendoGrid').tbody.on('mousedown', function (this: HTMLElement, event: JQueryEventObject) {
             let row: any = event.target.parentElement["rowIndex"];
             var replist: any = $("#ReportListGrid").data("kendoGrid");
@@ -66,37 +43,28 @@ export default class ReportListController {
                 global: false,
                 type: "POST",
                 url: "/RPTReportListByUser/SelectReport",
-                data: {
-                    report: JSON.stringify(replist._data[row])
-                }
+                data: { report: JSON.stringify(replist._data[row]) }
             }).done((data) => {
-                ReportFilterController.getInstance().activateFilter();
-                
-                $("#ReportDescription").val(data["Description"]);
-                $.ajax({
-
-                    global: false,
-                    type: "GET",
-                    url: "/ReportMain/ReportMainLower",
-                  
-                }).done((data) => {
-                    $("#ReportLower").html(data);
-
+                if (data !== "") {
+                    ReportFilterController.getInstance().activateFilter();
+                    $("#ReportDescription").val(data["Description"]);
                     $.ajax({
-
                         global: false,
                         type: "GET",
-                        url: "/ReportMain/ReportNameDropdown",
-
+                        url: "/ReportMain/ReportMainLower"
                     }).done((data) => {
-                        $("#filterNameListDropdown").html(data);
-
+                        $("#ReportLower").html(data);
+                        $.ajax({
+                            global: false,
+                            type: "GET",
+                            url: "/ReportMain/ReportNameDropdown"
+                        }).done((data) => {
+                            $("#filterNameListDropdown").html(data);
+                        });
                     });
-                 
-                    });
-                });
+                }
+            });
         });
-
         //Checkbox events
         $('.fav').on('change', function () {
             var t = event.currentTarget['checked'];
@@ -109,27 +77,19 @@ export default class ReportListController {
                 data: { fav: JSON.stringify(replist._data[index]), check: t }
             }).done((data) => {
                 replist.dataSource.read();
-                });
-        
+            });
         });
-
         return this;
     }
 
     createTools() {
         let self = this;
-
         this.toolFunctionModel = kendo.observable({
-            
             searchKeyPressed: self.searchKeyPressed.bind(self)
-           
-            
         });
-       
         kendo.bind($('#ReportToolBar'), this.toolFunctionModel);
     }
-
-   
+    
     searchKeyPressed(e: KeyboardEvent) {
         let timer = 1000;
         let self = this;
@@ -156,7 +116,6 @@ export default class ReportListController {
             url: "/ReportSearch/ReportQuery",
             data: { searchString: query }
         }).done((data) => {
-            // All good.
             if (data !== "ready") {
                 console.log(`${data}`);
             } else {
@@ -168,47 +127,10 @@ export default class ReportListController {
         });
     }
 
-
-    saveCriteria()
-    {
-        return this;
-    }
-
-    deleteCriteria()
-    {
-        return this;
-    }
-
-    //finishFilter() {
-    //    let tempFilter = [];
-    //    var grid = $('#ReportWindowContainer').data('kendoGrid');
-    //    for (var i = 0; i < grid.dataSource.view().length; i++) {
-    //        if (grid.dataSource.view()[i]["Description"] !== null && grid.dataSource.view()[i]["Description"] !== "") {
-    //            tempFilter.push(JSON.stringify(grid.dataSource.view()[i]));
-    //        }
-    //    }
-    //    $.ajax({
-    //        global: false,
-    //        type: "POST",
-    //        url: "ReportFilterCriteria/FinishFilter",
-    //        data: { filterString: tempFilter, report: true }
-    //    }).done((data) => {
-    //        var ErrorMessage = data;
-    //        if (ErrorMessage.IsError !== null && ErrorMessage.IsError === true) {
-    //            alert(ErrorMessage.Message);
-    //        }
-    //        else {
-    //            //this._reportFilterWindow.close();
-    //            //this.reportTreeCheck();
-    //        }
-    //    });
-    //}
-
     loadDescription() {
         var self = ReportListController.getInstance();
         kendo.bind($('#ReportDescription'),self);
     }
-
     
     errorLog(e) {
         if (e.errors) {
@@ -228,8 +150,6 @@ export default class ReportListController {
         self.keepSessionAliveUrl = actionUrl;
         var container = $("#body");
         self.keepSessionAlive = true;
-        //container.mousemove(function () { self.keepSessionAlive = true; });
-        //container.keydown(function () { self.keepSessionAlive = true; });
         self._checkToKeepSessionAlive();
     }
 
@@ -258,56 +178,24 @@ export default class ReportListController {
         this._init();
     }
 
-    /**
-     * Initializes the controller
-     * NOTE: Do NOT include asynchronous calls in this method.
-     *       When Kendo binds to the controller it makes a copy rather
-     *       than using the instance in memory.
-     */
     private _init() {
         try {
             let self = this;
-      
             this._searchTimer = 0;
-            
-            
         } catch (err) {
             console.log('System not loaded yet');
         }
         
     }
-
-    //private _setupReportViewWindow() {
-    //    $("#reportViewWindow").remove();
-    //    let deferred = $.Deferred<void>();
-    //    this._reportViewWindow = $('<div id="reportViewWindow"></div>').kendoWindow(kendoWindowDefaultOptions({
-    //        appendTo: '#ReportWindowContainer',
-    //        content: '/ReportFilterCriteria/FinishFilter',
-    //        title: 'Report Viewer',
-    //        height: 900,
-    //        width: 900,
-    //        refresh: () => {
-    //            deferred.resolve();
-    //        }
-    //    })).data('kendoWindow');
-    //    return deferred.promise();
-    //}
-
- 
 }
 
 $(document).ready(() => {
     try {
-      
-
-
         if (REPORT_LIST !== null && REPORT_LIST) {
-           
             window['ReportListDataBound'] = () => {
                 ReportListController.getInstance().setGrid('#ReportListGrid');
             }           
         }
-
     } catch (err) {
         window.console.log(`no grid to load; or grid is set in view model.`);
     }

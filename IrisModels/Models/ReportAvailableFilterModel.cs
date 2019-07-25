@@ -29,6 +29,10 @@ namespace IrisModels.Models
         [IrisGridColumn(Width = 150)]
         public string ColumnName { get; set; }
 
+        [DbProperties(DatabaseType = SqlDbType.VarChar, Size = 20)]
+        [Required(ErrorMessage = "Your {0} is required.")]
+        public string ColumnType { get; set; }
+
         [DbProperties(DatabaseType = SqlDbType.Bit)]
         [Required(ErrorMessage = "Your {0} is required.")]
         [IrisGridColumn(Width = 150)]
