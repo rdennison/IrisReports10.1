@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IrisModels.Models
 {
-    public sealed class RPTReportAvailableFilterList : ModelBase
+    public sealed class RPTReportAvailableFilterListModel : ModelBase
     {
         [Key]
         [DbProperties(DatabaseType = SqlDbType.Int)]

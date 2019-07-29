@@ -474,7 +474,7 @@
     <Compile Include="Models\RPTCriteriaSavedModel.cs" />
     <Compile Include="Models\RPTFooterModel.cs" />
     <Compile Include="Models\RPTPolk_PermitOpenDrainageCulvertModel.cs" />
-    <Compile Include="Models\RPTReportAvailableFilterList.cs" />
+    <Compile Include="Models\RPTReportAvailableFilterListModel.cs" />
     <Compile Include="Models\RPTReportListByUserModel.cs" />
     <Compile Include="Models\RPTSortSavedModel.cs" />
     <Compile Include="Models\RuleParentModel.cs" />
